@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "cmd": "chmod",
+    "binary": "chmod",
+    "description": "Change file mode permissions",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+
+  "positional": [
+    {
+      "id": "mode",
+      "label": "Mode",
+      "description": "Permission mode (numeric like 755 or symbolic like u+x)",
+      "placeholder": "755 or u+x",
+      "type": "STRING",
+      "required": true,
+      "default": null,
+      "repeatable": false
+    },
+    {
+      "id": "file",
+      "label": "File",
+      "description": "File or directory to change permissions on",
+      "placeholder": "/path/to/file",
+      "type": "FILE_PATH",
+      "required": true,
+      "default": null,
+      "repeatable": true
+    }
+  ],
+
+  "groups": [
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+
+  "mutex_groups": [],
+
+  "subcommands": [],
+
+  "options": [
+    {
+      "id": "opt_recursive",
+      "flag": "-R",
+      "label": "Recursive",
+      "description": "Change files and directories recursively",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "opt_verbose",
+      "flag": "-v",
+      "label": "Verbose",
+      "description": "Output a diagnostic for every file processed",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "opt_changes",
+      "flag": "-c",
+      "label": "Changes only",
+      "description": "Report only when a change is made",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "opt_reference",
+      "flag": "--reference",
+      "label": "Reference file",
+      "description": "Use the mode of an existing file as reference",
+      "type": "FILE_PATH",
+      "required": false,
+      "default": null,
+      "separator": "=",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": "/path/to/reference",
+      "group": "options"
+    }
+  ]
+}
