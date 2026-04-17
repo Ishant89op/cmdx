@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "df",
+    "binary": "df",
+    "description": "Report filesystem disk space usage",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "filesystem", "label": "Filesystem", "description": "Specific filesystem or mount point", "placeholder": "/dev/sda1", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_human", "flag": "-h", "label": "Human readable", "description": "Print sizes in human readable format (1K, 234M, 2G)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_all", "flag": "-a", "label": "All", "description": "Include pseudo, duplicate, inaccessible filesystems", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_type", "flag": "-t", "label": "Type", "description": "Limit listing to filesystems of this type", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "ext4", "group": "options" },
+    { "id": "opt_inodes", "flag": "-i", "label": "Inodes", "description": "List inode information instead of block usage", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_total", "flag": "--total", "label": "Total", "description": "Produce a grand total", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

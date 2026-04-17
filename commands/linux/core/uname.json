@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "uname",
+    "binary": "uname",
+    "description": "Print system information",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_all", "flag": "-a", "label": "All", "description": "Print all system information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_kernel", "flag": "-s", "label": "Kernel name", "description": "Print the kernel name", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_release", "flag": "-r", "label": "Kernel release", "description": "Print the kernel release", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_machine", "flag": "-m", "label": "Machine", "description": "Print the machine hardware name", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_os", "flag": "-o", "label": "OS", "description": "Print the operating system", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

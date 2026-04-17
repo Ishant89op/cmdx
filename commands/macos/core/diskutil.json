@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "cmd": "diskutil",
+    "binary": "diskutil",
+    "description": "Manage local disks and volumes on macOS",
+    "version_flag": null,
+    "has_subcommands": true,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "list",
+      "description": "List all disks and partitions",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "info",
+      "description": "Display information about a disk or volume",
+      "positional": [
+        { "id": "device", "label": "Device", "description": "Device identifier", "placeholder": "disk0s2", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "eject",
+      "description": "Eject a disk",
+      "positional": [
+        { "id": "device", "label": "Device", "description": "Device to eject", "placeholder": "disk2", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "eraseDisk",
+      "description": "Erase and reformat a disk",
+      "positional": [
+        { "id": "format", "label": "Format", "description": "Filesystem format", "placeholder": "APFS", "type": "STRING", "required": true, "default": null, "repeatable": false },
+        { "id": "name", "label": "Volume Name", "description": "Name for the new volume", "placeholder": "MyDisk", "type": "STRING", "required": true, "default": null, "repeatable": false },
+        { "id": "device", "label": "Device", "description": "Device to erase", "placeholder": "disk2", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "mount",
+      "description": "Mount a volume",
+      "positional": [
+        { "id": "device", "label": "Device", "description": "Device to mount", "placeholder": "disk2s1", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "unmount",
+      "description": "Unmount a volume",
+      "positional": [
+        { "id": "device", "label": "Device", "description": "Device to unmount", "placeholder": "disk2s1", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

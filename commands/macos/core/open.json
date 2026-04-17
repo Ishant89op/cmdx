@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "open",
+    "binary": "open",
+    "description": "Open files, directories, and URLs on macOS",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["macos"]
+  },
+  "positional": [
+    { "id": "target", "label": "Target", "description": "File, directory, or URL to open", "placeholder": "file.pdf", "type": "STRING", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_app", "flag": "-a", "label": "Application", "description": "Open with specific application", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Safari", "group": "options" },
+    { "id": "opt_reveal", "flag": "-R", "label": "Reveal in Finder", "description": "Reveal file in Finder", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_new", "flag": "-n", "label": "New instance", "description": "Open a new instance of the application", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_textedit", "flag": "-t", "label": "TextEdit", "description": "Open with TextEdit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_wait", "flag": "-W", "label": "Wait", "description": "Wait until application exits", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

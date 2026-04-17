@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "cmd": "flatpak",
+    "binary": "flatpak",
+    "description": "Application deployment framework for Linux desktop apps",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install an application or runtime",
+      "positional": [
+        { "id": "ref", "label": "Application", "description": "Application ID or name", "placeholder": "org.mozilla.firefox", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_user", "flag": "--user", "label": "User install", "description": "Install for current user only", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_system", "flag": "--system", "label": "System install", "description": "Install system-wide", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "uninstall",
+      "description": "Uninstall an application",
+      "positional": [
+        { "id": "ref", "label": "Application", "description": "Application to uninstall", "placeholder": "org.mozilla.firefox", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_delete_data", "flag": "--delete-data", "label": "Delete data", "description": "Delete application data", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List installed applications",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_app", "flag": "--app", "label": "Apps only", "description": "Show only applications", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_runtime", "flag": "--runtime", "label": "Runtimes only", "description": "Show only runtimes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "search",
+      "description": "Search for applications",
+      "positional": [
+        { "id": "query", "label": "Query", "description": "Search term", "placeholder": "firefox", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "update",
+      "description": "Update installed applications",
+      "positional": [
+        { "id": "ref", "label": "Application", "description": "Specific app to update (all if omitted)", "placeholder": "org.mozilla.firefox", "type": "STRING", "required": false, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": []
+}

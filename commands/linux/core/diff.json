@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "cmd": "diff",
+    "binary": "diff",
+    "description": "Compare files line by line",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "file1", "label": "File 1", "description": "First file to compare", "placeholder": "original.txt", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "file2", "label": "File 2", "description": "Second file to compare", "placeholder": "modified.txt", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "format", "label": "Output Format", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "output_fmt", "label": "Format", "description": "Only one output format", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_unified", "flag": "-u", "label": "Unified", "description": "Output unified diff format", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "output_fmt", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "format" },
+    { "id": "opt_context", "flag": "-c", "label": "Context", "description": "Output context diff format", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "output_fmt", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "format" },
+    { "id": "opt_side", "flag": "-y", "label": "Side-by-side", "description": "Output in two columns", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "output_fmt", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "format" },
+    { "id": "opt_recursive", "flag": "-r", "label": "Recursive", "description": "Recursively compare directories", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_ignore_case", "flag": "-i", "label": "Ignore case", "description": "Ignore case differences", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_ignore_space", "flag": "-w", "label": "Ignore whitespace", "description": "Ignore all white space", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_brief", "flag": "-q", "label": "Brief", "description": "Report only when files differ", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_color", "flag": "--color", "label": "Color", "description": "Colorize output", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["always", "never", "auto"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "cmd": "brew",
+    "binary": "brew",
+    "description": "The missing package manager for macOS",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install a formula or cask",
+      "positional": [
+        { "id": "formula", "label": "Formula", "description": "Formula or cask name", "placeholder": "wget", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Install Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_cask", "flag": "--cask", "label": "Cask", "description": "Install as a cask (GUI application)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_force", "flag": "--force", "label": "Force", "description": "Install even if already installed", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_verbose", "flag": "--verbose", "label": "Verbose", "description": "Print detailed output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "uninstall",
+      "description": "Uninstall a formula or cask",
+      "positional": [
+        { "id": "formula", "label": "Formula", "description": "Formula or cask to uninstall", "placeholder": "wget", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_force", "flag": "--force", "label": "Force", "description": "Remove all versions", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_zap", "flag": "--zap", "label": "Zap", "description": "Remove all files associated with a cask", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "search",
+      "description": "Search for formulae and casks",
+      "positional": [
+        { "id": "text", "label": "Search text", "description": "Text or regex to search for", "placeholder": "package_name", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_cask", "flag": "--cask", "label": "Casks only", "description": "Search only casks", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_formula", "flag": "--formula", "label": "Formulae only", "description": "Search only formulae", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "update",
+      "description": "Fetch the newest version of Homebrew",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_verbose", "flag": "--verbose", "label": "Verbose", "description": "Print detailed output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "upgrade",
+      "description": "Upgrade outdated packages",
+      "positional": [
+        { "id": "formula", "label": "Formula", "description": "Specific formula to upgrade (all if omitted)", "placeholder": "wget", "type": "STRING", "required": false, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_cask", "flag": "--cask", "label": "Casks only", "description": "Upgrade only casks", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_dry_run", "flag": "--dry-run", "label": "Dry run", "description": "Show what would be upgraded", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List installed formulae",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_cask", "flag": "--cask", "label": "Casks only", "description": "List only casks", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_versions", "flag": "--versions", "label": "Versions", "description": "Show the version number for installed formulae", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": []
+}

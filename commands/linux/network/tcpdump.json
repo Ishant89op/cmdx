@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "cmd": "tcpdump",
+    "binary": "tcpdump",
+    "description": "Capture and analyze network packets",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "expression", "label": "Filter expression", "description": "BPF filter expression", "placeholder": "port 80 and host 192.168.1.1", "type": "STRING", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "capture", "label": "Capture Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_interface", "flag": "-i", "label": "Interface", "description": "Network interface to capture on", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "eth0", "group": "capture" },
+    { "id": "opt_count", "flag": "-c", "label": "Count", "description": "Exit after capturing N packets", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "capture" },
+    { "id": "opt_promisc", "flag": "-p", "label": "No promiscuous", "description": "Don't put interface in promiscuous mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "capture" },
+    { "id": "opt_snapshot", "flag": "-s", "label": "Snapshot length", "description": "Bytes of data to capture per packet", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 65535, "repeatable": false, "placeholder": null, "group": "capture" },
+    { "id": "opt_write", "flag": "-w", "label": "Write file", "description": "Write packets to pcap file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "capture.pcap", "group": "output" },
+    { "id": "opt_read", "flag": "-r", "label": "Read file", "description": "Read packets from pcap file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "capture.pcap", "group": "output" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Verbose output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_numeric", "flag": "-n", "label": "Numeric", "description": "Don't resolve hostnames", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_ascii", "flag": "-A", "label": "ASCII", "description": "Print each packet in ASCII", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_hex", "flag": "-X", "label": "Hex + ASCII", "description": "Print packet data in hex and ASCII", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" }
+  ]
+}

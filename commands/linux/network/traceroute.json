@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "traceroute",
+    "binary": "traceroute",
+    "description": "Print the route packets trace to network host",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "host", "label": "Host", "description": "Target hostname or IP", "placeholder": "8.8.8.8", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_max_hops", "flag": "-m", "label": "Max hops", "description": "Set max TTL (number of hops)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 255, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_numeric", "flag": "-n", "label": "Numeric", "description": "Do not resolve IP addresses to hostnames", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_wait", "flag": "-w", "label": "Wait time", "description": "Wait time for response (seconds)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 60, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_queries", "flag": "-q", "label": "Queries", "description": "Number of queries per hop", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 10, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_icmp", "flag": "-I", "label": "Use ICMP", "description": "Use ICMP ECHO instead of UDP", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

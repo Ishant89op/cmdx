@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "cmd": "ip",
+    "binary": "ip",
+    "description": "Show and manipulate routing, network devices, interfaces and tunnels",
+    "version_flag": "-V",
+    "has_subcommands": true,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "global", "label": "Global Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "addr",
+      "description": "Manage protocol addresses",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_show", "flag": "show", "label": "Show", "description": "Show addresses (default)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "link",
+      "description": "Manage network devices",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_show", "flag": "show", "label": "Show", "description": "Show link status", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "route",
+      "description": "Manage routing table",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_show", "flag": "show", "label": "Show", "description": "Show routing table", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "neigh",
+      "description": "Manage ARP/neighbour tables",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_show", "flag": "show", "label": "Show", "description": "Show neighbour entries", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": [
+    { "id": "opt_color", "flag": "-c", "label": "Color", "description": "Use color output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "global" },
+    { "id": "opt_brief", "flag": "-br", "label": "Brief", "description": "Print only basic information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "global" }
+  ]
+}

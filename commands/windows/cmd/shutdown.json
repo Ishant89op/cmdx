@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "cmd": "shutdown",
+    "binary": "shutdown",
+    "description": "Shutdown, restart, or log off Windows",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "action", "label": "Action", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "mode", "label": "Mode", "description": "Only one shutdown mode", "required": true }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_shutdown", "flag": "/s", "label": "Shutdown", "description": "Shutdown the computer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_restart", "flag": "/r", "label": "Restart", "description": "Restart the computer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_logoff", "flag": "/l", "label": "Log off", "description": "Log off the current user", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_hibernate", "flag": "/h", "label": "Hibernate", "description": "Hibernate the computer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_abort", "flag": "/a", "label": "Abort", "description": "Abort a pending shutdown", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_timer", "flag": "/t", "label": "Timer", "description": "Seconds before shutdown (0-315360000)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 315360000, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_comment", "flag": "/c", "label": "Comment", "description": "Reason comment (max 512 chars)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Scheduled maintenance", "group": "options" },
+    { "id": "opt_force", "flag": "/f", "label": "Force", "description": "Force running applications to close", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

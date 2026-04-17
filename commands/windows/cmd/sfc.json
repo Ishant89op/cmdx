@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "sfc",
+    "binary": "sfc",
+    "description": "System File Checker — scan and repair Windows system files",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "action", "label": "Action", "description": "Only one action at a time", "required": true }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_scannow", "flag": "/scannow", "label": "Scan now", "description": "Scan all protected system files and repair", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_verifyonly", "flag": "/verifyonly", "label": "Verify only", "description": "Scan without repairing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_scanfile", "flag": "/scanfile", "label": "Scan file", "description": "Scan and repair a specific file", "type": "FILE_PATH", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "C:\\Windows\\System32\\file.dll", "group": "options" }
+  ]
+}

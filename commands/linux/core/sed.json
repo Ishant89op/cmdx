@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "sed",
+    "binary": "sed",
+    "description": "Stream editor for filtering and transforming text",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "script", "label": "Script", "description": "sed script expression", "placeholder": "s/old/new/g", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "file", "label": "File", "description": "Input file (stdin if omitted)", "placeholder": "/path/to/file", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_in_place", "flag": "-i", "label": "In-place", "description": "Edit files in place", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_extended", "flag": "-E", "label": "Extended regex", "description": "Use extended regular expressions", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_quiet", "flag": "-n", "label": "Quiet", "description": "Suppress automatic printing of pattern space", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_expression", "flag": "-e", "label": "Expression", "description": "Additional script expression", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "s/pattern/replace/", "group": "options" }
+  ]
+}

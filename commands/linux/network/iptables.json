@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "cmd": "iptables",
+    "binary": "iptables",
+    "description": "Administration tool for IPv4 packet filtering and NAT",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "target", "label": "Target", "collapsible": true, "collapsed_by_default": false },
+    { "id": "match", "label": "Match Criteria", "collapsible": true, "collapsed_by_default": false },
+    { "id": "action", "label": "Action", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "command", "label": "Command", "description": "Only one command at a time", "required": true }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_append", "flag": "-A", "label": "Append", "description": "Append rule to chain", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "command", "choices": ["INPUT", "OUTPUT", "FORWARD"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_delete", "flag": "-D", "label": "Delete", "description": "Delete rule from chain", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "command", "choices": ["INPUT", "OUTPUT", "FORWARD"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_list", "flag": "-L", "label": "List", "description": "List all rules", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "command", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_flush", "flag": "-F", "label": "Flush", "description": "Delete all rules in chain", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "command", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_protocol", "flag": "-p", "label": "Protocol", "description": "Protocol to match", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["tcp", "udp", "icmp", "all"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "match" },
+    { "id": "opt_source", "flag": "-s", "label": "Source", "description": "Source IP address/network", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "192.168.1.0/24", "group": "match" },
+    { "id": "opt_dest", "flag": "-d", "label": "Destination", "description": "Destination IP address/network", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "10.0.0.0/8", "group": "match" },
+    { "id": "opt_dport", "flag": "--dport", "label": "Dest port", "description": "Destination port", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "80", "group": "match" },
+    { "id": "opt_jump", "flag": "-j", "label": "Jump (action)", "description": "Target action for matched packets", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["ACCEPT", "DROP", "REJECT", "LOG", "RETURN"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_numeric", "flag": "-n", "label": "Numeric", "description": "Numeric output of addresses and ports", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Verbose output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" }
+  ]
+}

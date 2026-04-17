@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "cmd": "grep",
+    "binary": "grep",
+    "description": "Search for patterns in files",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "pattern", "label": "Pattern", "description": "Search pattern (regex or fixed string)", "placeholder": "search_term", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "file", "label": "File / Directory", "description": "File or directory to search in", "placeholder": "/path/to/file", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "matching", "label": "Matching Control", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output Control", "collapsible": true, "collapsed_by_default": false },
+    { "id": "context", "label": "Context Lines", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "regex_type", "label": "Regex Type", "description": "Only one regex interpretation can be used", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_ignore_case", "flag": "-i", "label": "Ignore case", "description": "Case-insensitive matching", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "matching" },
+    { "id": "opt_invert", "flag": "-v", "label": "Invert match", "description": "Select non-matching lines", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "matching" },
+    { "id": "opt_word", "flag": "-w", "label": "Whole word", "description": "Match whole words only", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "matching" },
+    { "id": "opt_fixed", "flag": "-F", "label": "Fixed strings", "description": "Interpret pattern as fixed string, not regex", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "regex_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "matching" },
+    { "id": "opt_extended", "flag": "-E", "label": "Extended regex", "description": "Use extended regular expressions", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "regex_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "matching" },
+    { "id": "opt_perl", "flag": "-P", "label": "Perl regex", "description": "Use Perl-compatible regular expressions", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "regex_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "matching" },
+    { "id": "opt_recursive", "flag": "-r", "label": "Recursive", "description": "Read all files under each directory recursively", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_line_number", "flag": "-n", "label": "Line numbers", "description": "Show line numbers with output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_count", "flag": "-c", "label": "Count", "description": "Print only a count of matching lines", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_files_only", "flag": "-l", "label": "Files with matches", "description": "Print only names of files with matches", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_color", "flag": "--color", "label": "Color", "description": "Highlight matches", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["auto", "always", "never"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_after", "flag": "-A", "label": "After context", "description": "Print N lines after match", "type": "INT", "required": false, "default": null, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "context" },
+    { "id": "opt_before", "flag": "-B", "label": "Before context", "description": "Print N lines before match", "type": "INT", "required": false, "default": null, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "context" },
+    { "id": "opt_context", "flag": "-C", "label": "Context", "description": "Print N lines of surrounding context", "type": "INT", "required": false, "default": null, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "context" }
+  ]
+}

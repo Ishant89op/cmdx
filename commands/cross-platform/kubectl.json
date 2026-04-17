@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "cmd": "kubectl",
+    "binary": "kubectl",
+    "description": "Kubernetes command-line tool for cluster management",
+    "version_flag": "version --client",
+    "has_subcommands": true,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "get",
+      "description": "Display one or many resources",
+      "positional": [
+        { "id": "resource", "label": "Resource", "description": "Resource type to get", "placeholder": "pods", "type": "ENUM", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_namespace", "flag": "-n", "label": "Namespace", "description": "Kubernetes namespace", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "default", "group": "options" },
+        { "id": "opt_all_ns", "flag": "--all-namespaces", "label": "All namespaces", "description": "List across all namespaces", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_output", "flag": "-o", "label": "Output", "description": "Output format", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["json", "yaml", "wide", "name"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_selector", "flag": "-l", "label": "Selector", "description": "Label selector", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "app=nginx", "group": "options" },
+        { "id": "opt_watch", "flag": "-w", "label": "Watch", "description": "Watch for changes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "apply",
+      "description": "Apply a configuration from file",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_filename", "flag": "-f", "label": "Filename", "description": "Manifest file to apply", "type": "FILE_PATH", "required": true, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "deployment.yaml", "group": "options" },
+        { "id": "opt_namespace", "flag": "-n", "label": "Namespace", "description": "Kubernetes namespace", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "default", "group": "options" },
+        { "id": "opt_dry_run", "flag": "--dry-run", "label": "Dry run", "description": "Simulate the operation", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["none", "client", "server"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "delete",
+      "description": "Delete resources",
+      "positional": [
+        { "id": "resource", "label": "Resource", "description": "Resource type and name", "placeholder": "pod/my-pod", "type": "STRING", "required": false, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_filename", "flag": "-f", "label": "Filename", "description": "Manifest file to delete", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "deployment.yaml", "group": "options" },
+        { "id": "opt_namespace", "flag": "-n", "label": "Namespace", "description": "Kubernetes namespace", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "default", "group": "options" }
+      ]
+    },
+    {
+      "name": "logs",
+      "description": "Print container logs",
+      "positional": [
+        { "id": "pod", "label": "Pod", "description": "Pod name", "placeholder": "my-pod", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_follow", "flag": "-f", "label": "Follow", "description": "Stream logs in real-time", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_tail", "flag": "--tail", "label": "Tail", "description": "Number of recent lines to show", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_container", "flag": "-c", "label": "Container", "description": "Container name (for multi-container pods)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "app", "group": "options" },
+        { "id": "opt_previous", "flag": "--previous", "label": "Previous", "description": "Print logs of previous container instance", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": []
+}

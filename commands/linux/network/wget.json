@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "cmd": "wget",
+    "binary": "wget",
+    "description": "Download files from the web",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "url", "label": "URL", "description": "URL to download", "placeholder": "https://example.com/file.tar.gz", "type": "STRING", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "download", "label": "Download Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "advanced", "label": "Advanced", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_output", "flag": "-O", "label": "Output file", "description": "Write to specified file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "output.file", "group": "output" },
+    { "id": "opt_directory", "flag": "-P", "label": "Directory prefix", "description": "Save files to directory", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/download/path", "group": "output" },
+    { "id": "opt_continue", "flag": "-c", "label": "Continue", "description": "Resume a partially downloaded file", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "download" },
+    { "id": "opt_quiet", "flag": "-q", "label": "Quiet", "description": "Turn off output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_recursive", "flag": "-r", "label": "Recursive", "description": "Recursive download", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "download" },
+    { "id": "opt_depth", "flag": "-l", "label": "Depth", "description": "Maximum recursion depth", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": "opt_recursive", "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "download" },
+    { "id": "opt_no_check_cert", "flag": "--no-check-certificate", "label": "No cert check", "description": "Don't validate the server certificate", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_user_agent", "flag": "-U", "label": "User agent", "description": "Identify as agent-string to the server", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Mozilla/5.0", "group": "advanced" },
+    { "id": "opt_tries", "flag": "-t", "label": "Retries", "description": "Set number of retries", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_limit_rate", "flag": "--limit-rate", "label": "Limit rate", "description": "Limit download rate (e.g., 200k, 1m)", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "200k", "group": "advanced" }
+  ]
+}

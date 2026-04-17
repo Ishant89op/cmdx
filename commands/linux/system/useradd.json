@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "cmd": "useradd",
+    "binary": "useradd",
+    "description": "Create a new user account",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "username", "label": "Username", "description": "Login name of the new user", "placeholder": "newuser", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "identity", "label": "Identity", "collapsible": true, "collapsed_by_default": false },
+    { "id": "home", "label": "Home Directory", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_comment", "flag": "-c", "label": "Comment", "description": "Full name or description (GECOS)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "John Doe", "group": "identity" },
+    { "id": "opt_uid", "flag": "-u", "label": "UID", "description": "User ID number", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1000, "max": 65534, "repeatable": false, "placeholder": null, "group": "identity" },
+    { "id": "opt_group", "flag": "-g", "label": "Primary group", "description": "Primary group name or GID", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "users", "group": "identity" },
+    { "id": "opt_groups", "flag": "-G", "label": "Supplementary groups", "description": "Supplementary groups (comma-separated)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "sudo,docker,www-data", "group": "identity" },
+    { "id": "opt_home", "flag": "-d", "label": "Home directory", "description": "Home directory path", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/home/newuser", "group": "home" },
+    { "id": "opt_create_home", "flag": "-m", "label": "Create home", "description": "Create the user's home directory", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "home" },
+    { "id": "opt_shell", "flag": "-s", "label": "Shell", "description": "Login shell", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["/bin/bash", "/bin/zsh", "/bin/sh", "/bin/fish", "/usr/sbin/nologin", "/bin/false"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_system", "flag": "-r", "label": "System account", "description": "Create a system account", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_no_login", "flag": "-M", "label": "No home dir", "description": "Do not create the home directory", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

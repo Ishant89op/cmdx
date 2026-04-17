@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "cmd": "rsync",
+    "binary": "rsync",
+    "description": "Fast, versatile file copying and synchronization tool",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "source", "label": "Source", "description": "Source path (local or remote user@host:path)", "placeholder": "/source/path/", "type": "STRING", "required": true, "default": null, "repeatable": true },
+    { "id": "destination", "label": "Destination", "description": "Destination path (local or remote user@host:path)", "placeholder": "/dest/path/", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "basic", "label": "Basic Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "transfer", "label": "Transfer Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "filter", "label": "Filter Options", "collapsible": true, "collapsed_by_default": true },
+    { "id": "remote", "label": "Remote Options", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_archive", "flag": "-a", "label": "Archive", "description": "Archive mode: recursive, preserve symlinks, permissions, times, group, owner, devices", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Increase verbosity", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_progress", "flag": "--progress", "label": "Progress", "description": "Show progress during transfer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_dry_run", "flag": "-n", "label": "Dry run", "description": "Perform a trial run with no changes made", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_delete", "flag": "--delete", "label": "Delete", "description": "Delete extraneous files from destination", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "transfer" },
+    { "id": "opt_compress", "flag": "-z", "label": "Compress", "description": "Compress file data during the transfer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "transfer" },
+    { "id": "opt_human", "flag": "-h", "label": "Human readable", "description": "Output numbers in human-readable format", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "transfer" },
+    { "id": "opt_bwlimit", "flag": "--bwlimit", "label": "Bandwidth limit", "description": "Limit bandwidth in KBytes per second", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "transfer" },
+    { "id": "opt_exclude", "flag": "--exclude", "label": "Exclude", "description": "Exclude files matching pattern", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "*.tmp", "group": "filter" },
+    { "id": "opt_include", "flag": "--include", "label": "Include", "description": "Include files matching pattern", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "*.conf", "group": "filter" },
+    { "id": "opt_ssh", "flag": "-e", "label": "Remote shell", "description": "Specify remote shell command", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "ssh -p 2222", "group": "remote" }
+  ]
+}

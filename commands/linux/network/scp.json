@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "cmd": "scp",
+    "binary": "scp",
+    "description": "Securely copy files between hosts over SSH",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "source", "label": "Source", "description": "Source path (local or remote user@host:path)", "placeholder": "user@host:/remote/path", "type": "STRING", "required": true, "default": null, "repeatable": true },
+    { "id": "destination", "label": "Destination", "description": "Destination path (local or remote user@host:path)", "placeholder": "/local/path", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "basic", "label": "Basic Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "advanced", "label": "Advanced", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_recursive", "flag": "-r", "label": "Recursive", "description": "Recursively copy entire directories", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_port", "flag": "-P", "label": "Port", "description": "SSH port on remote host", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 65535, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_identity", "flag": "-i", "label": "Identity file", "description": "Path to private key file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "~/.ssh/id_rsa", "group": "basic" },
+    { "id": "opt_preserve", "flag": "-p", "label": "Preserve", "description": "Preserve modification times and modes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_compress", "flag": "-C", "label": "Compression", "description": "Enable compression", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Verbose mode for debugging", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_limit", "flag": "-l", "label": "Bandwidth limit", "description": "Limit bandwidth in Kbit/s", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "advanced" }
+  ]
+}

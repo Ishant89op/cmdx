@@ -1,0 +1,217 @@
+{
+  "meta": {
+    "cmd": "nc",
+    "binary": "nc",
+    "description": "Networking utility for reading and writing across network connections",
+    "version_flag": "-h",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+
+  "positional": [
+    {
+      "id": "host",
+      "label": "Host",
+      "description": "Target hostname or IP address",
+      "placeholder": "192.168.1.1 or example.com",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    },
+    {
+      "id": "port",
+      "label": "Port",
+      "description": "Port number",
+      "placeholder": "4444",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+
+  "groups": [
+    {
+      "id": "mode",
+      "label": "Mode",
+      "collapsible": true,
+      "collapsed_by_default": false
+    },
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+
+  "mutex_groups": [],
+
+  "subcommands": [],
+
+  "options": [
+    {
+      "id": "opt_listen",
+      "flag": "-l",
+      "label": "Listen",
+      "description": "Listen mode, wait for inbound connections",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "mode"
+    },
+    {
+      "id": "opt_port",
+      "flag": "-p",
+      "label": "Source port",
+      "description": "Local port number to use",
+      "type": "INT",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": 1,
+      "max": 65535,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "mode"
+    },
+    {
+      "id": "opt_udp",
+      "flag": "-u",
+      "label": "UDP mode",
+      "description": "Use UDP instead of TCP",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "mode"
+    },
+    {
+      "id": "opt_verbose",
+      "flag": "-v",
+      "label": "Verbose",
+      "description": "Produce verbose output",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "opt_scan",
+      "flag": "-z",
+      "label": "Port scan",
+      "description": "Zero-I/O mode for port scanning, report open ports only",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "opt_timeout",
+      "flag": "-w",
+      "label": "Timeout",
+      "description": "Timeout for connections in seconds",
+      "type": "INT",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": 1,
+      "max": 3600,
+      "repeatable": false,
+      "placeholder": "5",
+      "group": "options"
+    },
+    {
+      "id": "opt_exec",
+      "flag": "-e",
+      "label": "Execute",
+      "description": "Execute a program after connection",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": "/bin/bash",
+      "group": "options"
+    },
+    {
+      "id": "opt_keep_open",
+      "flag": "-k",
+      "label": "Keep open",
+      "description": "Keep listening after client disconnects",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": "opt_listen",
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "opt_no_dns",
+      "flag": "-n",
+      "label": "No DNS",
+      "description": "Do not perform DNS lookups",
+      "type": "BOOL",
+      "required": false,
+      "default": false,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    }
+  ]
+}

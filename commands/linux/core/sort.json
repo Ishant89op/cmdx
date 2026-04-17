@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "sort",
+    "binary": "sort",
+    "description": "Sort lines of text files",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "file", "label": "File", "description": "File(s) to sort", "placeholder": "/path/to/file", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_reverse", "flag": "-r", "label": "Reverse", "description": "Reverse the result of comparisons", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_numeric", "flag": "-n", "label": "Numeric sort", "description": "Compare according to string numerical value", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_unique", "flag": "-u", "label": "Unique", "description": "Output only the first of equal lines", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_key", "flag": "-k", "label": "Key", "description": "Sort by key field (e.g., 2,2 for column 2)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "2,2", "group": "options" },
+    { "id": "opt_separator", "flag": "-t", "label": "Delimiter", "description": "Use specified character as field separator", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": ",", "group": "options" },
+    { "id": "opt_output", "flag": "-o", "label": "Output file", "description": "Write result to file instead of stdout", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "sorted.txt", "group": "options" },
+    { "id": "opt_human", "flag": "-h", "label": "Human numeric", "description": "Compare human-readable numbers (2K, 1G)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

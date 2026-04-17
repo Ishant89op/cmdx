@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "cmd": "tar",
+    "binary": "tar",
+    "description": "Archive and compress files",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "archive", "label": "Archive file", "description": "Archive file path", "placeholder": "archive.tar.gz", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "files", "label": "Files", "description": "Files or directories to include", "placeholder": "file1 file2 dir/", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "action", "label": "Action", "collapsible": true, "collapsed_by_default": false },
+    { "id": "compression", "label": "Compression", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "action_mode", "label": "Action Mode", "description": "Only one action can be selected", "required": true },
+    { "id": "compress_type", "label": "Compression Type", "description": "Only one compression type can be selected", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_create", "flag": "-c", "label": "Create", "description": "Create a new archive", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_extract", "flag": "-x", "label": "Extract", "description": "Extract files from an archive", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_list", "flag": "-t", "label": "List", "description": "List the contents of an archive", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_gzip", "flag": "-z", "label": "gzip", "description": "Compress/decompress with gzip", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "compress_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "compression" },
+    { "id": "opt_bzip2", "flag": "-j", "label": "bzip2", "description": "Compress/decompress with bzip2", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "compress_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "compression" },
+    { "id": "opt_xz", "flag": "-J", "label": "xz", "description": "Compress/decompress with xz", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "compress_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "compression" },
+    { "id": "opt_file", "flag": "-f", "label": "Archive file", "description": "Use archive file (always required, applied automatically)", "type": "BOOL", "required": true, "default": true, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "List files processed", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_directory", "flag": "-C", "label": "Change directory", "description": "Change to directory before extraction", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/extract/here", "group": "options" },
+    { "id": "opt_exclude", "flag": "--exclude", "label": "Exclude pattern", "description": "Exclude files matching pattern", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "*.log", "group": "options" }
+  ]
+}

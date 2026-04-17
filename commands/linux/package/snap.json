@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "cmd": "snap",
+    "binary": "snap",
+    "description": "Snap package manager (Ubuntu/universal)",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install a snap package",
+      "positional": [
+        { "id": "snap_name", "label": "Snap name", "description": "Snap package to install", "placeholder": "spotify", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [
+        { "id": "confinement", "label": "Confinement", "description": "Only one confinement override", "required": false }
+      ],
+      "options": [
+        { "id": "opt_classic", "flag": "--classic", "label": "Classic", "description": "Install with classic confinement", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "confinement", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_devmode", "flag": "--devmode", "label": "Dev mode", "description": "Install in development mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "confinement", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_channel", "flag": "--channel", "label": "Channel", "description": "Snap channel to use", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["stable", "candidate", "beta", "edge"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_dangerous", "flag": "--dangerous", "label": "Dangerous", "description": "Install unsigned snap", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "remove",
+      "description": "Remove a snap package",
+      "positional": [
+        { "id": "snap_name", "label": "Snap name", "description": "Snap to remove", "placeholder": "spotify", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_purge", "flag": "--purge", "label": "Purge", "description": "Remove all snap data", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List installed snaps",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_all", "flag": "--all", "label": "All revisions", "description": "Show all revisions", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "find",
+      "description": "Search for snaps in the store",
+      "positional": [
+        { "id": "query", "label": "Query", "description": "Search term", "placeholder": "media player", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "refresh",
+      "description": "Refresh installed snaps",
+      "positional": [
+        { "id": "snap_name", "label": "Snap name", "description": "Specific snap to refresh (all if omitted)", "placeholder": "spotify", "type": "STRING", "required": false, "default": null, "repeatable": true }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

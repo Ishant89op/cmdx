@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "cmd": "tasklist",
+    "binary": "tasklist",
+    "description": "Display a list of running processes on Windows",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "filter", "label": "Filters", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_verbose", "flag": "/V", "label": "Verbose", "description": "Display verbose task information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_svc", "flag": "/SVC", "label": "Services", "description": "Display services hosted in each process", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_format", "flag": "/FO", "label": "Format", "description": "Output format", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["TABLE", "LIST", "CSV"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_filter", "flag": "/FI", "label": "Filter", "description": "Filter expression (e.g., IMAGENAME eq chrome.exe)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "IMAGENAME eq chrome.exe", "group": "filter" },
+    { "id": "opt_system", "flag": "/S", "label": "Remote system", "description": "Remote system to connect to", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "COMPUTERNAME", "group": "filter" }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "cmd": "ping",
+    "binary": "ping",
+    "description": "Send ICMP echo requests to network hosts",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "host", "label": "Host", "description": "Hostname or IP address to ping", "placeholder": "example.com", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "basic", "label": "Basic Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "advanced", "label": "Advanced Options", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_count", "flag": "-c", "label": "Count", "description": "Stop after sending N packets", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_interval", "flag": "-i", "label": "Interval", "description": "Seconds between each packet", "type": "FLOAT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0.1, "max": 60, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_timeout", "flag": "-W", "label": "Timeout", "description": "Seconds to wait for response", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 300, "repeatable": false, "placeholder": null, "group": "basic" },
+    { "id": "opt_ttl", "flag": "-t", "label": "TTL", "description": "Set the IP Time to Live", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 255, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_size", "flag": "-s", "label": "Packet size", "description": "Number of data bytes to send", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 65500, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_flood", "flag": "-f", "label": "Flood", "description": "Flood ping (requires root)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "advanced" },
+    { "id": "opt_quiet", "flag": "-q", "label": "Quiet", "description": "Quiet output, only show summary", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" }
+  ]
+}

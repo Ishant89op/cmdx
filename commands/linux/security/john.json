@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "john",
+    "binary": "john",
+    "description": "John the Ripper password cracker",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [
+    { "id": "hashfile", "label": "Hash file", "description": "File containing password hashes", "placeholder": "hashes.txt", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "attack", "label": "Attack Mode", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_wordlist", "flag": "--wordlist", "label": "Wordlist", "description": "Wordlist mode with specified file", "type": "FILE_PATH", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/usr/share/wordlists/rockyou.txt", "group": "attack" },
+    { "id": "opt_rules", "flag": "--rules", "label": "Rules", "description": "Enable word mangling rules", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_wordlist", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "attack" },
+    { "id": "opt_incremental", "flag": "--incremental", "label": "Incremental", "description": "Use incremental (brute force) mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "attack" },
+    { "id": "opt_format", "flag": "--format", "label": "Hash format", "description": "Force hash type", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "raw-md5", "group": "options" },
+    { "id": "opt_show", "flag": "--show", "label": "Show cracked", "description": "Show cracked passwords", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_fork", "flag": "--fork", "label": "Fork", "description": "Number of parallel processes", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 128, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

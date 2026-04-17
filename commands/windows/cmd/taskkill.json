@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "taskkill",
+    "binary": "taskkill",
+    "description": "Terminate processes by PID or image name",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "target", "label": "Target", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "selector", "label": "Process Selector", "description": "Select by PID or image name", "required": true }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_pid", "flag": "/PID", "label": "PID", "description": "Process ID to terminate", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "selector", "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_im", "flag": "/IM", "label": "Image name", "description": "Process image name to terminate", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "selector", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "chrome.exe", "group": "target" },
+    { "id": "opt_force", "flag": "/F", "label": "Force", "description": "Forcefully terminate the process", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_tree", "flag": "/T", "label": "Tree", "description": "Terminate process and all child processes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

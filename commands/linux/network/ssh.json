@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "cmd": "ssh",
+    "binary": "ssh",
+    "description": "Secure shell remote login and command execution",
+    "version_flag": "-V",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "destination", "label": "Destination", "description": "user@hostname or hostname", "placeholder": "user@host", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "command", "label": "Remote command", "description": "Command to execute on remote host", "placeholder": "ls -la", "type": "STRING", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "connection", "label": "Connection", "collapsible": true, "collapsed_by_default": false },
+    { "id": "auth", "label": "Authentication", "collapsible": true, "collapsed_by_default": false },
+    { "id": "tunneling", "label": "Tunneling", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_port", "flag": "-p", "label": "Port", "description": "Port to connect to on the remote host", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 65535, "repeatable": false, "placeholder": null, "group": "connection" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Verbose mode for debugging", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "connection" },
+    { "id": "opt_compress", "flag": "-C", "label": "Compression", "description": "Enable compression", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "connection" },
+    { "id": "opt_ipv4", "flag": "-4", "label": "IPv4 only", "description": "Forces IPv4 addresses only", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "connection" },
+    { "id": "opt_identity", "flag": "-i", "label": "Identity file", "description": "Path to private key file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "~/.ssh/id_rsa", "group": "auth" },
+    { "id": "opt_login", "flag": "-l", "label": "Login name", "description": "Login user name on remote host", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "username", "group": "auth" },
+    { "id": "opt_local_forward", "flag": "-L", "label": "Local forward", "description": "Local port forwarding (local:host:remote)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "8080:localhost:80", "group": "tunneling" },
+    { "id": "opt_remote_forward", "flag": "-R", "label": "Remote forward", "description": "Remote port forwarding (remote:host:local)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "8080:localhost:80", "group": "tunneling" },
+    { "id": "opt_dynamic", "flag": "-D", "label": "Dynamic forward (SOCKS)", "description": "Dynamic port forwarding (SOCKS proxy)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 65535, "repeatable": false, "placeholder": null, "group": "tunneling" },
+    { "id": "opt_no_tty", "flag": "-T", "label": "Disable pseudo-terminal", "description": "Disable pseudo-terminal allocation", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "connection" }
+  ]
+}

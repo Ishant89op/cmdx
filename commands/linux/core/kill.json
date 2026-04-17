@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "kill",
+    "binary": "kill",
+    "description": "Send signals to processes",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "pid", "label": "PID", "description": "Process ID(s) to signal", "placeholder": "1234", "type": "STRING", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_signal", "flag": "-s", "label": "Signal", "description": "Signal name or number to send", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["SIGHUP", "SIGINT", "SIGKILL", "SIGTERM", "SIGSTOP", "SIGCONT", "SIGUSR1", "SIGUSR2"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_force", "flag": "-9", "label": "Force kill (SIGKILL)", "description": "Send SIGKILL signal (cannot be caught)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_list", "flag": "-l", "label": "List signals", "description": "List all signal names", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

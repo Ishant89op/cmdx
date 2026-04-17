@@ -1,0 +1,117 @@
+{
+  "meta": {
+    "cmd": "dnf",
+    "binary": "dnf",
+    "description": "Package manager for Fedora, RHEL, and CentOS",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names to install", "placeholder": "httpd vim git", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_allowerasing", "flag": "--allowerasing", "label": "Allow erasing", "description": "Allow erasing conflicting packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_skip_broken", "flag": "--skip-broken", "label": "Skip broken", "description": "Skip uninstallable packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "remove",
+      "description": "Remove packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names to remove", "placeholder": "httpd", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "update",
+      "description": "Upgrade all installed packages",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_security", "flag": "--security", "label": "Security only", "description": "Only apply security updates", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "search",
+      "description": "Search for packages",
+      "positional": [
+        { "id": "query", "label": "Query", "description": "Search term", "placeholder": "nginx", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "info",
+      "description": "Display package details",
+      "positional": [
+        { "id": "package", "label": "Package", "description": "Package name", "placeholder": "httpd", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "list",
+      "description": "List packages",
+      "positional": [],
+      "groups": [
+        { "id": "filters", "label": "Filters", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [
+        { "id": "list_filter", "label": "List Filter", "description": "Only one list filter at a time", "required": false }
+      ],
+      "options": [
+        { "id": "opt_installed", "flag": "--installed", "label": "Installed", "description": "List installed packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "list_filter", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filters" },
+        { "id": "opt_available", "flag": "--available", "label": "Available", "description": "List available packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "list_filter", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filters" },
+        { "id": "opt_updates", "flag": "--updates", "label": "Updates", "description": "List packages with updates available", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "list_filter", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filters" }
+      ]
+    },
+    {
+      "name": "autoremove",
+      "description": "Remove unneeded packages",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "group",
+      "description": "Manage package groups",
+      "positional": [
+        { "id": "action", "label": "Action", "description": "Group action", "placeholder": "list", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "netstat",
+    "binary": "netstat",
+    "description": "Display network connections, routing tables, and interface statistics",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "display", "label": "Display Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "filter", "label": "Filters", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_all", "flag": "-a", "label": "All connections", "description": "Display all connections and listening ports", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_numeric", "flag": "-n", "label": "Numeric", "description": "Display addresses and port numbers in numerical form", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_pid", "flag": "-o", "label": "Show PID", "description": "Display the owning process ID", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_stats", "flag": "-s", "label": "Statistics", "description": "Display per-protocol statistics", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_routes", "flag": "-r", "label": "Routing table", "description": "Display the routing table", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_proto", "flag": "-p", "label": "Protocol", "description": "Show connections for specified protocol", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["TCP", "UDP", "TCPv6", "UDPv6"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_interval", "flag": "", "label": "Refresh interval", "description": "Seconds between refreshes (continuous mode)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 300, "repeatable": false, "placeholder": null, "group": "filter" }
+  ]
+}

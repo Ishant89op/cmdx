@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "crontab",
+    "binary": "crontab",
+    "description": "Maintain cron job tables for individual users",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "file", "label": "File", "description": "Load crontab from file", "placeholder": "mycron.txt", "type": "FILE_PATH", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "action", "label": "Action", "description": "Only one action at a time", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_list", "flag": "-l", "label": "List", "description": "Display current crontab", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_edit", "flag": "-e", "label": "Edit", "description": "Edit crontab using editor", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_remove", "flag": "-r", "label": "Remove", "description": "Remove current crontab", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_user", "flag": "-u", "label": "User", "description": "Specify user (requires root)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "www-data", "group": "options" }
+  ]
+}

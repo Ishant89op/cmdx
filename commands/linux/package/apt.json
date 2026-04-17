@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "cmd": "apt",
+    "binary": "apt",
+    "description": "Advanced Package Tool for Debian-based distributions",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names to install", "placeholder": "nginx curl git", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_fix_broken", "flag": "--fix-broken", "label": "Fix broken", "description": "Attempt to fix broken dependencies", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_no_install_recommends", "flag": "--no-install-recommends", "label": "No recommends", "description": "Do not install recommended packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "remove",
+      "description": "Remove packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names to remove", "placeholder": "nginx", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_purge", "flag": "--purge", "label": "Purge", "description": "Remove packages and config files", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "update",
+      "description": "Resynchronize the package index files",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "upgrade",
+      "description": "Install newest versions of all packages",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "search",
+      "description": "Search for packages",
+      "positional": [
+        { "id": "query", "label": "Query", "description": "Search term", "placeholder": "nginx", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "autoremove",
+      "description": "Remove automatically all unused packages",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Assume yes", "description": "Automatic yes to prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": []
+}

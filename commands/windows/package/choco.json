@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "cmd": "choco",
+    "binary": "choco",
+    "description": "Chocolatey package manager for Windows",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names to install", "placeholder": "googlechrome firefox", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Confirm all", "description": "Confirm all prompts automatically", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_version", "flag": "--version", "label": "Version", "description": "Specific version to install", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1.0.0", "group": "options" },
+        { "id": "opt_force", "flag": "--force", "label": "Force", "description": "Force install even if already installed", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "uninstall",
+      "description": "Uninstall packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names to uninstall", "placeholder": "googlechrome", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Confirm all", "description": "Confirm all prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "search",
+      "description": "Search for packages",
+      "positional": [
+        { "id": "query", "label": "Query", "description": "Search term", "placeholder": "chrome", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "upgrade",
+      "description": "Upgrade packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names (or 'all')", "placeholder": "all", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Confirm all", "description": "Confirm all prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List installed packages",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_local", "flag": "--local-only", "label": "Local only", "description": "Show only locally installed packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": []
+}

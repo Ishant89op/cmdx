@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "cmd": "docker",
+    "binary": "docker",
+    "description": "Container management platform",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "run",
+      "description": "Create and run a new container",
+      "positional": [
+        { "id": "image", "label": "Image", "description": "Docker image to run", "placeholder": "ubuntu:latest", "type": "STRING", "required": true, "default": null, "repeatable": false },
+        { "id": "command", "label": "Command", "description": "Command to run in container", "placeholder": "/bin/bash", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "basic", "label": "Basic Options", "collapsible": true, "collapsed_by_default": false },
+        { "id": "resources", "label": "Resource Limits", "collapsible": true, "collapsed_by_default": true },
+        { "id": "network", "label": "Networking", "collapsible": true, "collapsed_by_default": true }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_detach", "flag": "-d", "label": "Detach", "description": "Run container in background", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+        { "id": "opt_interactive", "flag": "-it", "label": "Interactive + TTY", "description": "Run with interactive terminal", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+        { "id": "opt_rm", "flag": "--rm", "label": "Auto-remove", "description": "Remove container on exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "basic" },
+        { "id": "opt_name", "flag": "--name", "label": "Name", "description": "Assign a name to the container", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "my-container", "group": "basic" },
+        { "id": "opt_volume", "flag": "-v", "label": "Volume", "description": "Bind mount a volume (host:container)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "/host/path:/container/path", "group": "basic" },
+        { "id": "opt_env", "flag": "-e", "label": "Environment", "description": "Set environment variables", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "KEY=value", "group": "basic" },
+        { "id": "opt_publish", "flag": "-p", "label": "Publish port", "description": "Map host port to container port", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "8080:80", "group": "network" },
+        { "id": "opt_network", "flag": "--network", "label": "Network", "description": "Connect container to a network", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "bridge", "group": "network" },
+        { "id": "opt_memory", "flag": "-m", "label": "Memory limit", "description": "Memory limit (e.g., 512m, 1g)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "512m", "group": "resources" },
+        { "id": "opt_cpus", "flag": "--cpus", "label": "CPU limit", "description": "Number of CPUs", "type": "FLOAT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0.1, "max": 128, "repeatable": false, "placeholder": null, "group": "resources" }
+      ]
+    },
+    {
+      "name": "build",
+      "description": "Build an image from a Dockerfile",
+      "positional": [
+        { "id": "path", "label": "Build context", "description": "Path to build context", "placeholder": ".", "type": "DIR_PATH", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Build Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_tag", "flag": "-t", "label": "Tag", "description": "Name and tag for the image", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "myapp:latest", "group": "options" },
+        { "id": "opt_file", "flag": "-f", "label": "Dockerfile", "description": "Path to the Dockerfile", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Dockerfile", "group": "options" },
+        { "id": "opt_no_cache", "flag": "--no-cache", "label": "No cache", "description": "Do not use cache when building", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_build_arg", "flag": "--build-arg", "label": "Build arg", "description": "Set build-time variables", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "KEY=value", "group": "options" }
+      ]
+    },
+    {
+      "name": "ps",
+      "description": "List containers",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_all", "flag": "-a", "label": "All", "description": "Show all containers (including stopped)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_quiet", "flag": "-q", "label": "Quiet", "description": "Only display container IDs", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_size", "flag": "-s", "label": "Size", "description": "Display total file sizes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": []
+}

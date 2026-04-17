@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "free",
+    "binary": "free",
+    "description": "Display amount of free and used memory",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "unit", "label": "Display Unit", "description": "Only one unit at a time", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_human", "flag": "-h", "label": "Human readable", "description": "Show output in human readable format", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "unit", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_bytes", "flag": "-b", "label": "Bytes", "description": "Show output in bytes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "unit", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_mega", "flag": "-m", "label": "Megabytes", "description": "Show output in megabytes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "unit", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_giga", "flag": "-g", "label": "Gigabytes", "description": "Show output in gigabytes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "unit", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_total", "flag": "-t", "label": "Total", "description": "Display a total line", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_seconds", "flag": "-s", "label": "Repeat", "description": "Repeat printing every N seconds", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 3600, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

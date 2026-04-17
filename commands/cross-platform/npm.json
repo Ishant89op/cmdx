@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "cmd": "npm",
+    "binary": "npm",
+    "description": "Node.js package manager",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names (all deps if omitted)", "placeholder": "express", "type": "STRING", "required": false, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_save_dev", "flag": "--save-dev", "label": "Dev dependency", "description": "Save as dev dependency", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_global", "flag": "-g", "label": "Global", "description": "Install globally", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "run",
+      "description": "Run a script from package.json",
+      "positional": [
+        { "id": "script", "label": "Script", "description": "Script name", "placeholder": "dev", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "init",
+      "description": "Initialize a new package.json",
+      "positional": [],
+      "groups": [{ "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Yes", "description": "Accept all defaults", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "uninstall",
+      "description": "Remove packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names", "placeholder": "express", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

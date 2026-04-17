@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "python3",
+    "binary": "python3",
+    "description": "Python 3 interpreter",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [
+    { "id": "script", "label": "Script", "description": "Python script file to run", "placeholder": "main.py", "type": "FILE_PATH", "required": false, "default": null, "repeatable": false },
+    { "id": "args", "label": "Arguments", "description": "Arguments passed to the script", "placeholder": "--config prod.yml", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_command", "flag": "-c", "label": "Command", "description": "Execute a Python expression", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "print('hello')", "group": "options" },
+    { "id": "opt_module", "flag": "-m", "label": "Module", "description": "Run a module as a script", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "http.server", "group": "options" },
+    { "id": "opt_interactive", "flag": "-i", "label": "Interactive", "description": "Enter interactive mode after running script", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_unbuffered", "flag": "-u", "label": "Unbuffered", "description": "Unbuffered binary stdout and stderr", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_venv", "flag": "-m venv", "label": "Create venv", "description": "Create a virtual environment", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": ".venv", "group": "options" }
+  ]
+}

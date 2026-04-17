@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "cmd": "winget",
+    "binary": "winget",
+    "description": "Windows Package Manager",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install a package",
+      "positional": [
+        { "id": "query", "label": "Package", "description": "Package name or ID", "placeholder": "Microsoft.VisualStudioCode", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_id", "flag": "--id", "label": "Exact ID", "description": "Filter by exact package identifier", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Microsoft.VisualStudioCode", "group": "options" },
+        { "id": "opt_version", "flag": "--version", "label": "Version", "description": "Specific version to install", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1.85.0", "group": "options" },
+        { "id": "opt_silent", "flag": "--silent", "label": "Silent", "description": "Run installer in silent mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_accept_agreements", "flag": "--accept-source-agreements", "label": "Accept agreements", "description": "Accept all source agreements", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "uninstall",
+      "description": "Uninstall a package",
+      "positional": [
+        { "id": "query", "label": "Package", "description": "Package name or ID", "placeholder": "Microsoft.VisualStudioCode", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "search",
+      "description": "Search for packages",
+      "positional": [
+        { "id": "query", "label": "Query", "description": "Search term", "placeholder": "vscode", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "upgrade",
+      "description": "Upgrade installed packages",
+      "positional": [
+        { "id": "query", "label": "Package", "description": "Specific package (all if omitted)", "placeholder": "Microsoft.VisualStudioCode", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_all", "flag": "--all", "label": "All", "description": "Upgrade all installed packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List installed packages",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

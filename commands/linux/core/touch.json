@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "touch",
+    "binary": "touch",
+    "description": "Change file timestamps or create empty files",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "file", "label": "File", "description": "File(s) to create or update", "placeholder": "newfile.txt", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_no_create", "flag": "-c", "label": "No create", "description": "Do not create file if it does not exist", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_date", "flag": "-d", "label": "Date", "description": "Parse date string and use instead of current time", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "2024-01-01 12:00:00", "group": "options" },
+    { "id": "opt_reference", "flag": "-r", "label": "Reference", "description": "Use timestamp of reference file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "reference.txt", "group": "options" },
+    { "id": "opt_access_only", "flag": "-a", "label": "Access time only", "description": "Change only the access time", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_modify_only", "flag": "-m", "label": "Modify time only", "description": "Change only the modification time", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

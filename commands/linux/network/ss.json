@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "ss",
+    "binary": "ss",
+    "description": "Investigate sockets and network connections",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "display", "label": "Display Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "filter", "label": "Socket Filters", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_all", "flag": "-a", "label": "All", "description": "Display listening and non-listening sockets", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_listening", "flag": "-l", "label": "Listening", "description": "Display only listening sockets", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_numeric", "flag": "-n", "label": "Numeric", "description": "Do not resolve service names", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_processes", "flag": "-p", "label": "Processes", "description": "Show process using socket", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "display" },
+    { "id": "opt_tcp", "flag": "-t", "label": "TCP", "description": "Display TCP sockets", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_udp", "flag": "-u", "label": "UDP", "description": "Display UDP sockets", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" }
+  ]
+}

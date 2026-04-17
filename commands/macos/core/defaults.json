@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "cmd": "defaults",
+    "binary": "defaults",
+    "description": "Access macOS user defaults (preferences) system",
+    "version_flag": null,
+    "has_subcommands": true,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "read",
+      "description": "Read a default value",
+      "positional": [
+        { "id": "domain", "label": "Domain", "description": "Application bundle ID", "placeholder": "com.apple.finder", "type": "STRING", "required": true, "default": null, "repeatable": false },
+        { "id": "key", "label": "Key", "description": "Preference key (all if omitted)", "placeholder": "AppleShowAllFiles", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "write",
+      "description": "Write a default value",
+      "positional": [
+        { "id": "domain", "label": "Domain", "description": "Application bundle ID", "placeholder": "com.apple.finder", "type": "STRING", "required": true, "default": null, "repeatable": false },
+        { "id": "key", "label": "Key", "description": "Preference key", "placeholder": "AppleShowAllFiles", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "value", "label": "Value", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_bool", "flag": "-bool", "label": "Boolean", "description": "Set as boolean value", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["true", "false"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "value" },
+        { "id": "opt_string", "flag": "-string", "label": "String", "description": "Set as string value", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "value", "group": "value" },
+        { "id": "opt_int", "flag": "-int", "label": "Integer", "description": "Set as integer value", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "value" },
+        { "id": "opt_float", "flag": "-float", "label": "Float", "description": "Set as float value", "type": "FLOAT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "value" }
+      ]
+    },
+    {
+      "name": "delete",
+      "description": "Delete a default value",
+      "positional": [
+        { "id": "domain", "label": "Domain", "description": "Application bundle ID", "placeholder": "com.apple.finder", "type": "STRING", "required": true, "default": null, "repeatable": false },
+        { "id": "key", "label": "Key", "description": "Preference key to delete", "placeholder": "AppleShowAllFiles", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

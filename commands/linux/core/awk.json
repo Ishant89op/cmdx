@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "cmd": "awk",
+    "binary": "awk",
+    "description": "Pattern scanning and text processing language",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "program", "label": "Program", "description": "AWK program text", "placeholder": "{print $1}", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "file", "label": "File", "description": "Input file (stdin if omitted)", "placeholder": "/path/to/file", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_field_sep", "flag": "-F", "label": "Field separator", "description": "Set input field separator", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": ",", "group": "options" },
+    { "id": "opt_assign", "flag": "-v", "label": "Variable", "description": "Assign variable before program execution", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "var=value", "group": "options" },
+    { "id": "opt_file", "flag": "-f", "label": "Program file", "description": "Read AWK program from file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "script.awk", "group": "options" }
+  ]
+}

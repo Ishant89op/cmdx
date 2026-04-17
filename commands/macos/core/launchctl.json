@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "cmd": "launchctl",
+    "binary": "launchctl",
+    "description": "Interface to macOS launchd service manager",
+    "version_flag": "version",
+    "has_subcommands": true,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "load",
+      "description": "Load a service plist",
+      "positional": [
+        { "id": "plist", "label": "Plist", "description": "Path to .plist file", "placeholder": "/Library/LaunchDaemons/com.example.service.plist", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_force", "flag": "-F", "label": "Force", "description": "Force load even if disabled", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_write", "flag": "-w", "label": "Enable", "description": "Override disabled key and enable", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "unload",
+      "description": "Unload a service plist",
+      "positional": [
+        { "id": "plist", "label": "Plist", "description": "Path to .plist file", "placeholder": "/Library/LaunchDaemons/com.example.service.plist", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_write", "flag": "-w", "label": "Disable", "description": "Override disabled key and disable", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List loaded services",
+      "positional": [
+        { "id": "label", "label": "Service label", "description": "Filter by label (all if omitted)", "placeholder": "com.apple.Finder", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "mkdir",
+    "binary": "mkdir",
+    "description": "Create directories",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "directory", "label": "Directory", "description": "Directory path to create", "placeholder": "/path/to/new/dir", "type": "DIR_PATH", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_parents", "flag": "-p", "label": "Parents", "description": "Create parent directories as needed, no error if existing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Print a message for each created directory", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_mode", "flag": "-m", "label": "Mode", "description": "Set file mode (permissions)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "755", "group": "options" }
+  ]
+}

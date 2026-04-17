@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "mv",
+    "binary": "mv",
+    "description": "Move or rename files and directories",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "source", "label": "Source", "description": "Source file or directory", "placeholder": "/path/to/source", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true },
+    { "id": "destination", "label": "Destination", "description": "Destination path", "placeholder": "/path/to/destination", "type": "DIR_PATH", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Explain what is being done", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_interactive", "flag": "-i", "label": "Interactive", "description": "Prompt before overwrite", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_force", "flag": "-f", "label": "Force", "description": "Do not prompt before overwriting", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_no_clobber", "flag": "-n", "label": "No clobber", "description": "Do not overwrite existing files", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_update", "flag": "-u", "label": "Update", "description": "Move only when source is newer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

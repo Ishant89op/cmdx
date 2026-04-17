@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "cmd": "pacman",
+    "binary": "pacman",
+    "description": "Package manager for Arch Linux and derivatives",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "packages", "label": "Packages", "description": "Package name(s)", "placeholder": "firefox vim git", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "operations", "label": "Operations", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "query", "label": "Query Filters", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "op_mode", "label": "Operation Mode", "description": "Only one operation can be selected", "required": true }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_sync", "flag": "-S", "label": "Sync (Install)", "description": "Synchronize packages — install from remote repos", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "op_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "operations" },
+    { "id": "opt_remove", "flag": "-R", "label": "Remove", "description": "Remove packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "op_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "operations" },
+    { "id": "opt_query", "flag": "-Q", "label": "Query", "description": "Query installed packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "op_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "operations" },
+    { "id": "opt_database", "flag": "-D", "label": "Database", "description": "Modify the package database", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "op_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "operations" },
+    { "id": "opt_upgrade", "flag": "-U", "label": "Upgrade (local)", "description": "Upgrade or install a local package file", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "op_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "operations" },
+    { "id": "opt_refresh", "flag": "-y", "label": "Refresh", "description": "Download fresh package databases (use with -S)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_sysupgrade", "flag": "-u", "label": "System upgrade", "description": "Upgrade all installed packages (use with -S)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_noconfirm", "flag": "--noconfirm", "label": "No confirm", "description": "Bypass all confirmation prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_cascade", "flag": "-s", "label": "Cascade / Search", "description": "With -R: remove dependencies. With -S: search repos. With -Q: search local", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_nosave", "flag": "-n", "label": "Nosave", "description": "With -R: remove config files too", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_needed", "flag": "--needed", "label": "Needed", "description": "Do not reinstall up-to-date packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_explicit", "flag": "-e", "label": "Explicit", "description": "With -Q: list packages explicitly installed", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_orphans", "flag": "-t", "label": "Orphans", "description": "With -Q: list packages no longer required", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_foreign", "flag": "-m", "label": "Foreign", "description": "With -Q: list packages not in sync db (AUR)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_info", "flag": "-i", "label": "Info", "description": "Display package information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" }
+  ]
+}

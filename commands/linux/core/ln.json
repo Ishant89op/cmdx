@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "ln",
+    "binary": "ln",
+    "description": "Create links between files",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "target", "label": "Target", "description": "Target file or directory", "placeholder": "/path/to/original", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "link_name", "label": "Link name", "description": "Name of the link to create", "placeholder": "/path/to/link", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_symbolic", "flag": "-s", "label": "Symbolic", "description": "Create a symbolic link instead of hard link", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_force", "flag": "-f", "label": "Force", "description": "Remove existing destination files", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Print name of each linked file", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_relative", "flag": "-r", "label": "Relative", "description": "Create symbolic link relative to link location", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_symbolic", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

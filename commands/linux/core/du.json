@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "du",
+    "binary": "du",
+    "description": "Estimate file and directory space usage",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "path", "label": "Path", "description": "File or directory to analyze", "placeholder": "/path/to/dir", "type": "DIR_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_human", "flag": "-h", "label": "Human readable", "description": "Print sizes in human readable format", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_summary", "flag": "-s", "label": "Summary", "description": "Display only total for each argument", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_all", "flag": "-a", "label": "All files", "description": "Show sizes for all files, not just directories", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_max_depth", "flag": "--max-depth", "label": "Max depth", "description": "Print total for directory only at depth N", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_total", "flag": "-c", "label": "Grand total", "description": "Produce a grand total", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_exclude", "flag": "--exclude", "label": "Exclude", "description": "Exclude files matching pattern", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "*.log", "group": "options" }
+  ]
+}

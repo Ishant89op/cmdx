@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "cmd": "ufw",
+    "binary": "ufw",
+    "description": "Uncomplicated Firewall — simplified iptables frontend",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "enable",
+      "description": "Enable the firewall",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "disable",
+      "description": "Disable the firewall",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "status",
+      "description": "Show firewall status and rules",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_verbose", "flag": "verbose", "label": "Verbose", "description": "Show verbose status", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_numbered", "flag": "numbered", "label": "Numbered", "description": "Show rule numbers", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "allow",
+      "description": "Add an allow rule",
+      "positional": [
+        { "id": "rule", "label": "Port/Service", "description": "Port number, range, or service name", "placeholder": "22/tcp", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_from", "flag": "from", "label": "From IP", "description": "Source IP address", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "192.168.1.0/24", "group": "options" }
+      ]
+    },
+    {
+      "name": "deny",
+      "description": "Add a deny rule",
+      "positional": [
+        { "id": "rule", "label": "Port/Service", "description": "Port number, range, or service name", "placeholder": "23", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_from", "flag": "from", "label": "From IP", "description": "Source IP address", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "10.0.0.0/8", "group": "options" }
+      ]
+    },
+    {
+      "name": "delete",
+      "description": "Delete a rule by number",
+      "positional": [
+        { "id": "rule_num", "label": "Rule number", "description": "Rule number from 'ufw status numbered'", "placeholder": "3", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "reset",
+      "description": "Reset all rules to defaults",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

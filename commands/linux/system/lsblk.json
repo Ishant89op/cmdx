@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "lsblk",
+    "binary": "lsblk",
+    "description": "List information about block devices",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "device", "label": "Device", "description": "Specific device to list", "placeholder": "/dev/sda", "type": "STRING", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_all", "flag": "-a", "label": "All", "description": "Include empty devices", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_fs", "flag": "-f", "label": "Filesystems", "description": "Show filesystem information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_output", "flag": "-o", "label": "Columns", "description": "Specify output columns", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "NAME,SIZE,TYPE,MOUNTPOINT", "group": "options" },
+    { "id": "opt_json", "flag": "-J", "label": "JSON", "description": "Output as JSON", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_list", "flag": "-l", "label": "List", "description": "Use list format (no tree)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

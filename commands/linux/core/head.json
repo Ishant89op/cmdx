@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "head",
+    "binary": "head",
+    "description": "Output the first part of files",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "file", "label": "File", "description": "File to read", "placeholder": "/path/to/file", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_lines", "flag": "-n", "label": "Lines", "description": "Print the first N lines", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_bytes", "flag": "-c", "label": "Bytes", "description": "Print the first N bytes", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_quiet", "flag": "-q", "label": "Quiet", "description": "Never print headers giving file names", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "cmd": "robocopy",
+    "binary": "robocopy",
+    "description": "Robust file and directory copy utility for Windows",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "source", "label": "Source", "description": "Source directory", "placeholder": "C:\\source\\folder", "type": "DIR_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "destination", "label": "Destination", "description": "Destination directory", "placeholder": "D:\\backup\\folder", "type": "DIR_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "files", "label": "Files", "description": "File patterns to copy (e.g., *.txt *.pdf)", "placeholder": "*.*", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "copy", "label": "Copy Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "retry", "label": "Retry Options", "collapsible": true, "collapsed_by_default": true },
+    { "id": "logging", "label": "Logging", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_subdirs", "flag": "/S", "label": "Subdirectories", "description": "Copy subdirectories (excludes empty)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "copy" },
+    { "id": "opt_empty", "flag": "/E", "label": "Include empty dirs", "description": "Copy subdirectories including empty ones", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "copy" },
+    { "id": "opt_mirror", "flag": "/MIR", "label": "Mirror", "description": "Mirror directory tree (deletes extra files at destination)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "copy" },
+    { "id": "opt_move", "flag": "/MOV", "label": "Move files", "description": "Move files (delete from source after copy)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "copy" },
+    { "id": "opt_purge", "flag": "/PURGE", "label": "Purge", "description": "Delete destination files that no longer exist in source", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "copy" },
+    { "id": "opt_retries", "flag": "/R", "label": "Retries", "description": "Number of retries on failed copies", "type": "INT", "required": false, "default": null, "separator": ":", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "retry" },
+    { "id": "opt_wait", "flag": "/W", "label": "Wait time", "description": "Wait time between retries (seconds)", "type": "INT", "required": false, "default": null, "separator": ":", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 300, "repeatable": false, "placeholder": null, "group": "retry" },
+    { "id": "opt_log", "flag": "/LOG", "label": "Log file", "description": "Output status to log file", "type": "FILE_PATH", "required": false, "default": null, "separator": ":", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "C:\\log.txt", "group": "logging" },
+    { "id": "opt_verbose", "flag": "/V", "label": "Verbose", "description": "Produce verbose output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "logging" },
+    { "id": "opt_np", "flag": "/NP", "label": "No progress", "description": "No progress percentage displayed", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "logging" }
+  ]
+}

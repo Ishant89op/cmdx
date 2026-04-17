@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "cmd": "git",
+    "binary": "git",
+    "description": "Distributed version control system",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "clone",
+      "description": "Clone a repository into a new directory",
+      "positional": [
+        { "id": "repo", "label": "Repository", "description": "Repository URL to clone", "placeholder": "https://github.com/user/repo.git", "type": "STRING", "required": true, "default": null, "repeatable": false },
+        { "id": "directory", "label": "Directory", "description": "Target directory", "placeholder": "my-project", "type": "DIR_PATH", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Clone Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_depth", "flag": "--depth", "label": "Depth", "description": "Shallow clone with limited history", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 9999, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_branch", "flag": "-b", "label": "Branch", "description": "Clone specific branch", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "main", "group": "options" },
+        { "id": "opt_recursive", "flag": "--recurse-submodules", "label": "Recursive submodules", "description": "Initialize and clone submodules", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_bare", "flag": "--bare", "label": "Bare", "description": "Create a bare repository", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "commit",
+      "description": "Record changes to the repository",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Commit Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_message", "flag": "-m", "label": "Message", "description": "Commit message", "type": "STRING", "required": true, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "feat: add new feature", "group": "options" },
+        { "id": "opt_all", "flag": "-a", "label": "All", "description": "Automatically stage modified and deleted files", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_amend", "flag": "--amend", "label": "Amend", "description": "Amend the previous commit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_no_edit", "flag": "--no-edit", "label": "No edit", "description": "Use selected commit message without editing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_amend", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "push",
+      "description": "Push local changes to remote",
+      "positional": [
+        { "id": "remote", "label": "Remote", "description": "Remote name", "placeholder": "origin", "type": "STRING", "required": false, "default": null, "repeatable": false },
+        { "id": "branch", "label": "Branch", "description": "Branch name", "placeholder": "main", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Push Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_force", "flag": "--force", "label": "Force", "description": "Force push (dangerous)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_set_upstream", "flag": "-u", "label": "Set upstream", "description": "Set upstream tracking branch", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_tags", "flag": "--tags", "label": "Push tags", "description": "Push all tags", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_dry_run", "flag": "--dry-run", "label": "Dry run", "description": "Show what would be pushed without actually pushing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "pull",
+      "description": "Fetch and integrate remote changes",
+      "positional": [
+        { "id": "remote", "label": "Remote", "description": "Remote name", "placeholder": "origin", "type": "STRING", "required": false, "default": null, "repeatable": false },
+        { "id": "branch", "label": "Branch", "description": "Branch name", "placeholder": "main", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Pull Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_rebase", "flag": "--rebase", "label": "Rebase", "description": "Rebase instead of merge", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_ff_only", "flag": "--ff-only", "label": "Fast-forward only", "description": "Only fast-forward merge", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    }
+  ],
+  "options": []
+}

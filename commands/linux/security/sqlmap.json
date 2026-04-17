@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "cmd": "sqlmap",
+    "binary": "sqlmap",
+    "description": "Automatic SQL injection and database takeover tool",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "target", "label": "Target", "collapsible": true, "collapsed_by_default": false },
+    { "id": "injection", "label": "Injection", "collapsible": true, "collapsed_by_default": false },
+    { "id": "enumeration", "label": "Enumeration", "collapsible": true, "collapsed_by_default": true },
+    { "id": "options", "label": "General Options", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_url", "flag": "-u", "label": "Target URL", "description": "Target URL with injectable parameter", "type": "STRING", "required": true, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "http://target.com/page?id=1", "group": "target" },
+    { "id": "opt_data", "flag": "--data", "label": "POST data", "description": "POST data string", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "username=admin&password=pass", "group": "target" },
+    { "id": "opt_cookie", "flag": "--cookie", "label": "Cookie", "description": "HTTP Cookie header value", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "PHPSESSID=abc123", "group": "target" },
+    { "id": "opt_level", "flag": "--level", "label": "Level", "description": "Level of tests (1-5, higher = more tests)", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 5, "repeatable": false, "placeholder": null, "group": "injection" },
+    { "id": "opt_risk", "flag": "--risk", "label": "Risk", "description": "Risk of tests (1-3, higher = more dangerous)", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 3, "repeatable": false, "placeholder": null, "group": "injection" },
+    { "id": "opt_technique", "flag": "--technique", "label": "Technique", "description": "SQL injection techniques (B=Boolean, E=Error, U=Union, S=Stacked, T=Time)", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "BEUST", "group": "injection" },
+    { "id": "opt_dbs", "flag": "--dbs", "label": "Databases", "description": "Enumerate databases", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "enumeration" },
+    { "id": "opt_tables", "flag": "--tables", "label": "Tables", "description": "Enumerate tables", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "enumeration" },
+    { "id": "opt_dump", "flag": "--dump", "label": "Dump", "description": "Dump database table entries", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "enumeration" },
+    { "id": "opt_db", "flag": "-D", "label": "Database", "description": "Target database name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "mydb", "group": "enumeration" },
+    { "id": "opt_batch", "flag": "--batch", "label": "Batch mode", "description": "Never ask for user input, use defaults", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_threads", "flag": "--threads", "label": "Threads", "description": "Max concurrent HTTP requests", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 20, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "cmd": "hashcat",
+    "binary": "hashcat",
+    "description": "Advanced GPU-based password recovery tool",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "windows"]
+  },
+  "positional": [
+    { "id": "hashfile", "label": "Hash file", "description": "File containing hashes or hash value", "placeholder": "hashes.txt", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "attack", "label": "Attack Configuration", "collapsible": true, "collapsed_by_default": false },
+    { "id": "perf", "label": "Performance", "collapsible": true, "collapsed_by_default": true },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_attack_mode", "flag": "-a", "label": "Attack mode", "description": "Attack mode", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["0", "1", "3", "6", "7"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "attack" },
+    { "id": "opt_hash_type", "flag": "-m", "label": "Hash type", "description": "Hash type code (0=MD5, 100=SHA1, 1000=NTLM, etc.)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 99999, "repeatable": false, "placeholder": null, "group": "attack" },
+    { "id": "opt_wordlist", "flag": "", "label": "Wordlist/Mask", "description": "Wordlist file or mask pattern", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/usr/share/wordlists/rockyou.txt", "group": "attack" },
+    { "id": "opt_rules", "flag": "-r", "label": "Rules file", "description": "Rules file for word mutations", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "rules/best64.rule", "group": "attack" },
+    { "id": "opt_workload", "flag": "-w", "label": "Workload", "description": "Workload profile (1=Low, 2=Default, 3=High, 4=Nightmare)", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["1", "2", "3", "4"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "perf" },
+    { "id": "opt_force", "flag": "--force", "label": "Force", "description": "Ignore warnings (unsafe)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "perf" },
+    { "id": "opt_outfile", "flag": "-o", "label": "Output file", "description": "Write found passwords to file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "cracked.txt", "group": "output" },
+    { "id": "opt_show", "flag": "--show", "label": "Show cracked", "description": "Show cracked passwords from potfile", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" }
+  ]
+}

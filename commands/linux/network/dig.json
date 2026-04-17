@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "dig",
+    "binary": "dig",
+    "description": "DNS lookup utility",
+    "version_flag": "-v",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "name", "label": "Domain", "description": "Domain name to look up", "placeholder": "example.com", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "query", "label": "Query Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_type", "flag": "", "label": "Record type", "description": "DNS record type to query", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["A", "AAAA", "CNAME", "MX", "NS", "TXT", "SOA", "SRV", "PTR", "ANY"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_server", "flag": "@", "label": "DNS server", "description": "DNS server to query", "type": "STRING", "required": false, "default": null, "separator": "", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "8.8.8.8", "group": "query" },
+    { "id": "opt_short", "flag": "+short", "label": "Short", "description": "Display only the answer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_trace", "flag": "+trace", "label": "Trace", "description": "Trace delegation path from root", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_noall", "flag": "+noall", "label": "No all", "description": "Clear all display flags", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_answer", "flag": "+answer", "label": "Answer", "description": "Display the answer section", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" }
+  ]
+}

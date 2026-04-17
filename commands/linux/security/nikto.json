@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "cmd": "nikto",
+    "binary": "nikto",
+    "description": "Web server vulnerability scanner",
+    "version_flag": "-Version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "target", "label": "Target", "collapsible": true, "collapsed_by_default": false },
+    { "id": "scan", "label": "Scan Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_host", "flag": "-h", "label": "Host", "description": "Target host URL or IP", "type": "STRING", "required": true, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "http://target.com", "group": "target" },
+    { "id": "opt_port", "flag": "-p", "label": "Port", "description": "Port to scan", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 65535, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_ssl", "flag": "-ssl", "label": "SSL", "description": "Force SSL mode on port", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_tuning", "flag": "-Tuning", "label": "Tuning", "description": "Scan tuning (test types to include)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "123bde", "group": "scan" },
+    { "id": "opt_timeout", "flag": "-timeout", "label": "Timeout", "description": "Timeout per request (seconds)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 300, "repeatable": false, "placeholder": null, "group": "scan" },
+    { "id": "opt_useproxy", "flag": "-useproxy", "label": "Use proxy", "description": "Use the proxy defined in nikto.conf", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "scan" },
+    { "id": "opt_output_file", "flag": "-o", "label": "Output file", "description": "Write output to file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "report.html", "group": "output" },
+    { "id": "opt_format", "flag": "-Format", "label": "Format", "description": "Output file format", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": "opt_output_file", "mutex_group": null, "choices": ["csv", "htm", "txt", "xml", "json"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" }
+  ]
+}

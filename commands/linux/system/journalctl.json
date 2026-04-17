@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "cmd": "journalctl",
+    "binary": "journalctl",
+    "description": "Query the systemd journal logs",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "filter", "label": "Filters", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output Control", "collapsible": true, "collapsed_by_default": false },
+    { "id": "time", "label": "Time Range", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_unit", "flag": "-u", "label": "Unit", "description": "Show logs for specific systemd unit", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "nginx.service", "group": "filter" },
+    { "id": "opt_priority", "flag": "-p", "label": "Priority", "description": "Filter by log priority", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["emerg", "alert", "crit", "err", "warning", "notice", "info", "debug"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_boot", "flag": "-b", "label": "Current boot", "description": "Show logs from current boot only", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_kernel", "flag": "-k", "label": "Kernel messages", "description": "Show only kernel messages (dmesg)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_follow", "flag": "-f", "label": "Follow", "description": "Follow new log entries in real-time", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_lines", "flag": "-n", "label": "Lines", "description": "Number of recent journal lines to show", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_output", "flag": "-o", "label": "Output format", "description": "Change journal output format", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["short", "short-precise", "short-iso", "json", "json-pretty", "verbose", "cat"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_no_pager", "flag": "--no-pager", "label": "No pager", "description": "Do not pipe output into a pager", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_reverse", "flag": "-r", "label": "Reverse", "description": "Show newest entries first", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_since", "flag": "--since", "label": "Since", "description": "Show entries since timestamp", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "2024-01-01 00:00:00", "group": "time" },
+    { "id": "opt_until", "flag": "--until", "label": "Until", "description": "Show entries until timestamp", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "2024-12-31 23:59:59", "group": "time" }
+  ]
+}

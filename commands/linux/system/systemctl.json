@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "cmd": "systemctl",
+    "binary": "systemctl",
+    "description": "Control the systemd system and service manager",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "start",
+      "description": "Start a unit",
+      "positional": [
+        { "id": "unit", "label": "Unit", "description": "Service unit name", "placeholder": "nginx.service", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "stop",
+      "description": "Stop a unit",
+      "positional": [
+        { "id": "unit", "label": "Unit", "description": "Service unit name", "placeholder": "nginx.service", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "restart",
+      "description": "Restart a unit",
+      "positional": [
+        { "id": "unit", "label": "Unit", "description": "Service unit name", "placeholder": "nginx.service", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "status",
+      "description": "Show runtime status of a unit",
+      "positional": [
+        { "id": "unit", "label": "Unit", "description": "Service unit name", "placeholder": "nginx.service", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_no_pager", "flag": "--no-pager", "label": "No pager", "description": "Do not pipe output into a pager", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_lines", "flag": "-n", "label": "Lines", "description": "Number of journal lines to show", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 1000, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "enable",
+      "description": "Enable a unit to start at boot",
+      "positional": [
+        { "id": "unit", "label": "Unit", "description": "Service unit name", "placeholder": "nginx.service", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_now", "flag": "--now", "label": "Start now", "description": "Also start the unit immediately", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "disable",
+      "description": "Disable a unit from starting at boot",
+      "positional": [
+        { "id": "unit", "label": "Unit", "description": "Service unit name", "placeholder": "nginx.service", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_now", "flag": "--now", "label": "Stop now", "description": "Also stop the unit immediately", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list-units",
+      "description": "List all loaded units",
+      "positional": [],
+      "groups": [
+        { "id": "filters", "label": "Filters", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_type", "flag": "--type", "label": "Type", "description": "Filter by unit type", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["service", "socket", "target", "timer", "mount", "device", "scope", "slice", "swap", "path"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filters" },
+        { "id": "opt_state", "flag": "--state", "label": "State", "description": "Filter by unit state", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["active", "inactive", "failed", "running", "exited", "dead"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filters" },
+        { "id": "opt_all", "flag": "--all", "label": "Show all", "description": "Show all units, including inactive", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filters" },
+        { "id": "opt_no_pager", "flag": "--no-pager", "label": "No pager", "description": "Do not pipe output into a pager", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filters" }
+      ]
+    }
+  ],
+  "options": []
+}

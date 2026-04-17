@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "mount",
+    "binary": "mount",
+    "description": "Mount filesystems",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "device", "label": "Device", "description": "Device or partition to mount", "placeholder": "/dev/sdb1", "type": "STRING", "required": false, "default": null, "repeatable": false },
+    { "id": "mountpoint", "label": "Mount point", "description": "Directory to mount on", "placeholder": "/mnt/usb", "type": "DIR_PATH", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_type", "flag": "-t", "label": "Type", "description": "Filesystem type", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["ext4", "ntfs", "vfat", "xfs", "btrfs", "nfs", "cifs", "iso9660", "tmpfs"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_options", "flag": "-o", "label": "Options", "description": "Mount options (comma-separated)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "ro,noexec,nosuid", "group": "options" },
+    { "id": "opt_all", "flag": "-a", "label": "All", "description": "Mount all filesystems in /etc/fstab", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_readonly", "flag": "-r", "label": "Read-only", "description": "Mount the filesystem read-only", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}
