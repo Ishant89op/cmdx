@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "gdb",
+    "binary": "gdb",
+    "description": "GNU debugger for C/C++ programs",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "program", "label": "Program", "description": "Executable to debug", "placeholder": "./a.out", "type": "FILE_PATH", "required": false, "default": null, "repeatable": false },
+    { "id": "core", "label": "Core file", "description": "Core dump file to analyze", "placeholder": "core.12345", "type": "FILE_PATH", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_pid", "flag": "-p", "label": "Attach PID", "description": "Attach to running process by PID", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_args", "flag": "--args", "label": "Arguments", "description": "Pass arguments to the program", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "--config test.yml", "group": "options" },
+    { "id": "opt_batch", "flag": "--batch", "label": "Batch mode", "description": "Run in non-interactive batch mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_exec", "flag": "-ex", "label": "Execute command", "description": "Execute GDB command after start", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "run", "group": "options" },
+    { "id": "opt_tui", "flag": "--tui", "label": "TUI mode", "description": "Start in text user interface mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_quiet", "flag": "-q", "label": "Quiet", "description": "Suppress startup messages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

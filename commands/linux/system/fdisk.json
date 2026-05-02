@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "cmd": "fdisk",
+    "binary": "fdisk",
+    "description": "Manipulate disk partition table",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "device", "label": "Device", "description": "Disk device to operate on", "placeholder": "/dev/sda", "type": "STRING", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_list", "flag": "-l", "label": "List", "description": "List partition tables of all devices", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_sector_size", "flag": "-b", "label": "Sector size", "description": "Specify sector size in bytes", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["512", "1024", "2048", "4096"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_compat", "flag": "-c", "label": "Compatibility", "description": "Disable DOS-compatible mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_output", "flag": "-o", "label": "Columns", "description": "Specify output columns for -l", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": "opt_list", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "device,size,type", "group": "options" }
+  ]
+}

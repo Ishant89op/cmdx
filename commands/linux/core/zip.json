@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "zip",
+    "binary": "zip",
+    "description": "Package and compress files into ZIP archives",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "archive", "label": "Archive", "description": "ZIP file to create", "placeholder": "archive.zip", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "files", "label": "Files", "description": "Files/directories to add", "placeholder": "file1.txt dir/", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_recurse", "flag": "-r", "label": "Recursive", "description": "Include directories recursively", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_level", "flag": "-", "label": "Compression", "description": "Compression level (0=store, 9=best)", "type": "ENUM", "required": false, "default": null, "separator": "", "depends_on": null, "mutex_group": null, "choices": ["0", "1", "6", "9"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_encrypt", "flag": "-e", "label": "Encrypt", "description": "Encrypt archive with password", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_exclude", "flag": "-x", "label": "Exclude", "description": "Exclude files matching pattern", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "*.log", "group": "options" },
+    { "id": "opt_quiet", "flag": "-q", "label": "Quiet", "description": "Quiet operation", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

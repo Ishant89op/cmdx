@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "cmd": "tshark",
+    "binary": "tshark",
+    "description": "Terminal-based Wireshark network protocol analyzer",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "capture", "label": "Capture", "collapsible": true, "collapsed_by_default": false },
+    { "id": "filter", "label": "Filtering", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_interface", "flag": "-i", "label": "Interface", "description": "Network interface to capture on", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "eth0", "group": "capture" },
+    { "id": "opt_count", "flag": "-c", "label": "Count", "description": "Stop after N packets", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "capture" },
+    { "id": "opt_read", "flag": "-r", "label": "Read file", "description": "Read from pcap file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "capture.pcap", "group": "capture" },
+    { "id": "opt_display_filter", "flag": "-Y", "label": "Display filter", "description": "Wireshark display filter", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "http.request.method == GET", "group": "filter" },
+    { "id": "opt_capture_filter", "flag": "-f", "label": "Capture filter", "description": "BPF capture filter", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "port 80", "group": "filter" },
+    { "id": "opt_write", "flag": "-w", "label": "Write file", "description": "Write output to pcap file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "output.pcap", "group": "output" },
+    { "id": "opt_fields", "flag": "-T fields -e", "label": "Fields", "description": "Extract specific fields", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "ip.src", "group": "output" },
+    { "id": "opt_verbose", "flag": "-V", "label": "Verbose", "description": "Show packet details", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" }
+  ]
+}

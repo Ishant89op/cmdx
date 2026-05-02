@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "cmd": "ldd",
+    "binary": "ldd",
+    "description": "Print shared library dependencies",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "file", "label": "Binary", "description": "Executable or shared library to inspect", "placeholder": "/usr/bin/ls", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Print all information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_unused", "flag": "-u", "label": "Unused", "description": "Print unused direct dependencies", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

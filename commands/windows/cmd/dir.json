@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "dir",
+    "binary": "dir",
+    "description": "Display directory listing",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "path", "label": "Path", "description": "Directory or file path", "placeholder": "C:\\Users", "type": "DIR_PATH", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_all", "flag": "/A", "label": "Attributes", "description": "Display files with specified attributes", "type": "ENUM", "required": false, "default": null, "separator": ":", "depends_on": null, "mutex_group": null, "choices": ["D", "H", "S", "R", "A"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_order", "flag": "/O", "label": "Order by", "description": "Sort order", "type": "ENUM", "required": false, "default": null, "separator": ":", "depends_on": null, "mutex_group": null, "choices": ["N", "E", "S", "D", "G"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_recurse", "flag": "/S", "label": "Subdirectories", "description": "Include subdirectories", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_bare", "flag": "/B", "label": "Bare format", "description": "Show only file names", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_wide", "flag": "/W", "label": "Wide list", "description": "Display in wide format", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

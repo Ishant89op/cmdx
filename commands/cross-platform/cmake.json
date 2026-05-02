@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "cmd": "cmake",
+    "binary": "cmake",
+    "description": "Cross-platform build system generator",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [
+    { "id": "source_dir", "label": "Source directory", "description": "Path to source directory with CMakeLists.txt", "placeholder": "..", "type": "DIR_PATH", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "configure", "label": "Configure", "collapsible": true, "collapsed_by_default": false },
+    { "id": "build", "label": "Build", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_generator", "flag": "-G", "label": "Generator", "description": "Build system generator", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["Unix Makefiles", "Ninja", "Visual Studio 17 2022", "Xcode"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "configure" },
+    { "id": "opt_build_type", "flag": "-DCMAKE_BUILD_TYPE", "label": "Build type", "description": "Build configuration type", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "configure" },
+    { "id": "opt_prefix", "flag": "-DCMAKE_INSTALL_PREFIX", "label": "Install prefix", "description": "Installation directory prefix", "type": "DIR_PATH", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/usr/local", "group": "configure" },
+    { "id": "opt_define", "flag": "-D", "label": "Define variable", "description": "Set a CMake cache variable", "type": "STRING", "required": false, "default": null, "separator": "", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "VAR=value", "group": "configure" },
+    { "id": "opt_build", "flag": "--build", "label": "Build dir", "description": "Build a project (instead of configure)", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "build/", "group": "build" },
+    { "id": "opt_target", "flag": "--target", "label": "Target", "description": "Build specific target", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": "opt_build", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "install", "group": "build" },
+    { "id": "opt_parallel", "flag": "-j", "label": "Parallel", "description": "Number of parallel build jobs", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": "opt_build", "mutex_group": null, "choices": null, "min": 1, "max": 256, "repeatable": false, "placeholder": null, "group": "build" }
+  ]
+}

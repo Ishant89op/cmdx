@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "ssh-keygen",
+    "binary": "ssh-keygen",
+    "description": "Authentication key generation and management for SSH",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "generate", "label": "Key Generation", "collapsible": true, "collapsed_by_default": false },
+    { "id": "manage", "label": "Key Management", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_type", "flag": "-t", "label": "Key type", "description": "Type of key to create", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["rsa", "ed25519", "ecdsa", "dsa"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "generate" },
+    { "id": "opt_bits", "flag": "-b", "label": "Bits", "description": "Number of bits in the key", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1024, "max": 16384, "repeatable": false, "placeholder": null, "group": "generate" },
+    { "id": "opt_comment", "flag": "-C", "label": "Comment", "description": "Key comment (usually email)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "user@example.com", "group": "generate" },
+    { "id": "opt_file", "flag": "-f", "label": "Filename", "description": "Key file path", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "~/.ssh/id_ed25519", "group": "generate" },
+    { "id": "opt_passphrase", "flag": "-N", "label": "Passphrase", "description": "New passphrase (empty for none)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "", "group": "generate" },
+    { "id": "opt_fingerprint", "flag": "-l", "label": "Fingerprint", "description": "Show fingerprint of key file", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "manage" },
+    { "id": "opt_change_pass", "flag": "-p", "label": "Change passphrase", "description": "Change passphrase of private key", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "manage" },
+    { "id": "opt_remove_host", "flag": "-R", "label": "Remove host", "description": "Remove host from known_hosts", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "hostname", "group": "manage" }
+  ]
+}

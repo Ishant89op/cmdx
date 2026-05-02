@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "watch",
+    "binary": "watch",
+    "description": "Execute a program periodically, showing output",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "command", "label": "Command", "description": "Command to execute repeatedly", "placeholder": "df -h", "type": "STRING", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_interval", "flag": "-n", "label": "Interval", "description": "Seconds between updates", "type": "FLOAT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0.1, "max": 3600, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_differences", "flag": "-d", "label": "Differences", "description": "Highlight changes between updates", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_no_title", "flag": "-t", "label": "No title", "description": "Hide the header", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_precise", "flag": "-p", "label": "Precise", "description": "Attempt precise timing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_beep", "flag": "-b", "label": "Beep", "description": "Beep on non-zero exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_exit", "flag": "-g", "label": "Exit on change", "description": "Exit when output changes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

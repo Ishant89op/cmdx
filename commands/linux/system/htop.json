@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "htop",
+    "binary": "htop",
+    "description": "Interactive process viewer",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_sort", "flag": "--sort-key", "label": "Sort key", "description": "Sort by column", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["PID", "USER", "PERCENT_CPU", "PERCENT_MEM", "TIME", "COMMAND", "NLWP", "NICE", "VIRT", "RES"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_pid", "flag": "-p", "label": "PID", "description": "Show only specified PIDs", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1234,5678", "group": "options" },
+    { "id": "opt_user", "flag": "-u", "label": "User", "description": "Show only processes of user", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "root", "group": "options" },
+    { "id": "opt_delay", "flag": "-d", "label": "Delay", "description": "Refresh interval (tenths of seconds)", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 600, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_tree", "flag": "-t", "label": "Tree mode", "description": "Show process tree", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

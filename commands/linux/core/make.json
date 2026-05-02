@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "make",
+    "binary": "make",
+    "description": "GNU Make build automation tool",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "target", "label": "Target", "description": "Build target(s)", "placeholder": "all", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_file", "flag": "-f", "label": "Makefile", "description": "Use specified Makefile", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Makefile.custom", "group": "options" },
+    { "id": "opt_jobs", "flag": "-j", "label": "Jobs", "description": "Number of parallel jobs", "type": "INT", "required": false, "default": null, "separator": "", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 256, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_directory", "flag": "-C", "label": "Directory", "description": "Change to directory before reading Makefiles", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "build/", "group": "options" },
+    { "id": "opt_dry_run", "flag": "-n", "label": "Dry run", "description": "Print commands but don't execute", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_silent", "flag": "-s", "label": "Silent", "description": "Don't echo commands", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_keep_going", "flag": "-k", "label": "Keep going", "description": "Continue on errors", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_always_make", "flag": "-B", "label": "Always make", "description": "Unconditionally build all targets", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

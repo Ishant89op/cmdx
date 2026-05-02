@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "dd",
+    "binary": "dd",
+    "description": "Convert and copy a file (block-level copy)",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "io", "label": "Input/Output", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_if", "flag": "if", "label": "Input file", "description": "Read from file instead of stdin", "type": "FILE_PATH", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/dev/sda", "group": "io" },
+    { "id": "opt_of", "flag": "of", "label": "Output file", "description": "Write to file instead of stdout", "type": "FILE_PATH", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/dev/sdb", "group": "io" },
+    { "id": "opt_bs", "flag": "bs", "label": "Block size", "description": "Read and write up to N bytes at a time", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "4M", "group": "options" },
+    { "id": "opt_count", "flag": "count", "label": "Count", "description": "Copy only N input blocks", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_status", "flag": "status", "label": "Status", "description": "Transfer status display level", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["none", "noxfer", "progress"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_conv", "flag": "conv", "label": "Conversion", "description": "Comma-separated conversion options", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "fdatasync", "group": "options" }
+  ]
+}

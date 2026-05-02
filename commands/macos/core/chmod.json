@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "chmod",
+    "binary": "chmod",
+    "description": "Change access permissions of filesystem objects on macOS",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["macos"]
+  },
+  "positional": [
+    { "id": "mode", "label": "Mode", "description": "Permission mode (octal or symbolic)", "placeholder": "755", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "file", "label": "File", "description": "File(s) or directory to change", "placeholder": "script.sh", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_recursive", "flag": "-R", "label": "Recursive", "description": "Change files and directories recursively", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Show files being changed", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

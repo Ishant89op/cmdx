@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "findstr",
+    "binary": "findstr",
+    "description": "Search for strings in files",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "pattern", "label": "Pattern", "description": "Search string or pattern", "placeholder": "error", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "files", "label": "Files", "description": "Files to search", "placeholder": "*.log", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_regex", "flag": "/R", "label": "Regex", "description": "Use regular expressions", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_ignore_case", "flag": "/I", "label": "Ignore case", "description": "Case-insensitive search", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_line_num", "flag": "/N", "label": "Line numbers", "description": "Show line numbers", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_count", "flag": "/C", "label": "Count", "description": "Only print count of matching lines", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_invert", "flag": "/V", "label": "Invert", "description": "Print lines that do NOT match", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_subdirs", "flag": "/S", "label": "Subdirectories", "description": "Search in subdirectories", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

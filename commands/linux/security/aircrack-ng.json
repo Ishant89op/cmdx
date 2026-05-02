@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "aircrack-ng",
+    "binary": "aircrack-ng",
+    "description": "802.11 WEP/WPA/WPA2 key cracker",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "capture", "label": "Capture file", "description": "Packet capture file (.cap/.pcap)", "placeholder": "capture-01.cap", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "attack", "label": "Attack Options", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "General", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_wordlist", "flag": "-w", "label": "Wordlist", "description": "Path to wordlist for WPA cracking", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/usr/share/wordlists/rockyou.txt", "group": "attack" },
+    { "id": "opt_bssid", "flag": "-b", "label": "BSSID", "description": "Target access point MAC address", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "00:11:22:33:44:55", "group": "attack" },
+    { "id": "opt_essid", "flag": "-e", "label": "ESSID", "description": "Target network name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "MyWiFi", "group": "attack" },
+    { "id": "opt_threads", "flag": "-p", "label": "Threads", "description": "Number of CPU threads", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 128, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_show_key", "flag": "-l", "label": "Show key", "description": "Display key in ASCII", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

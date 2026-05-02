@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "cmd": "usermod",
+    "binary": "usermod",
+    "description": "Modify a user account",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "username", "label": "Username", "description": "User to modify", "placeholder": "jdoe", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "identity", "label": "Identity", "collapsible": true, "collapsed_by_default": false },
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_login", "flag": "-l", "label": "New login name", "description": "Change the user's login name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "newname", "group": "identity" },
+    { "id": "opt_comment", "flag": "-c", "label": "Comment", "description": "Change the GECOS field", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Jane Doe", "group": "identity" },
+    { "id": "opt_home", "flag": "-d", "label": "Home dir", "description": "New home directory", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/home/newname", "group": "identity" },
+    { "id": "opt_shell", "flag": "-s", "label": "Shell", "description": "New login shell", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["/bin/bash", "/bin/zsh", "/bin/sh", "/bin/fish", "/usr/sbin/nologin"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "identity" },
+    { "id": "opt_groups", "flag": "-G", "label": "Groups", "description": "New supplementary groups (comma-separated)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "sudo,docker", "group": "options" },
+    { "id": "opt_append", "flag": "-a", "label": "Append groups", "description": "Append to supplementary groups (use with -G)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_groups", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_lock", "flag": "-L", "label": "Lock", "description": "Lock the user account", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_unlock", "flag": "-U", "label": "Unlock", "description": "Unlock the user account", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

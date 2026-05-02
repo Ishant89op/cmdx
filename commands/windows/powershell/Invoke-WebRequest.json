@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "Invoke-WebRequest",
+    "binary": "powershell",
+    "description": "Download web content (PowerShell wget/curl equivalent)",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "request", "label": "Request", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_uri", "flag": "-Uri", "label": "URL", "description": "URI to request", "type": "STRING", "required": true, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "https://example.com", "group": "request" },
+    { "id": "opt_method", "flag": "-Method", "label": "Method", "description": "HTTP method", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "request" },
+    { "id": "opt_body", "flag": "-Body", "label": "Body", "description": "Request body", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "{\"key\": \"value\"}", "group": "request" },
+    { "id": "opt_content_type", "flag": "-ContentType", "label": "Content-Type", "description": "Content type of the body", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["application/json", "application/xml", "text/plain", "multipart/form-data"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "request" },
+    { "id": "opt_outfile", "flag": "-OutFile", "label": "Output file", "description": "Save response to file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "response.html", "group": "output" },
+    { "id": "opt_useragent", "flag": "-UserAgent", "label": "User-Agent", "description": "Custom User-Agent header", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Mozilla/5.0", "group": "request" }
+  ]
+}

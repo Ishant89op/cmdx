@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "cmd": "Get-EventLog",
+    "binary": "powershell",
+    "description": "Get events from Windows event logs (PowerShell)",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_logname", "flag": "-LogName", "label": "Log name", "description": "Event log to query", "type": "ENUM", "required": true, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["Application", "System", "Security", "Setup"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_newest", "flag": "-Newest", "label": "Newest", "description": "Number of most recent entries", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_entry_type", "flag": "-EntryType", "label": "Entry type", "description": "Filter by entry type", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["Error", "Warning", "Information", "SuccessAudit", "FailureAudit"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_source", "flag": "-Source", "label": "Source", "description": "Filter by event source", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "DCOM", "group": "options" }
+  ]
+}

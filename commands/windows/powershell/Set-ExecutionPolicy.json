@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "cmd": "Set-ExecutionPolicy",
+    "binary": "powershell",
+    "description": "Set the PowerShell script execution policy",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "policy", "label": "Policy", "description": "Execution policy level", "placeholder": "RemoteSigned", "type": "ENUM", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_scope", "flag": "-Scope", "label": "Scope", "description": "Scope for the execution policy", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["CurrentUser", "LocalMachine", "Process"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_force", "flag": "-Force", "label": "Force", "description": "Suppress confirmation prompts", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

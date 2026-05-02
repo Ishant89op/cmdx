@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "networksetup",
+    "binary": "networksetup",
+    "description": "Network configuration for macOS",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": false },
+    { "id": "config", "label": "Configuration", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_listall", "flag": "-listallnetworkservices", "label": "List services", "description": "List all network services", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_getinfo", "flag": "-getinfo", "label": "Get info", "description": "Show info for a network service", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Wi-Fi", "group": "info" },
+    { "id": "opt_getdns", "flag": "-getdnsservers", "label": "Get DNS", "description": "Get DNS servers for a service", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Wi-Fi", "group": "info" },
+    { "id": "opt_getairportname", "flag": "-getairportnetwork", "label": "Get WiFi name", "description": "Get current WiFi network name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "en0", "group": "info" },
+    { "id": "opt_setdns", "flag": "-setdnsservers", "label": "Set DNS", "description": "Set DNS servers (service + IPs)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Wi-Fi 8.8.8.8 8.8.4.4", "group": "config" },
+    { "id": "opt_setairportpower", "flag": "-setairportpower", "label": "WiFi power", "description": "Turn WiFi on/off (interface on|off)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "en0 on", "group": "config" }
+  ]
+}

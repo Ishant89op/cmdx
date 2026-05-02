@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "cmd": "Test-Connection",
+    "binary": "powershell",
+    "description": "Send ICMP echo requests (PowerShell ping)",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "target", "label": "Target", "description": "Hostname or IP to test", "placeholder": "8.8.8.8", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_count", "flag": "-Count", "label": "Count", "description": "Number of echo requests", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_quiet", "flag": "-Quiet", "label": "Quiet", "description": "Return only True/False", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_traceroute", "flag": "-Traceroute", "label": "Traceroute", "description": "Perform traceroute", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_timeout", "flag": "-TimeoutSeconds", "label": "Timeout", "description": "Timeout in seconds", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 300, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

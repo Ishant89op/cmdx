@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "uniq",
+    "binary": "uniq",
+    "description": "Report or omit repeated lines",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "input", "label": "Input file", "description": "Input file (stdin if omitted)", "placeholder": "sorted.txt", "type": "FILE_PATH", "required": false, "default": null, "repeatable": false },
+    { "id": "output", "label": "Output file", "description": "Output file (stdout if omitted)", "placeholder": "unique.txt", "type": "FILE_PATH", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_count", "flag": "-c", "label": "Count", "description": "Prefix lines with number of occurrences", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_duplicates", "flag": "-d", "label": "Duplicates only", "description": "Print only duplicate lines", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_unique", "flag": "-u", "label": "Unique only", "description": "Print only unique lines", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_ignore_case", "flag": "-i", "label": "Ignore case", "description": "Ignore case when comparing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_skip_fields", "flag": "-f", "label": "Skip fields", "description": "Avoid comparing first N fields", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

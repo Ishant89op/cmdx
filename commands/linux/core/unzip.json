@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "unzip",
+    "binary": "unzip",
+    "description": "Extract files from ZIP archives",
+    "version_flag": "-v",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "archive", "label": "Archive", "description": "ZIP file to extract", "placeholder": "archive.zip", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "files", "label": "Files", "description": "Specific files to extract (all if omitted)", "placeholder": "readme.txt", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_dest", "flag": "-d", "label": "Destination", "description": "Extract to directory", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "./extracted", "group": "options" },
+    { "id": "opt_overwrite", "flag": "-o", "label": "Overwrite", "description": "Overwrite files without prompting", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_list", "flag": "-l", "label": "List", "description": "List archive contents", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_test", "flag": "-t", "label": "Test", "description": "Test archive integrity", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_quiet", "flag": "-q", "label": "Quiet", "description": "Quiet operation", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

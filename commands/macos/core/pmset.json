@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "cmd": "pmset",
+    "binary": "pmset",
+    "description": "Power management settings for macOS",
+    "version_flag": null,
+    "has_subcommands": true,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "-g",
+      "description": "Get current power management settings",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "sleepnow",
+      "description": "Put the system to sleep immediately",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "displaysleepnow",
+      "description": "Put only the display to sleep",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "-g log",
+      "description": "Display system power log",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "cmd": "service",
+    "binary": "service",
+    "description": "Run a System V init script or query status",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "service_name", "label": "Service", "description": "Service name", "placeholder": "nginx", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "action", "label": "Action", "description": "Action to perform", "placeholder": "start", "type": "ENUM", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_status_all", "flag": "--status-all", "label": "Status all", "description": "Show status of all services", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

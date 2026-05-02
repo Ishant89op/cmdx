@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "Get-ChildItem",
+    "binary": "powershell",
+    "description": "List files and directories (PowerShell ls/dir equivalent)",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "path", "label": "Path", "description": "Directory path", "placeholder": "C:\\Users", "type": "DIR_PATH", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_recurse", "flag": "-Recurse", "label": "Recurse", "description": "List subdirectories recursively", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_filter", "flag": "-Filter", "label": "Filter", "description": "Filter by name/wildcard", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "*.txt", "group": "options" },
+    { "id": "opt_hidden", "flag": "-Hidden", "label": "Hidden", "description": "Include hidden items", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_force", "flag": "-Force", "label": "Force", "description": "Show hidden and system files", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_depth", "flag": "-Depth", "label": "Depth", "description": "Maximum recursion depth", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": "opt_recurse", "mutex_group": null, "choices": null, "min": 0, "max": 100, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "cmd": "Get-Process",
+    "binary": "powershell",
+    "description": "Get running processes (PowerShell)",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "name", "label": "Process name", "description": "Process name filter", "placeholder": "chrome", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_id", "flag": "-Id", "label": "Process ID", "description": "Get process by ID", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 999999, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

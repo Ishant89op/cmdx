@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "cmd": "dmesg",
+    "binary": "dmesg",
+    "description": "Print or control the kernel ring buffer",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_human", "flag": "-H", "label": "Human readable", "description": "Human-readable output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_follow", "flag": "-w", "label": "Follow", "description": "Wait for new messages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_level", "flag": "-l", "label": "Level", "description": "Restrict to specified level", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["emerg", "alert", "crit", "err", "warn", "notice", "info", "debug"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_facility", "flag": "-f", "label": "Facility", "description": "Restrict to specified facility", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["kern", "user", "mail", "daemon", "auth", "syslog", "lpr"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_clear", "flag": "-C", "label": "Clear", "description": "Clear the ring buffer", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_time", "flag": "-T", "label": "Timestamps", "description": "Show human-readable timestamps", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

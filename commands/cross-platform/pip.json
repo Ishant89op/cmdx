@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "cmd": "pip",
+    "binary": "pip",
+    "description": "Python package installer",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "install",
+      "description": "Install packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names to install", "placeholder": "requests flask", "type": "STRING", "required": false, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_requirements", "flag": "-r", "label": "Requirements", "description": "Install from requirements file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "requirements.txt", "group": "options" },
+        { "id": "opt_upgrade", "flag": "--upgrade", "label": "Upgrade", "description": "Upgrade packages to newest version", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_user", "flag": "--user", "label": "User install", "description": "Install to user site-packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "uninstall",
+      "description": "Uninstall packages",
+      "positional": [
+        { "id": "packages", "label": "Packages", "description": "Package names", "placeholder": "requests", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_yes", "flag": "-y", "label": "Yes", "description": "Don't ask for confirmation", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "list",
+      "description": "List installed packages",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_outdated", "flag": "--outdated", "label": "Outdated", "description": "Show only outdated packages", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "freeze",
+      "description": "Output installed packages in requirements format",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

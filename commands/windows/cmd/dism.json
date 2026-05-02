@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "dism",
+    "binary": "dism",
+    "description": "Deployment Image Servicing and Management",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "target", "label": "Target", "collapsible": true, "collapsed_by_default": false },
+    { "id": "actions", "label": "Actions", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_online", "flag": "/Online", "label": "Online", "description": "Target the running operating system", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_image", "flag": "/Image", "label": "Image", "description": "Path to offline Windows image", "type": "DIR_PATH", "required": false, "default": null, "separator": ":", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "C:\\mount", "group": "target" },
+    { "id": "opt_cleanup", "flag": "/Cleanup-Image", "label": "Cleanup image", "description": "Cleanup and recovery operations", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "actions" },
+    { "id": "opt_scanhealth", "flag": "/ScanHealth", "label": "Scan health", "description": "Scan the image for corruption", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_cleanup", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "actions" },
+    { "id": "opt_checkhealth", "flag": "/CheckHealth", "label": "Check health", "description": "Quick check for corruption", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_cleanup", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "actions" },
+    { "id": "opt_restorehealth", "flag": "/RestoreHealth", "label": "Restore health", "description": "Scan and repair corruption", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_cleanup", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "actions" },
+    { "id": "opt_get_features", "flag": "/Get-Features", "label": "Get features", "description": "List all Windows features", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "actions" }
+  ]
+}

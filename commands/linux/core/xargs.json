@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "xargs",
+    "binary": "xargs",
+    "description": "Build and execute command lines from standard input",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "command", "label": "Command", "description": "Command to execute with arguments from stdin", "placeholder": "rm -f", "type": "STRING", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_delimiter", "flag": "-d", "label": "Delimiter", "description": "Input item delimiter", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "\\n", "group": "options" },
+    { "id": "opt_null", "flag": "-0", "label": "Null delimiter", "description": "Input items terminated by null character", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_max_args", "flag": "-n", "label": "Max args", "description": "Max arguments per command invocation", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 9999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_parallel", "flag": "-P", "label": "Parallel", "description": "Max parallel processes", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": 256, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_replace", "flag": "-I", "label": "Replace string", "description": "Replace occurrences of string in command", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "{}", "group": "options" },
+    { "id": "opt_verbose", "flag": "-t", "label": "Verbose", "description": "Print each command before executing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_prompt", "flag": "-p", "label": "Prompt", "description": "Prompt before each execution", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

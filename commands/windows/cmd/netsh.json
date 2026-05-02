@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "cmd": "netsh",
+    "binary": "netsh",
+    "description": "Network configuration command-line tool",
+    "version_flag": null,
+    "has_subcommands": true,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "wlan show profiles",
+      "description": "Show saved Wi-Fi profiles",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "wlan show profile",
+      "description": "Show details of a specific Wi-Fi profile",
+      "positional": [
+        { "id": "name", "label": "Profile name", "description": "Wi-Fi profile name", "placeholder": "MyNetwork", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_key", "flag": "key=clear", "label": "Show password", "description": "Display password in cleartext", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "interface show interface",
+      "description": "Show network interfaces",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "advfirewall set allprofiles state",
+      "description": "Enable or disable Windows Firewall",
+      "positional": [
+        { "id": "state", "label": "State", "description": "Firewall state", "placeholder": "on", "type": "ENUM", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

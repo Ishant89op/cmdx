@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "cmd": "cargo",
+    "binary": "cargo",
+    "description": "Rust package manager and build system",
+    "version_flag": "--version",
+    "has_subcommands": true,
+    "platforms": ["linux", "macos", "windows"]
+  },
+  "positional": [],
+  "groups": [],
+  "mutex_groups": [],
+  "subcommands": [
+    {
+      "name": "build",
+      "description": "Compile the current package",
+      "positional": [],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_release", "flag": "--release", "label": "Release", "description": "Build in release mode with optimizations", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+        { "id": "opt_target", "flag": "--target", "label": "Target", "description": "Build for target triple", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "x86_64-unknown-linux-gnu", "group": "options" },
+        { "id": "opt_jobs", "flag": "-j", "label": "Jobs", "description": "Number of parallel jobs", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 256, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "run",
+      "description": "Run the current package binary",
+      "positional": [
+        { "id": "args", "label": "Arguments", "description": "Arguments passed to the binary", "placeholder": "-- --flag value", "type": "STRING", "required": false, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_release", "flag": "--release", "label": "Release", "description": "Run in release mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "test",
+      "description": "Run tests",
+      "positional": [
+        { "id": "testname", "label": "Test name", "description": "Filter by test name", "placeholder": "test_parse", "type": "STRING", "required": false, "default": null, "repeatable": false }
+      ],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    },
+    {
+      "name": "new",
+      "description": "Create a new Cargo package",
+      "positional": [
+        { "id": "name", "label": "Name", "description": "Package name", "placeholder": "my-project", "type": "STRING", "required": true, "default": null, "repeatable": false }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_lib", "flag": "--lib", "label": "Library", "description": "Create a library package", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "add",
+      "description": "Add dependency to Cargo.toml",
+      "positional": [
+        { "id": "dep", "label": "Dependency", "description": "Crate name", "placeholder": "serde", "type": "STRING", "required": true, "default": null, "repeatable": true }
+      ],
+      "groups": [
+        { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+      ],
+      "mutex_groups": [],
+      "options": [
+        { "id": "opt_features", "flag": "--features", "label": "Features", "description": "Enable specific features", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "derive,json", "group": "options" },
+        { "id": "opt_dev", "flag": "--dev", "label": "Dev dependency", "description": "Add as dev dependency", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+      ]
+    },
+    {
+      "name": "clean",
+      "description": "Remove generated artifacts",
+      "positional": [],
+      "groups": [],
+      "mutex_groups": [],
+      "options": []
+    }
+  ],
+  "options": []
+}

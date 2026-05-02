@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "softwareupdate",
+    "binary": "softwareupdate",
+    "description": "System software update tool for macOS",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "action", "label": "Action", "description": "Only one action at a time", "required": true }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_list", "flag": "-l", "label": "List", "description": "List available updates", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_install_all", "flag": "-ia", "label": "Install all", "description": "Install all available updates", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_install", "flag": "-i", "label": "Install", "description": "Install specific update", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "macOS Ventura 13.4-22F66", "group": "options" },
+    { "id": "opt_download", "flag": "-d", "label": "Download only", "description": "Download but do not install", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_verbose", "flag": "--verbose", "label": "Verbose", "description": "Show verbose output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_restart", "flag": "--restart", "label": "Auto restart", "description": "Restart if required by update", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

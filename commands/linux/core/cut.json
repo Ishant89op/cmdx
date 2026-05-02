@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "cut",
+    "binary": "cut",
+    "description": "Remove sections from each line of files",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "file", "label": "File", "description": "Input file (stdin if omitted)", "placeholder": "data.csv", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [
+    { "id": "mode", "label": "Cut Mode", "description": "Select what to cut", "required": true }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_fields", "flag": "-f", "label": "Fields", "description": "Select fields (columns)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1,3-5", "group": "options" },
+    { "id": "opt_chars", "flag": "-c", "label": "Characters", "description": "Select character positions", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1-10", "group": "options" },
+    { "id": "opt_bytes", "flag": "-b", "label": "Bytes", "description": "Select byte positions", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1-20", "group": "options" },
+    { "id": "opt_delimiter", "flag": "-d", "label": "Delimiter", "description": "Field delimiter (default TAB)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": ",", "group": "options" },
+    { "id": "opt_complement", "flag": "--complement", "label": "Complement", "description": "Select everything except specified fields", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "scutil",
+    "binary": "scutil",
+    "description": "Manage system configuration on macOS",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["macos"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_dns", "flag": "--dns", "label": "DNS", "description": "Show DNS configuration", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_proxy", "flag": "--proxy", "label": "Proxy", "description": "Show proxy configuration", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_nwi", "flag": "--nwi", "label": "Network info", "description": "Show network information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_get_hostname", "flag": "--get ComputerName", "label": "Get hostname", "description": "Get the computer name", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_set_hostname", "flag": "--set ComputerName", "label": "Set hostname", "description": "Set the computer name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "MyMac", "group": "options" }
+  ]
+}

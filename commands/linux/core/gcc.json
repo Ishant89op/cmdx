@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "cmd": "gcc",
+    "binary": "gcc",
+    "description": "GNU C/C++ compiler",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "files", "label": "Source files", "description": "Source files to compile", "placeholder": "main.c utils.c", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": false },
+    { "id": "warnings", "label": "Warnings", "collapsible": true, "collapsed_by_default": false },
+    { "id": "optimization", "label": "Optimization", "collapsible": true, "collapsed_by_default": true },
+    { "id": "linking", "label": "Linking", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "opt_level", "label": "Optimization Level", "description": "Only one optimization level", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_output", "flag": "-o", "label": "Output file", "description": "Output filename", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "program", "group": "output" },
+    { "id": "opt_compile_only", "flag": "-c", "label": "Compile only", "description": "Compile to object file, don't link", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_std", "flag": "-std", "label": "Standard", "description": "Language standard", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["c99", "c11", "c17", "c23", "c++11", "c++14", "c++17", "c++20", "c++23", "gnu11", "gnu17"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_wall", "flag": "-Wall", "label": "All warnings", "description": "Enable all common warnings", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "warnings" },
+    { "id": "opt_wextra", "flag": "-Wextra", "label": "Extra warnings", "description": "Enable extra warning flags", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "warnings" },
+    { "id": "opt_werror", "flag": "-Werror", "label": "Warnings as errors", "description": "Treat all warnings as errors", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "warnings" },
+    { "id": "opt_pedantic", "flag": "-pedantic", "label": "Pedantic", "description": "Issue warnings for strict ISO compliance", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "warnings" },
+    { "id": "opt_O0", "flag": "-O0", "label": "No optimization", "description": "Disable optimization (fastest compile)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "opt_level", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "optimization" },
+    { "id": "opt_O2", "flag": "-O2", "label": "Optimize", "description": "Standard optimization", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "opt_level", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "optimization" },
+    { "id": "opt_O3", "flag": "-O3", "label": "Max optimize", "description": "Aggressive optimization", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "opt_level", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "optimization" },
+    { "id": "opt_Os", "flag": "-Os", "label": "Size optimize", "description": "Optimize for binary size", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "opt_level", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "optimization" },
+    { "id": "opt_debug", "flag": "-g", "label": "Debug symbols", "description": "Include debug information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "optimization" },
+    { "id": "opt_include", "flag": "-I", "label": "Include path", "description": "Add include directory", "type": "DIR_PATH", "required": false, "default": null, "separator": "", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "/usr/local/include", "group": "linking" },
+    { "id": "opt_lib_path", "flag": "-L", "label": "Library path", "description": "Add library search directory", "type": "DIR_PATH", "required": false, "default": null, "separator": "", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "/usr/local/lib", "group": "linking" },
+    { "id": "opt_lib", "flag": "-l", "label": "Link library", "description": "Link with library", "type": "STRING", "required": false, "default": null, "separator": "", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "pthread", "group": "linking" },
+    { "id": "opt_shared", "flag": "-shared", "label": "Shared library", "description": "Produce a shared object (.so)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "linking" }
+  ]
+}

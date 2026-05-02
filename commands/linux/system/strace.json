@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "cmd": "strace",
+    "binary": "strace",
+    "description": "Trace system calls and signals",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "command", "label": "Command", "description": "Command to trace", "placeholder": "ls -la", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "target", "label": "Target", "collapsible": true, "collapsed_by_default": false },
+    { "id": "filter", "label": "Filtering", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_pid", "flag": "-p", "label": "Attach to PID", "description": "Trace an existing process by PID", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_follow_forks", "flag": "-f", "label": "Follow forks", "description": "Trace child processes", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "target" },
+    { "id": "opt_trace", "flag": "-e", "label": "Expression", "description": "Filter syscalls (e.g., trace=open,read)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "trace=open,read,write", "group": "filter" },
+    { "id": "opt_count", "flag": "-c", "label": "Summary", "description": "Count calls and show summary", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_output_file", "flag": "-o", "label": "Output file", "description": "Write trace to file", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "trace.log", "group": "output" },
+    { "id": "opt_timestamps", "flag": "-t", "label": "Timestamps", "description": "Prefix each line with time of day", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_strings", "flag": "-s", "label": "String size", "description": "Max string size to print", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 99999, "repeatable": false, "placeholder": null, "group": "output" }
+  ]
+}

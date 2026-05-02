@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "cmd": "tr",
+    "binary": "tr",
+    "description": "Translate, squeeze, or delete characters",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "set1", "label": "SET1", "description": "First set of characters", "placeholder": "a-z", "type": "STRING", "required": true, "default": null, "repeatable": false },
+    { "id": "set2", "label": "SET2", "description": "Second set of characters (replacement)", "placeholder": "A-Z", "type": "STRING", "required": false, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_delete", "flag": "-d", "label": "Delete", "description": "Delete characters in SET1, do not translate", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_squeeze", "flag": "-s", "label": "Squeeze", "description": "Squeeze repeated characters", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_complement", "flag": "-c", "label": "Complement", "description": "Use complement of SET1", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

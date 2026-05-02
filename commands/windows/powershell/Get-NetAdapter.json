@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "cmd": "Get-NetAdapter",
+    "binary": "powershell",
+    "description": "Get network adapter properties (PowerShell)",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_name", "flag": "-Name", "label": "Name", "description": "Adapter name filter", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Ethernet", "group": "options" },
+    { "id": "opt_physical", "flag": "-Physical", "label": "Physical only", "description": "Show only physical adapters", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_include_hidden", "flag": "-IncludeHidden", "label": "Include hidden", "description": "Include hidden adapters", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

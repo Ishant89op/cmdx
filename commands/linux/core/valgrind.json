@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "cmd": "valgrind",
+    "binary": "valgrind",
+    "description": "Memory error detector and profiler",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "program", "label": "Program", "description": "Program to analyze", "placeholder": "./my_app", "type": "FILE_PATH", "required": true, "default": null, "repeatable": false },
+    { "id": "args", "label": "Arguments", "description": "Program arguments", "placeholder": "--flag value", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "tool", "label": "Tool", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": false },
+    { "id": "memcheck", "label": "Memcheck Options", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_tool", "flag": "--tool", "label": "Tool", "description": "Analysis tool to use", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["memcheck", "cachegrind", "callgrind", "helgrind", "drd", "massif"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "tool" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Verbose output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_log_file", "flag": "--log-file", "label": "Log file", "description": "Write output to file", "type": "FILE_PATH", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "valgrind.log", "group": "output" },
+    { "id": "opt_xml", "flag": "--xml=yes", "label": "XML output", "description": "Output in XML format", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_leak_check", "flag": "--leak-check", "label": "Leak check", "description": "Leak checking detail level", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["no", "summary", "yes", "full"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "memcheck" },
+    { "id": "opt_show_reachable", "flag": "--show-reachable=yes", "label": "Show reachable", "description": "Show reachable blocks in leak check", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "memcheck" },
+    { "id": "opt_track_origins", "flag": "--track-origins=yes", "label": "Track origins", "description": "Track origins of uninitialized values", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "memcheck" }
+  ]
+}

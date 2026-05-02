@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "cmd": "lsof",
+    "binary": "lsof",
+    "description": "List open files and the processes using them",
+    "version_flag": "-v",
+    "has_subcommands": false,
+    "platforms": ["linux", "macos"]
+  },
+  "positional": [
+    { "id": "names", "label": "Names", "description": "File/dir/mount names to search", "placeholder": "/var/log/syslog", "type": "FILE_PATH", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_port", "flag": "-i", "label": "Network", "description": "List network connections (optionally filter by :port)", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": ":8080", "group": "options" },
+    { "id": "opt_pid", "flag": "-p", "label": "PID", "description": "List files opened by process ID", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 999999, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_user", "flag": "-u", "label": "User", "description": "List files opened by user", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "root", "group": "options" },
+    { "id": "opt_command", "flag": "-c", "label": "Command", "description": "Filter by command name prefix", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "nginx", "group": "options" },
+    { "id": "opt_numeric", "flag": "-n", "label": "Numeric", "description": "Don't resolve hostnames", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_repeat", "flag": "-r", "label": "Repeat", "description": "Repeat every N seconds", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 3600, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

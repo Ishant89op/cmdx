@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "Get-Service",
+    "binary": "powershell",
+    "description": "Get services on the computer (PowerShell)",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["windows"]
+  },
+  "positional": [
+    { "id": "name", "label": "Service name", "description": "Service name filter", "placeholder": "wuauserv", "type": "STRING", "required": false, "default": null, "repeatable": true }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_display", "flag": "-DisplayName", "label": "Display name", "description": "Filter by display name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "Windows Update", "group": "options" },
+    { "id": "opt_depends", "flag": "-DependentServices", "label": "Dependents", "description": "Get services that depend on this", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_required", "flag": "-RequiredServices", "label": "Required", "description": "Get services required by this", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}

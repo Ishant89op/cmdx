@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "cmd": "umount",
+    "binary": "umount",
+    "description": "Unmount a filesystem",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    { "id": "target", "label": "Target", "description": "Device or mount point to unmount", "placeholder": "/mnt/usb", "type": "STRING", "required": true, "default": null, "repeatable": false }
+  ],
+  "groups": [
+    { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_force", "flag": "-f", "label": "Force", "description": "Force unmount (unreachable NFS)", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_lazy", "flag": "-l", "label": "Lazy", "description": "Detach and cleanup later", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" },
+    { "id": "opt_all", "flag": "-a", "label": "All", "description": "Unmount all filesystems", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" }
+  ]
+}
