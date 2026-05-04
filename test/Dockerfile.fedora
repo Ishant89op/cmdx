@@ -1,0 +1,20 @@
+FROM fedora:41
+
+RUN dnf install -y \
+    gcc-c++ cmake make \
+    qt6-qtbase-devel \
+    json-devel \
+    rpm-build \
+    && dnf clean all
+
+WORKDIR /src
+COPY . .
+
+RUN cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
+    && cmake --build build -j$(nproc) \
+    && cd build && cpack -G RPM
+
+RUN rpm -i build/cmdx-*.rpm \
+    && cmdx --version \
+    && cmdx list | head -5 \
+    && echo "✓ Fedora 41 — PASS"

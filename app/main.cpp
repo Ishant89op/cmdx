@@ -1,7 +1,7 @@
 #include "../core/tool_registry.hpp"
 #include "../core/command_builder.hpp"
 #include "../core/tool_def.hpp"
-#include "../platform/linux/cli.hpp"
+#include "../platform/cli.hpp"
 #include "../ui/main_window.hpp"
 #include <QApplication>
 #include <iostream>
@@ -371,7 +371,11 @@ static void list_commands() {
 }
 
 int main(int argc, char* argv[]) {
+#ifdef _WIN32
+    _putenv_s("LC_ALL", "C.UTF-8");
+#else
     setenv("LC_ALL", "C.UTF-8", 0);
+#endif
 
     // Detect how we were invoked (symlink aliases)
     std::string invoked_as = std::filesystem::path(argv[0]).filename().string();

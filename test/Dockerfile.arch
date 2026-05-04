@@ -1,0 +1,17 @@
+FROM archlinux:latest
+
+RUN pacman -Syu --noconfirm \
+    base-devel cmake \
+    qt6-base \
+    nlohmann-json
+
+WORKDIR /src
+COPY . .
+
+RUN cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
+    && cmake --build build -j$(nproc) \
+    && cmake --install build
+
+RUN cmdx --version \
+    && cmdx list | head -5 \
+    && echo "✓ Arch Linux — PASS"

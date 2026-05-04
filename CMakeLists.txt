@@ -27,11 +27,11 @@ set(CORE_HEADERS
 )
 
 set(PLATFORM_SOURCES
-    platform/linux/cli.cpp
+    platform/cli.cpp
 )
 
 set(PLATFORM_HEADERS
-    platform/linux/cli.hpp
+    platform/cli.hpp
 )
 
 set(UI_SOURCES
