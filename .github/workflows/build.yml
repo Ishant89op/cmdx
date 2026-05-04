@@ -1,0 +1,170 @@
+name: Build & Package
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ── Linux (.deb, .rpm, .tar.gz) ──────────────────────────────────────
+  linux:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - distro: ubuntu
+            dockerfile: test/Dockerfile.ubuntu
+          - distro: debian
+            dockerfile: test/Dockerfile.debian
+          - distro: fedora
+            dockerfile: test/Dockerfile.fedora
+          - distro: arch
+            dockerfile: test/Dockerfile.arch
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build & test (${{ matrix.distro }})
+        run: docker build -f ${{ matrix.dockerfile }} -t cmdx-${{ matrix.distro }} .
+
+      - name: Extract packages
+        if: matrix.distro == 'ubuntu'
+        run: |
+          docker create --name extract cmdx-ubuntu
+          docker cp extract:/src/build/cmdx_1.0.0_amd64.deb .
+          docker rm extract
+
+      - name: Extract RPM
+        if: matrix.distro == 'fedora'
+        run: |
+          docker create --name extract cmdx-fedora
+          docker cp extract:/src/build/ ./fedora-build
+          docker rm extract
+          cp fedora-build/cmdx-*.rpm . 2>/dev/null || true
+
+      - name: Upload .deb
+        if: matrix.distro == 'ubuntu'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdx-linux-deb
+          path: "*.deb"
+
+      - name: Upload .rpm
+        if: matrix.distro == 'fedora'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdx-linux-rpm
+          path: "*.rpm"
+
+  # ── macOS (.dmg) ─────────────────────────────────────────────────────
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: brew install qt@6 nlohmann-json cmake
+
+      - name: Build
+        run: |
+          export CMAKE_PREFIX_PATH="$(brew --prefix qt@6)"
+          cmake -B build \
+            -DCMAKE_INSTALL_PREFIX=/usr/local \
+            -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j$(sysctl -n hw.logicalcpu)
+
+      - name: Verify
+        run: |
+          ./build/cmdx --version
+          ./build/cmdx -h
+          ./build/cmdx list | wc -l
+
+      - name: Package .dmg
+        run: cd build && cpack -G DragNDrop
+
+      - name: Package .tar.gz
+        run: cd build && cpack -G TGZ
+
+      - name: Upload .dmg
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdx-macos-dmg
+          path: build/*.dmg
+
+      - name: Upload .tar.gz
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdx-macos-tgz
+          path: build/*.tar.gz
+
+  # ── Windows (.exe installer + .zip) ──────────────────────────────────
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt6
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.7.*'
+
+      - name: Install nlohmann-json via vcpkg
+        run: vcpkg install nlohmann-json:x64-windows
+
+      - name: Configure
+        run: |
+          cmake -B build `
+            -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake" `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DCMAKE_INSTALL_PREFIX="C:/Program Files/cmdx"
+
+      - name: Build
+        run: cmake --build build --config Release -j $env:NUMBER_OF_PROCESSORS
+
+      - name: Verify
+        run: |
+          .\build\Release\cmdx.exe --version
+          .\build\Release\cmdx.exe -h
+          .\build\Release\cmdx.exe list | Select-Object -First 5
+
+      - name: Package .zip
+        run: cd build && cpack -G ZIP -C Release
+
+      - name: Upload .zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdx-windows-zip
+          path: build/*.zip
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdx-windows-exe
+          path: build/Release/cmdx.exe
+
+  # ── Release (auto-publish on tag push) ───────────────────────────────
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [linux, macos, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            artifacts/cmdx-linux-deb/*
+            artifacts/cmdx-linux-rpm/*
+            artifacts/cmdx-macos-dmg/*
+            artifacts/cmdx-macos-tgz/*
+            artifacts/cmdx-windows-zip/*
+            artifacts/cmdx-windows-exe/*
+          generate_release_notes: true

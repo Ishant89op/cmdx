@@ -27,11 +27,7 @@ tool_registry::tool_registry() {
 }
 
 std::string tool_registry::find_commands_dir() const {
-    std::vector<std::string> candidates = {
-        "./commands",
-        "../commands",
-        "../../commands",
-    };
+    std::vector<std::string> candidates;
 
     // Also check relative to the executable location
 #if defined(__linux__)
@@ -46,8 +42,22 @@ std::string tool_registry::find_commands_dir() const {
     auto exe_path = fs::current_path();
 #endif
 
-    candidates.insert(candidates.begin(), (exe_path / "commands").string());
-    candidates.insert(candidates.begin(), (exe_path / ".." / "commands").string());
+    // Highest priority: next to the executable (build dir / portable install)
+    candidates.push_back((exe_path / "commands").string());
+    candidates.push_back((exe_path / ".." / "commands").string());
+
+    // Relative to cwd (development convenience)
+    candidates.push_back("./commands");
+    candidates.push_back("../commands");
+
+    // System install path (set by CMake at compile time)
+#ifdef CMDX_DATA_DIR
+    candidates.push_back(std::string(CMDX_DATA_DIR) + "/commands");
+#endif
+
+    // Standard FHS fallbacks
+    candidates.push_back("/usr/share/cmdx/commands");
+    candidates.push_back("/usr/local/share/cmdx/commands");
 
     for (const auto& path : candidates) {
         if (fs::exists(path) && fs::is_directory(path)) {

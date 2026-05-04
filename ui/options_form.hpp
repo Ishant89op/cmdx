@@ -11,6 +11,7 @@
 #include <QGroupBox>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QCheckBox>
 #include <QLabel>
 #include <map>
 #include <string>
@@ -41,6 +42,7 @@ private:
     QVBoxLayout* form_layout_ = nullptr;
     QComboBox* subcommand_combo_ = nullptr;
     QLineEdit* command_preview_ = nullptr;
+    QCheckBox* sudo_checkbox_ = nullptr;
     QPushButton* run_button_ = nullptr;
     std::map<std::string, OptionWidget*> widgets_;
     std::map<std::string, QLineEdit*> positional_widgets_;

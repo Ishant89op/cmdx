@@ -26,7 +26,7 @@ MainWindow::MainWindow(const core::tool_def& tool, QWidget* parent)
 
 void MainWindow::setup_menu() {
     auto* file_menu = menuBar()->addMenu("&File");
-    file_menu->addAction("&Quit", qApp, &QApplication::quit, QKeySequence::Quit);
+    file_menu->addAction("&Quit", QKeySequence::Quit, qApp, &QApplication::quit);
 
     auto* help_menu = menuBar()->addMenu("&Help");
     help_menu->addAction("&About", this, &MainWindow::on_about);

@@ -12,6 +12,7 @@
 #include <sstream>
 #include <algorithm>
 #include <cstdlib>
+#include <filesystem>
 
 static std::string prompt(const std::string& message) {
     std::cout << message;
@@ -140,10 +141,7 @@ static void run_terminal_mode(const std::string& cmd_name) {
     auto tool_opt = registry.load_tool(cmd_name);
     if (!tool_opt.has_value()) {
         std::cerr << "Unknown command: " << cmd_name << std::endl;
-        std::cerr << "Available commands:" << std::endl;
-        for (const auto& t : registry.list_tools()) {
-            std::cerr << "  " << t << std::endl;
-        }
+        std::cerr << "Run 'cmdx --list' to see available commands." << std::endl;
         return;
     }
 
@@ -297,10 +295,7 @@ static void run_gui_mode(const std::string& cmd_name, int argc, char* argv[]) {
     auto tool_opt = registry.load_tool(cmd_name);
     if (!tool_opt.has_value()) {
         std::cerr << "Unknown command: " << cmd_name << std::endl;
-        std::cerr << "Available commands:" << std::endl;
-        for (const auto& t : registry.list_tools()) {
-            std::cerr << "  " << t << std::endl;
-        }
+        std::cerr << "Run 'cmdx --list' to see available commands." << std::endl;
         return;
     }
 
@@ -315,60 +310,146 @@ static void run_gui_mode(const std::string& cmd_name, int argc, char* argv[]) {
     if (window.was_run_requested()) {
         std::string cmd = window.get_command();
         if (!cmd.empty()) {
+            std::cout << "\n" << cmd << "\n" << std::endl;
             platform::run_replace_process(cmd);
         }
     }
 }
 
-static void print_usage() {
+static void print_version() {
+#ifdef CMDX_VERSION
+    std::cout << "cmdx " << CMDX_VERSION << std::endl;
+#else
+    std::cout << "cmdx 1.0.0" << std::endl;
+#endif
+}
+
+static void print_about() {
+    std::cout << "\n";
+    std::cout << "  Cmdx - Cross-platform command reference & execution console\n";
+    std::cout << "  ";
+    print_version();
+    std::cout << "\n";
+    std::cout << "  Build commands visually. Run them instantly.\n";
+    std::cout << "  127+ tools across Linux, macOS, and Windows.\n";
+    std::cout << "\n";
+    std::cout << "  Run 'cmdx --help' to get started.\n\n";
+}
+
+static void print_help() {
+    std::cout << "Cmdx - Cross-platform command reference & execution console\n" << std::endl;
     std::cout << "Usage:" << std::endl;
-    std::cout << "  cmdx options <command>       Terminal mode" << std::endl;
-    std::cout << "  cmdx options-gui <command>   GUI mode" << std::endl;
-    std::cout << "  cmdx list                    List available commands" << std::endl;
+    std::cout << "  cmdx <command>                Open GUI builder (default)" << std::endl;
+    std::cout << "  cmdx --gui <command>          Open GUI builder (explicit)" << std::endl;
+    std::cout << "  cmdx --terminal <command>     Interactive terminal mode" << std::endl;
+    std::cout << "  cmdx --list                   List all available commands" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Options:" << std::endl;
+    std::cout << "  -g, --gui          Launch the GUI command builder" << std::endl;
+    std::cout << "  -t, --terminal     Launch the interactive terminal builder" << std::endl;
+    std::cout << "  -l, --list         List all available commands" << std::endl;
+    std::cout << "  -h, --help         Show this help message" << std::endl;
+    std::cout << "  -v, --version      Show version" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Examples:" << std::endl;
+    std::cout << "  cmdx nmap              Build an nmap command in the GUI" << std::endl;
+    std::cout << "  cmdx -t docker         Build a docker command in the terminal" << std::endl;
+    std::cout << "  cmdx --gui git         Build a git command in the GUI" << std::endl;
+    std::cout << "  cmdx --list            Show all 127+ supported commands" << std::endl;
+}
+
+static void list_commands() {
+    core::tool_registry registry;
+    auto tools = registry.list_tools();
+    std::cout << "Available commands (" << tools.size() << "):" << std::endl;
+    for (const auto& t : tools) {
+        auto tool = registry.load_tool(t);
+        if (tool.has_value()) {
+            std::cout << "  " << t << " - " << tool->meta.description << std::endl;
+        }
+    }
 }
 
 int main(int argc, char* argv[]) {
     setenv("LC_ALL", "C.UTF-8", 0);
 
-    if (argc < 2) {
-        print_usage();
-        return 1;
-    }
+    // Detect how we were invoked (symlink aliases)
+    std::string invoked_as = std::filesystem::path(argv[0]).filename().string();
 
-    std::string mode = argv[1];
-
-    if (mode == "list") {
-        core::tool_registry registry;
-        auto tools = registry.list_tools();
-        std::cout << "Available commands:" << std::endl;
-        for (const auto& t : tools) {
-            auto tool = registry.load_tool(t);
-            if (tool.has_value()) {
-                std::cout << "  " << t << " - " << tool->meta.description << std::endl;
-            }
+    // ── Symlink alias mode ─────────────────────────────────────────────────
+    // When invoked as optionsgui / optgui / cmdxgui, go straight to GUI
+    if (invoked_as == "optionsgui" || invoked_as == "optgui" || invoked_as == "cmdxgui") {
+        if (argc < 2) {
+            std::cerr << "Usage: " << invoked_as << " <command>" << std::endl;
+            std::cerr << "       " << invoked_as << " --list" << std::endl;
+            return 1;
         }
+        std::string arg = argv[1];
+        if (arg == "--list" || arg == "-l") {
+            list_commands();
+            return 0;
+        }
+        if (arg == "--version" || arg == "-v") {
+            print_version();
+            return 0;
+        }
+        run_gui_mode(arg, argc, argv);
         return 0;
     }
 
-    if (mode == "options") {
+    // ── No arguments: show about ───────────────────────────────────────────
+    if (argc < 2) {
+        print_about();
+        return 0;
+    }
+
+    std::string arg1 = argv[1];
+
+    // ── Flags ──────────────────────────────────────────────────────────────
+    if (arg1 == "--version" || arg1 == "-v") {
+        print_version();
+        return 0;
+    }
+
+    if (arg1 == "--help" || arg1 == "-h") {
+        print_help();
+        return 0;
+    }
+
+    if (arg1 == "--list" || arg1 == "-l") {
+        list_commands();
+        return 0;
+    }
+
+    // ── Terminal mode: cmdx --terminal <command> / cmdx -t <command> ──────
+    if (arg1 == "--terminal" || arg1 == "-t") {
         if (argc < 3) {
-            std::cerr << "Usage: cmdx options <command>" << std::endl;
+            std::cerr << "Usage: cmdx --terminal <command>" << std::endl;
             return 1;
         }
         run_terminal_mode(argv[2]);
         return 0;
     }
 
-    if (mode == "options-gui") {
+    // ── GUI mode (explicit): cmdx --gui <command> / cmdx -g <command> ────
+    if (arg1 == "--gui" || arg1 == "-g") {
         if (argc < 3) {
-            std::cerr << "Usage: cmdx options-gui <command>" << std::endl;
+            std::cerr << "Usage: cmdx --gui <command>" << std::endl;
             return 1;
         }
         run_gui_mode(argv[2], argc, argv);
         return 0;
     }
 
-    print_usage();
-    return 1;
+    // ── Default: cmdx <command> → GUI mode ───────────────────────────────
+    // Anything that doesn't start with '-' is treated as a command name
+    if (arg1[0] == '-') {
+        std::cerr << "Unknown option: " << arg1 << std::endl;
+        std::cerr << "Run 'cmdx --help' for usage." << std::endl;
+        return 1;
+    }
+
+    run_gui_mode(arg1, argc, argv);
+    return 0;
 }
 

@@ -19,6 +19,8 @@ OptionsForm::OptionsForm(QWidget* parent) : QWidget(parent) {
     command_preview_->setReadOnly(true);
     command_preview_->setPlaceholderText("Command preview will appear here...");
 
+    sudo_checkbox_ = new QCheckBox("Run with sudo", this);
+
     run_button_ = new QPushButton("Run", this);
     run_button_->setEnabled(false);
     run_button_->setMinimumHeight(36);
@@ -26,9 +28,15 @@ OptionsForm::OptionsForm(QWidget* parent) : QWidget(parent) {
     main_layout_->addWidget(scroll_area_);
     main_layout_->addWidget(new QLabel("Command Preview:", this));
     main_layout_->addWidget(command_preview_);
-    main_layout_->addWidget(run_button_);
+
+    auto* bottom_row = new QHBoxLayout();
+    bottom_row->addWidget(sudo_checkbox_);
+    bottom_row->addStretch();
+    bottom_row->addWidget(run_button_);
+    main_layout_->addLayout(bottom_row);
 
     connect(run_button_, &QPushButton::clicked, this, &OptionsForm::on_run_clicked);
+    connect(sudo_checkbox_, &QCheckBox::toggled, this, &OptionsForm::on_value_changed);
 }
 
 void OptionsForm::clear() {
@@ -328,6 +336,9 @@ void OptionsForm::update_command() {
     }
 
     std::string cmd = core::build_command(tool_, values, subcmd, pos_values);
+    if (sudo_checkbox_ && sudo_checkbox_->isChecked()) {
+        cmd = "sudo " + cmd;
+    }
     command_preview_->setText(QString::fromStdString(cmd));
     run_button_->setEnabled(all_required_filled());
     emit command_changed(QString::fromStdString(cmd));
