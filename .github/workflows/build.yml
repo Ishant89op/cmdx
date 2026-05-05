@@ -142,18 +142,19 @@ jobs:
 
           cmake --install build --config Release --prefix $stage
 
-          Get-ChildItem -Path (Join-Path $stage "bin") -Recurse |
+          Get-ChildItem -Path $stage -Recurse |
             Select-Object FullName
 
           $required = @(
             (Join-Path $stage "bin\cmdx.exe"),
+            (Join-Path $stage "bin\qt.conf"),
             (Join-Path $stage "bin\Qt6Core.dll"),
             (Join-Path $stage "bin\Qt6Gui.dll"),
             (Join-Path $stage "bin\Qt6Widgets.dll"),
             (Join-Path $stage "bin\MSVCP140.dll"),
             (Join-Path $stage "bin\VCRUNTIME140.dll"),
             (Join-Path $stage "bin\VCRUNTIME140_1.dll"),
-            (Join-Path $stage "bin\platforms\qwindows.dll"),
+            (Join-Path $stage "plugins\platforms\qwindows.dll"),
             (Join-Path $stage "share\cmdx\commands")
           )
 
