@@ -33,7 +33,7 @@ docker run --rm ghcr.io/ishant89op/cmdx --list
 | Fedora / RHEL | `sudo rpm -i cmdx-1.0.0.x86_64.rpm` |
 | Arch | `cmake -B build && cmake --build build && sudo cmake --install build` |
 | macOS | Open `Cmdx-1.0.0.dmg` |
-| Windows | Run `Cmdx-1.0.0-win64.exe` |
+| Windows | Run the Windows installer `.exe` from Releases |
 
 ### From Source
 
@@ -61,6 +61,8 @@ cmdx nmap          # Build an nmap command visually
 cmdx -t docker     # Build a docker command in the terminal
 cmdx --list        # Show all 127+ supported commands
 ```
+
+On Windows, prefer the installer `.exe` from Releases. The raw `cmdx.exe` binary is a build artifact and does not include the bundled Qt/MSVC runtime files needed for end-user installs.
 
 ## Building Packages
 

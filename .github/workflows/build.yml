@@ -113,6 +113,9 @@ jobs:
       - name: Install nlohmann-json via vcpkg
         run: vcpkg install nlohmann-json:x64-windows
 
+      - name: Install NSIS
+        run: choco install nsis --no-progress -y
+
       - name: Configure
         run: |
           cmake -B build `
@@ -127,22 +130,55 @@ jobs:
         run: |
           .\build\Release\cmdx.exe --version
           .\build\Release\cmdx.exe -h
-          .\build\Release\cmdx.exe list | Select-Object -First 5
+          .\build\Release\cmdx.exe --list | Select-Object -First 5
+
+      - name: Stage install tree
+        shell: pwsh
+        run: |
+          $stage = Join-Path $env:RUNNER_TEMP "cmdx-stage"
+          if (Test-Path $stage) {
+            Remove-Item $stage -Recurse -Force
+          }
+
+          cmake --install build --config Release --prefix $stage
+
+          $required = @(
+            (Join-Path $stage "bin\cmdx.exe"),
+            (Join-Path $stage "bin\Qt6Core.dll"),
+            (Join-Path $stage "bin\Qt6Gui.dll"),
+            (Join-Path $stage "bin\Qt6Widgets.dll"),
+            (Join-Path $stage "bin\MSVCP140.dll"),
+            (Join-Path $stage "bin\VCRUNTIME140.dll"),
+            (Join-Path $stage "bin\platforms\qwindows.dll"),
+            (Join-Path $stage "share\cmdx\commands")
+          )
+
+          foreach ($path in $required) {
+            if (-not (Test-Path $path)) {
+              throw "Missing staged artifact: $path"
+            }
+          }
+
+          Get-ChildItem -Path (Join-Path $stage "bin") -Recurse |
+            Select-Object FullName
+
+      - name: Package installer
+        run: cd build && cpack -G NSIS -C Release
 
       - name: Package .zip
         run: cd build && cpack -G ZIP -C Release
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmdx-windows-installer
+          path: build/*.exe
 
       - name: Upload .zip
         uses: actions/upload-artifact@v4
         with:
           name: cmdx-windows-zip
           path: build/*.zip
-
-      - name: Upload binary
-        uses: actions/upload-artifact@v4
-        with:
-          name: cmdx-windows-exe
-          path: build/Release/cmdx.exe
 
   # ── Release (auto-publish on tag push) ───────────────────────────────
   release:
@@ -166,5 +202,5 @@ jobs:
             artifacts/cmdx-macos-dmg/*
             artifacts/cmdx-macos-tgz/*
             artifacts/cmdx-windows-zip/*
-            artifacts/cmdx-windows-exe/*
+            artifacts/cmdx-windows-installer/*
           generate_release_notes: true

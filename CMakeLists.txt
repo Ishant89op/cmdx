@@ -8,7 +8,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 find_package(nlohmann_json REQUIRED)
 
 # ─── Sources ────────────────────────────────────────────────────────────────────
@@ -77,6 +77,16 @@ install(TARGETS cmdx RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 # Install the full command library
 install(DIRECTORY commands/ DESTINATION ${CMAKE_INSTALL_DATADIR}/cmdx/commands)
+install(FILES README.md LICENSE DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/cmdx)
+
+if(WIN32)
+    qt_generate_deploy_app_script(
+        TARGET cmdx
+        OUTPUT_SCRIPT cmdx_deploy_script
+        NO_UNSUPPORTED_PLATFORM_ERROR
+    )
+    install(SCRIPT ${cmdx_deploy_script})
+endif()
 
 # Create the three GUI alias symlinks
 if(UNIX)
@@ -124,11 +134,22 @@ set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.2")
 set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
 
 # ── NSIS (.exe installer for Windows) ────────────────────────────────────────────
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "Cmdx")
+set(CPACK_PACKAGE_EXECUTABLES "cmdx" "Cmdx")
+set(CPACK_CREATE_DESKTOP_LINKS "cmdx")
 set(CPACK_NSIS_DISPLAY_NAME "Cmdx")
 set(CPACK_NSIS_PACKAGE_NAME "Cmdx ${PROJECT_VERSION}")
+set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${CMAKE_INSTALL_BINDIR})
 set(CPACK_NSIS_MODIFY_PATH ON)
 set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set(CPACK_NSIS_HELP_LINK "https://github.com/Ishant89op/cmdx")
+set(CPACK_NSIS_URL_INFO_ABOUT "https://github.com/Ishant89op/cmdx")
+set(CPACK_NSIS_CONTACT "snatcha@cmdx.dev")
+set(CPACK_NSIS_MUI_FINISHPAGE_RUN "cmdx.exe")
+set(CPACK_NSIS_MENU_LINKS
+    "${CMAKE_INSTALL_DATADIR}/doc/cmdx/README.md" "README"
+    "https://github.com/Ishant89op/cmdx" "Cmdx Homepage"
+)
 
 # ── macOS DragNDrop (.dmg) ──────────────────────────────────────────────────────
 set(CPACK_DMG_VOLUME_NAME "Cmdx ${PROJECT_VERSION}")
