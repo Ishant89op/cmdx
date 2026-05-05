@@ -59,6 +59,7 @@ moc_*.cpp
 .vscode/
 *.swp
 *.swo
+.codex
 
 # Project specific
 cmdx

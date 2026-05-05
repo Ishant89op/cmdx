@@ -80,9 +80,16 @@ install(DIRECTORY commands/ DESTINATION ${CMAKE_INSTALL_DATADIR}/cmdx/commands)
 install(FILES README.md LICENSE DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/cmdx)
 
 if(WIN32)
+    # Bundle the MSVC/UCRT runtime explicitly. Qt can do this too, but making
+    # CMake responsible for compiler runtime deployment is more predictable in CI.
+    set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${CMAKE_INSTALL_BINDIR})
+    set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
+    include(InstallRequiredSystemLibraries)
+
     qt_generate_deploy_app_script(
         TARGET cmdx
         OUTPUT_SCRIPT cmdx_deploy_script
+        NO_COMPILER_RUNTIME
         NO_UNSUPPORTED_PLATFORM_ERROR
     )
     install(SCRIPT ${cmdx_deploy_script})
