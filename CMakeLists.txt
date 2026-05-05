@@ -121,7 +121,7 @@ endif()
 
 set(CPACK_PACKAGE_NAME "cmdx")
 set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Cross-platform command reference and execution console")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Multiplatform command reference and execution console")
 set(CPACK_PACKAGE_DESCRIPTION "Cmdx is a GUI and terminal command builder. It reads a JSON database of CLI tools and presents an interactive form to construct commands with proper flags, arguments, and validation.")
 set(CPACK_PACKAGE_VENDOR "cmdx")
 set(CPACK_PACKAGE_CONTACT "snatcha <snatcha@cmdx.dev>")
@@ -141,6 +141,7 @@ set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.2")
 set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
 
 # ── NSIS (.exe installer for Windows) ────────────────────────────────────────────
+set(CPACK_PACKAGE_FILE_NAME "Cmdx-Setup-${PROJECT_VERSION}-win64")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "Cmdx")
 set(CPACK_PACKAGE_EXECUTABLES "cmdx" "Cmdx")
 set(CPACK_CREATE_DESKTOP_LINKS "cmdx")
@@ -152,7 +153,6 @@ set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set(CPACK_NSIS_HELP_LINK "https://github.com/Ishant89op/cmdx")
 set(CPACK_NSIS_URL_INFO_ABOUT "https://github.com/Ishant89op/cmdx")
 set(CPACK_NSIS_CONTACT "snatcha@cmdx.dev")
-set(CPACK_NSIS_MUI_FINISHPAGE_RUN "cmdx.exe")
 set(CPACK_NSIS_MENU_LINKS
     "${CMAKE_INSTALL_DATADIR}/doc/cmdx/README.md" "README"
     "https://github.com/Ishant89op/cmdx" "Cmdx Homepage"

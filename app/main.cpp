@@ -326,7 +326,7 @@ static void print_version() {
 
 static void print_about() {
     std::cout << "\n";
-    std::cout << "  Cmdx - Cross-platform command reference & execution console\n";
+    std::cout << "  Cmdx - Multiplatform command reference & execution console\n";
     std::cout << "  ";
     print_version();
     std::cout << "\n";
@@ -337,7 +337,7 @@ static void print_about() {
 }
 
 static void print_help() {
-    std::cout << "Cmdx - Cross-platform command reference & execution console\n" << std::endl;
+    std::cout << "Cmdx - Multiplatform command reference & execution console\n" << std::endl;
     std::cout << "Usage:" << std::endl;
     std::cout << "  cmdx <command>                Open GUI builder (default)" << std::endl;
     std::cout << "  cmdx --gui <command>          Open GUI builder (explicit)" << std::endl;
@@ -456,4 +456,3 @@ int main(int argc, char* argv[]) {
     run_gui_mode(arg1, argc, argv);
     return 0;
 }
-
