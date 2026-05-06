@@ -11,6 +11,10 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 find_package(nlohmann_json REQUIRED)
 
+set(CMDX_MAC_CODESIGN_IDENTITY "" CACHE STRING "Developer ID Application identity used to sign macOS binaries")
+set(CMDX_MAC_INSTALLER_IDENTITY "" CACHE STRING "Developer ID Installer identity used to sign macOS packages")
+set(CMDX_MAC_KEYCHAIN_PATH "" CACHE FILEPATH "Keychain path containing Apple signing identities")
+
 # ─── Sources ────────────────────────────────────────────────────────────────────
 
 set(CORE_SOURCES
@@ -79,42 +83,29 @@ install(TARGETS cmdx RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(DIRECTORY commands/ DESTINATION ${CMAKE_INSTALL_DATADIR}/cmdx/commands)
 install(FILES README.md LICENSE DESTINATION ${CMAKE_INSTALL_DATADIR}/doc/cmdx)
 
-if(WIN32)
-    # Bundle the MSVC/UCRT runtime explicitly. Qt can do this too, but making
-    # CMake responsible for compiler runtime deployment is more predictable in CI.
-    set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${CMAKE_INSTALL_BINDIR})
-    set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
-    include(InstallRequiredSystemLibraries)
-
-    qt_generate_deploy_app_script(
+if(WIN32 OR APPLE)
+    set(cmdx_deploy_args
         TARGET cmdx
         OUTPUT_SCRIPT cmdx_deploy_script
-        NO_COMPILER_RUNTIME
         NO_UNSUPPORTED_PLATFORM_ERROR
     )
+
+    # Bundle the MSVC/UCRT runtime explicitly. Qt can do this too, but making
+    # CMake responsible for compiler runtime deployment is more predictable in CI.
+    if(WIN32)
+        set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${CMAKE_INSTALL_BINDIR})
+        set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
+        include(InstallRequiredSystemLibraries)
+        list(APPEND cmdx_deploy_args NO_COMPILER_RUNTIME)
+    elseif(APPLE AND CMDX_MAC_CODESIGN_IDENTITY)
+        list(APPEND cmdx_deploy_args
+            DEPLOY_TOOL_OPTIONS
+                "-sign-for-notarization=${CMDX_MAC_CODESIGN_IDENTITY}"
+        )
+    endif()
+
+    qt_generate_deploy_app_script(${cmdx_deploy_args})
     install(SCRIPT ${cmdx_deploy_script})
-endif()
-
-# Create the three GUI alias symlinks
-if(UNIX)
-    foreach(_alias optionsgui optgui cmdxgui)
-        install(CODE "
-            set(_link \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}/${_alias}\")
-            message(STATUS \"Creating symlink: \${_link} -> cmdx\")
-            execute_process(COMMAND \${CMAKE_COMMAND} -E create_symlink cmdx \${_link})
-        ")
-    endforeach()
-endif()
-
-if(WIN32)
-    # On Windows, create .cmd wrapper scripts instead of symlinks
-    foreach(_alias optionsgui optgui cmdxgui)
-        install(CODE "
-            set(_wrapper \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}/${_alias}.cmd\")
-            message(STATUS \"Creating wrapper: \${_wrapper}\")
-            file(WRITE \${_wrapper} \"@echo off\\n\\\"%~dp0cmdx.exe\\\" %*\\n\")
-        ")
-    endforeach()
 endif()
 
 # ─── CPack ──────────────────────────────────────────────────────────────────────
@@ -154,13 +145,33 @@ set(CPACK_NSIS_CONTACT "snatcha@cmdx.dev")
 # ── Generator selection per platform ─────────────────────────────────────────────
 if(WIN32)
     set(CPACK_PACKAGE_FILE_NAME "Cmdx-Setup-${PROJECT_VERSION}-win64")
-    set(CPACK_GENERATOR "NSIS;ZIP")
+    set(CPACK_GENERATOR "NSIS")
 elseif(APPLE)
     set(CPACK_PACKAGE_FILE_NAME "Cmdx-Installer-${PROJECT_VERSION}-macos")
     set(CPACK_PRODUCTBUILD_IDENTIFIER "dev.cmdx.pkg")
-    set(CPACK_GENERATOR "productbuild;TGZ")
+    set(CPACK_PRODUCTBUILD_DOMAINS TRUE)
+    set(CPACK_PRODUCTBUILD_DOMAINS_ANYWHERE FALSE)
+    set(CPACK_PRODUCTBUILD_DOMAINS_USER FALSE)
+    set(CPACK_PRODUCTBUILD_DOMAINS_ROOT TRUE)
+    if(CMDX_MAC_INSTALLER_IDENTITY)
+        set(CPACK_PRODUCTBUILD_IDENTITY_NAME "${CMDX_MAC_INSTALLER_IDENTITY}")
+        set(CPACK_PKGBUILD_IDENTITY_NAME "${CMDX_MAC_INSTALLER_IDENTITY}")
+    endif()
+    if(CMDX_MAC_KEYCHAIN_PATH)
+        set(CPACK_PRODUCTBUILD_KEYCHAIN_PATH "${CMDX_MAC_KEYCHAIN_PATH}")
+        set(CPACK_PKGBUILD_KEYCHAIN_PATH "${CMDX_MAC_KEYCHAIN_PATH}")
+    endif()
+    set(CPACK_GENERATOR "productbuild")
 else()
-    set(CPACK_GENERATOR "DEB;RPM;TGZ")
+    set(cmdx_linux_generator "DEB")
+    if(EXISTS "/etc/os-release")
+        file(READ "/etc/os-release" cmdx_os_release)
+        string(TOLOWER "${cmdx_os_release}" cmdx_os_release)
+        if(cmdx_os_release MATCHES "(^|\\n)id(_like)?=.*(rhel|fedora|centos|rocky|alma|suse)")
+            set(cmdx_linux_generator "RPM")
+        endif()
+    endif()
+    set(CPACK_GENERATOR "${cmdx_linux_generator}")
 endif()
 
 include(CPack)

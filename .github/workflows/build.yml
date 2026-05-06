@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 jobs:
-  # ── Linux (.deb, .rpm, .tar.gz) ──────────────────────────────────────
+  # ── Linux (.deb, .rpm) ───────────────────────────────────────────────
   linux:
     runs-on: ubuntu-24.04
     strategy:
@@ -67,12 +67,52 @@ jobs:
       - name: Install dependencies
         run: brew install qt@6 nlohmann-json cmake
 
+      - name: Install Apple signing certificates
+        if: ${{ secrets.APPLE_DEV_ID_APP_CERT_BASE64 != '' && secrets.APPLE_DEV_ID_INSTALLER_CERT_BASE64 != '' && secrets.APPLE_DEV_ID_APP_CERT_PASSWORD != '' && secrets.APPLE_DEV_ID_INSTALLER_CERT_PASSWORD != '' && secrets.APPLE_KEYCHAIN_PASSWORD != '' }}
+        env:
+          APPLE_DEV_ID_APP_CERT_BASE64: ${{ secrets.APPLE_DEV_ID_APP_CERT_BASE64 }}
+          APPLE_DEV_ID_INSTALLER_CERT_BASE64: ${{ secrets.APPLE_DEV_ID_INSTALLER_CERT_BASE64 }}
+          APPLE_DEV_ID_APP_CERT_PASSWORD: ${{ secrets.APPLE_DEV_ID_APP_CERT_PASSWORD }}
+          APPLE_DEV_ID_INSTALLER_CERT_PASSWORD: ${{ secrets.APPLE_DEV_ID_INSTALLER_CERT_PASSWORD }}
+          APPLE_KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+        run: |
+          APP_CERT_PATH="$RUNNER_TEMP/developer-id-application.p12"
+          INSTALLER_CERT_PATH="$RUNNER_TEMP/developer-id-installer.p12"
+          KEYCHAIN_PATH="$RUNNER_TEMP/cmdx-signing.keychain-db"
+
+          echo -n "$APPLE_DEV_ID_APP_CERT_BASE64" | base64 -D -o "$APP_CERT_PATH"
+          echo -n "$APPLE_DEV_ID_INSTALLER_CERT_BASE64" | base64 -D -o "$INSTALLER_CERT_PATH"
+
+          security create-keychain -p "$APPLE_KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$APPLE_KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security import "$APP_CERT_PATH" -P "$APPLE_DEV_ID_APP_CERT_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security import "$INSTALLER_CERT_PATH" -P "$APPLE_DEV_ID_INSTALLER_CERT_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -k "$APPLE_KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH"
+          echo "CMDX_MAC_KEYCHAIN_PATH=$KEYCHAIN_PATH" >> "$GITHUB_ENV"
+
       - name: Build
+        env:
+          CMDX_MAC_CODESIGN_IDENTITY: ${{ secrets.APPLE_DEV_ID_APP_IDENTITY }}
+          CMDX_MAC_INSTALLER_IDENTITY: ${{ secrets.APPLE_DEV_ID_INSTALLER_IDENTITY }}
         run: |
           export CMAKE_PREFIX_PATH="$(brew --prefix qt@6)"
-          cmake -B build \
-            -DCMAKE_INSTALL_PREFIX=/usr/local \
+          cmake_args=(
+            -B build
+            -DCMAKE_INSTALL_PREFIX=/usr/local
             -DCMAKE_BUILD_TYPE=Release
+          )
+
+          if [ -n "$CMDX_MAC_CODESIGN_IDENTITY" ] && [ -n "$CMDX_MAC_INSTALLER_IDENTITY" ] && [ -n "$CMDX_MAC_KEYCHAIN_PATH" ]; then
+            cmake_args+=(
+              "-DCMDX_MAC_CODESIGN_IDENTITY=$CMDX_MAC_CODESIGN_IDENTITY"
+              "-DCMDX_MAC_INSTALLER_IDENTITY=$CMDX_MAC_INSTALLER_IDENTITY"
+              "-DCMDX_MAC_KEYCHAIN_PATH=$CMDX_MAC_KEYCHAIN_PATH"
+            )
+          fi
+
+          cmake "${cmake_args[@]}"
           cmake --build build -j$(sysctl -n hw.logicalcpu)
 
       - name: Verify
@@ -84,8 +124,24 @@ jobs:
       - name: Package .pkg
         run: cd build && cpack -G productbuild
 
-      - name: Package .tar.gz
-        run: cd build && cpack -G TGZ
+      - name: Notarize and staple .pkg
+        if: ${{ secrets.APPLE_NOTARY_APPLE_ID != '' && secrets.APPLE_NOTARY_TEAM_ID != '' && secrets.APPLE_NOTARY_PASSWORD != '' && secrets.APPLE_DEV_ID_APP_IDENTITY != '' && secrets.APPLE_DEV_ID_INSTALLER_IDENTITY != '' }}
+        env:
+          APPLE_NOTARY_APPLE_ID: ${{ secrets.APPLE_NOTARY_APPLE_ID }}
+          APPLE_NOTARY_TEAM_ID: ${{ secrets.APPLE_NOTARY_TEAM_ID }}
+          APPLE_NOTARY_PASSWORD: ${{ secrets.APPLE_NOTARY_PASSWORD }}
+        run: |
+          PKG_PATH="$(find build -maxdepth 1 -name 'Cmdx-Installer-*.pkg' | head -n 1)"
+          if [ -z "$PKG_PATH" ]; then
+            echo "No macOS package found to notarize."
+            exit 1
+          fi
+          xcrun notarytool submit "$PKG_PATH" \
+            --apple-id "$APPLE_NOTARY_APPLE_ID" \
+            --team-id "$APPLE_NOTARY_TEAM_ID" \
+            --password "$APPLE_NOTARY_PASSWORD" \
+            --wait
+          xcrun stapler staple "$PKG_PATH"
 
       - name: Upload .pkg
         uses: actions/upload-artifact@v4
@@ -93,13 +149,7 @@ jobs:
           name: cmdx-macos-pkg
           path: build/*.pkg
 
-      - name: Upload .tar.gz
-        uses: actions/upload-artifact@v4
-        with:
-          name: cmdx-macos-tgz
-          path: build/*.tar.gz
-
-  # ── Windows (.exe installer + .zip) ──────────────────────────────────
+  # ── Windows (.exe installer) ─────────────────────────────────────────
   windows:
     runs-on: windows-latest
     steps:
@@ -167,20 +217,11 @@ jobs:
       - name: Package installer
         run: cd build && cpack -G NSIS -C Release
 
-      - name: Package .zip
-        run: cd build && cpack -G ZIP -C Release
-
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
           name: cmdx-windows-installer
           path: build/Cmdx-Setup-*.exe
-
-      - name: Upload .zip
-        uses: actions/upload-artifact@v4
-        with:
-          name: cmdx-windows-zip
-          path: build/*.zip
 
   # ── Release (auto-publish on tag push) ───────────────────────────────
   release:
@@ -208,7 +249,12 @@ jobs:
               });
 
               for (const asset of release.data.assets) {
-                if (asset.name === 'cmdx.exe' || asset.name.endsWith('.dmg')) {
+                if (
+                  asset.name === 'cmdx.exe' ||
+                  asset.name.endsWith('.dmg') ||
+                  asset.name.endsWith('.zip') ||
+                  asset.name.endsWith('.tar.gz')
+                ) {
                   await github.rest.repos.deleteReleaseAsset({
                     owner: context.repo.owner,
                     repo: context.repo.repo,
@@ -229,6 +275,5 @@ jobs:
             artifacts/cmdx-linux-deb/*
             artifacts/cmdx-linux-rpm/*
             artifacts/cmdx-macos-pkg/*
-            artifacts/cmdx-macos-tgz/*
             artifacts/cmdx-windows-installer/*
           generate_release_notes: true

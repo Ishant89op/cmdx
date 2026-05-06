@@ -22,11 +22,10 @@ Initial release.
 - `cmdx <command>` opens the GUI (default mode)
 - `cmdx -t <command>` for interactive terminal mode
 - `cmdx --list` / `-l` to list all available commands
-- Symlink aliases: `optionsgui`, `optgui`, `cmdxgui`
 
 ### Packaging
 
-- Native installers: `.deb`, `.rpm`, `.tar.gz`, `.dmg`, `.exe`
+- Native installers: `.deb`, `.rpm`, `.pkg`, `.exe`
 - Docker image with multi-stage build
 - Universal install script (`install.sh`)
 - GitHub Actions CI for automated cross-platform builds and releases

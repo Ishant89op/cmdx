@@ -29,8 +29,8 @@ docker run --rm ghcr.io/ishant89op/cmdx --list
 
 | Platform | Install |
 |---|---|
-| Debian / Ubuntu | `sudo dpkg -i cmdx_1.0.0_amd64.deb` |
-| Fedora / RHEL | `sudo rpm -i cmdx-1.0.0.x86_64.rpm` |
+| Debian / Ubuntu | `sudo apt install ./cmdx_1.0.0_amd64.deb` |
+| Fedora / RHEL | `sudo dnf install ./cmdx-1.0.0.x86_64.rpm` |
 | Arch | `cmake -B build && cmake --build build && sudo cmake --install build` |
 | macOS | Run the `.pkg` installer from Releases |
 | Windows | Run the Windows installer `.exe` from Releases |
@@ -64,13 +64,14 @@ cmdx --list        # Show all 127+ supported commands
 
 On Windows, prefer the installer `.exe` from Releases. The raw `cmdx.exe` binary is a build artifact and does not include the bundled Qt/MSVC runtime files needed for end-user installs.
 
+On macOS, a warning-free install requires an Apple Developer ID-signed and notarized `.pkg`. The CI is now wired to support that when Apple signing credentials are configured.
+
 ## Building Packages
 
 ```bash
 cd build
 cpack -G DEB          # .deb
 cpack -G RPM          # .rpm
-cpack -G TGZ          # .tar.gz
 cpack -G productbuild # .pkg (macOS)
 cpack -G NSIS         # .exe (Windows)
 ```
