@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.0.0 (2026-05-04)
+## 0.0.0 (2026-05-06)
 
-Initial release.
+Initial alpha release for installer and packaging validation.
 
 ### Features
 

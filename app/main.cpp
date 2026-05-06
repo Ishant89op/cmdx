@@ -301,7 +301,11 @@ static void run_gui_mode(const std::string& cmd_name, int argc, char* argv[]) {
 
     QApplication app(argc, argv);
     app.setApplicationName("cmdx");
-    app.setApplicationVersion("1.0.0");
+#ifdef CMDX_VERSION
+    app.setApplicationVersion(CMDX_VERSION);
+#else
+    app.setApplicationVersion("0.0.0");
+#endif
 
     MainWindow window(tool_opt.value());
     window.show();
@@ -320,7 +324,7 @@ static void print_version() {
 #ifdef CMDX_VERSION
     std::cout << "cmdx " << CMDX_VERSION << std::endl;
 #else
-    std::cout << "cmdx 1.0.0" << std::endl;
+    std::cout << "cmdx 0.0.0" << std::endl;
 #endif
 }
 

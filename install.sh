@@ -4,7 +4,7 @@
 
 set -e
 
-VERSION="1.0.0"
+VERSION="0.0.0"
 REPO="Ishant89op/cmdx"
 BASE_URL="https://github.com/$REPO/releases/download/v$VERSION"
 
@@ -47,7 +47,7 @@ install_deb() {
     echo "  Downloading $pkg..."
     curl -fsSL -o "/tmp/$pkg" "$BASE_URL/$pkg"
     echo "  Installing (requires sudo)..."
-    sudo dpkg -i "/tmp/$pkg"
+    sudo apt install -y "/tmp/$pkg"
     rm -f "/tmp/$pkg"
 }
 
@@ -56,16 +56,22 @@ install_rpm() {
     echo "  Downloading $pkg..."
     curl -fsSL -o "/tmp/$pkg" "$BASE_URL/$pkg"
     echo "  Installing (requires sudo)..."
-    sudo rpm -i "/tmp/$pkg"
+    if command -v dnf >/dev/null 2>&1; then
+        sudo dnf install -y "/tmp/$pkg"
+    elif command -v yum >/dev/null 2>&1; then
+        sudo yum install -y "/tmp/$pkg"
+    else
+        sudo rpm -i "/tmp/$pkg"
+    fi
     rm -f "/tmp/$pkg"
 }
 
 install_macos() {
-    local pkg="cmdx-${VERSION}-Darwin.tar.gz"
+    local pkg="Cmdx-Installer-${VERSION}-macos.pkg"
     echo "  Downloading $pkg..."
     curl -fsSL -o "/tmp/$pkg" "$BASE_URL/$pkg"
-    echo "  Installing to /usr/local/bin..."
-    sudo tar -xzf "/tmp/$pkg" -C /usr/local --strip-components=1
+    echo "  Installing package..."
+    sudo installer -pkg "/tmp/$pkg" -target /
     rm -f "/tmp/$pkg"
 }
 
