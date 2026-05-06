@@ -66,7 +66,7 @@ cmdx --list        # Show all 127+ supported commands
 
 On Windows, prefer the installer `.exe` from Releases. The raw `cmdx.exe` binary is a build artifact and does not include the bundled Qt/MSVC runtime files needed for end-user installs.
 
-On macOS, a warning-free install requires an Apple Developer ID-signed and notarized `.pkg`. The CI is now wired to support that when Apple signing credentials are configured.
+On macOS, the `.pkg` installs the `cmdx` terminal command into `/usr/local/bin` and keeps the Qt app bundle under `/usr/local/libexec/cmdx`, so it behaves like a CLI tool instead of a normal app install. A warning-free install still requires an Apple Developer ID-signed and notarized `.pkg`, and the CI is wired to support that when Apple signing credentials are configured.
 
 ## Building Packages
 

@@ -64,6 +64,10 @@ add_executable(cmdx
 
 include(GNUInstallDirs)
 
+if(APPLE)
+    set_target_properties(cmdx PROPERTIES MACOSX_BUNDLE TRUE)
+endif()
+
 target_compile_definitions(cmdx PRIVATE
     CMDX_VERSION="${PROJECT_VERSION}"
     CMDX_DATA_DIR="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/cmdx"
@@ -77,7 +81,22 @@ file(COPY ${CMAKE_SOURCE_DIR}/commands DESTINATION ${CMAKE_BINARY_DIR})
 
 # ─── Install ────────────────────────────────────────────────────────────────────
 
-install(TARGETS cmdx RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+if(APPLE)
+    configure_file(
+        ${CMAKE_SOURCE_DIR}/packaging/macos/cmdx.in
+        ${CMAKE_CURRENT_BINARY_DIR}/cmdx
+        @ONLY
+    )
+
+    install(TARGETS cmdx
+        BUNDLE DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/cmdx
+    )
+    install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmdx
+        DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+else()
+    install(TARGETS cmdx RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+endif()
 
 # Install the full command library
 install(DIRECTORY commands/ DESTINATION ${CMAKE_INSTALL_DATADIR}/cmdx/commands)

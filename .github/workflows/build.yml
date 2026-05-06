@@ -130,11 +130,19 @@ jobs:
           rm -rf "$STAGE_DIR"
           cmake --install build --prefix "$STAGE_DIR"
           find "$STAGE_DIR" -maxdepth 4 -print
+
+          CMDX_BUNDLE_BIN="$(find "$STAGE_DIR" -path '*/cmdx.app/Contents/MacOS/cmdx' | head -n 1)"
+          if [ -z "$CMDX_BUNDLE_BIN" ]; then
+            echo "No deployed cmdx app bundle was found in the staged install tree."
+            exit 1
+          fi
+
           test -x "$STAGE_DIR/bin/cmdx"
+          test -x "$CMDX_BUNDLE_BIN"
           "$STAGE_DIR/bin/cmdx" --version
 
           QT_PREFIX="$(brew --prefix qt@6)"
-          if otool -L "$STAGE_DIR/bin/cmdx" | grep -F "$QT_PREFIX" >/dev/null; then
+          if otool -L "$CMDX_BUNDLE_BIN" | grep -F "$QT_PREFIX" >/dev/null; then
             echo "cmdx still links against Homebrew Qt instead of deployed runtime."
             exit 1
           fi
