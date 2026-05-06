@@ -125,7 +125,7 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Multiplatform command reference and execu
 set(CPACK_PACKAGE_DESCRIPTION "Cmdx is a GUI and terminal command builder. It reads a JSON database of CLI tools and presents an interactive form to construct commands with proper flags, arguments, and validation.")
 set(CPACK_PACKAGE_VENDOR "cmdx")
 set(CPACK_PACKAGE_CONTACT "snatcha <snatcha@cmdx.dev>")
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/packaging/LICENSE.txt")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/Ishant89op/cmdx")
 
 # ── DEB (.deb) ──────────────────────────────────────────────────────────────────
