@@ -120,9 +120,15 @@ jobs:
 
       - name: Verify
         run: |
-          ./build/cmdx --version
-          ./build/cmdx -h
-          ./build/cmdx list | wc -l
+          CMDX_BUILD_BIN="$(find build -path '*/cmdx.app/Contents/MacOS/cmdx' | head -n 1)"
+          if [ -z "$CMDX_BUILD_BIN" ]; then
+            CMDX_BUILD_BIN="./build/cmdx"
+          fi
+
+          test -x "$CMDX_BUILD_BIN"
+          "$CMDX_BUILD_BIN" --version
+          "$CMDX_BUILD_BIN" -h
+          "$CMDX_BUILD_BIN" list | wc -l
 
       - name: Stage install tree
         run: |
