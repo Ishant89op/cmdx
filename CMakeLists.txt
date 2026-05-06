@@ -141,10 +141,7 @@ set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.2")
 set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
 
 # ── NSIS (.exe installer for Windows) ────────────────────────────────────────────
-set(CPACK_PACKAGE_FILE_NAME "Cmdx-Setup-${PROJECT_VERSION}-win64")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "Cmdx")
-set(CPACK_PACKAGE_EXECUTABLES "cmdx" "Cmdx")
-set(CPACK_CREATE_DESKTOP_LINKS "cmdx")
 set(CPACK_NSIS_DISPLAY_NAME "Cmdx")
 set(CPACK_NSIS_PACKAGE_NAME "Cmdx ${PROJECT_VERSION}")
 set(CPACK_NSIS_EXECUTABLES_DIRECTORY ${CMAKE_INSTALL_BINDIR})
@@ -153,19 +150,15 @@ set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set(CPACK_NSIS_HELP_LINK "https://github.com/Ishant89op/cmdx")
 set(CPACK_NSIS_URL_INFO_ABOUT "https://github.com/Ishant89op/cmdx")
 set(CPACK_NSIS_CONTACT "snatcha@cmdx.dev")
-set(CPACK_NSIS_MENU_LINKS
-    "${CMAKE_INSTALL_DATADIR}/doc/cmdx/README.md" "README"
-    "https://github.com/Ishant89op/cmdx" "Cmdx Homepage"
-)
-
-# ── macOS DragNDrop (.dmg) ──────────────────────────────────────────────────────
-set(CPACK_DMG_VOLUME_NAME "Cmdx ${PROJECT_VERSION}")
 
 # ── Generator selection per platform ─────────────────────────────────────────────
 if(WIN32)
+    set(CPACK_PACKAGE_FILE_NAME "Cmdx-Setup-${PROJECT_VERSION}-win64")
     set(CPACK_GENERATOR "NSIS;ZIP")
 elseif(APPLE)
-    set(CPACK_GENERATOR "DragNDrop;TGZ")
+    set(CPACK_PACKAGE_FILE_NAME "Cmdx-Installer-${PROJECT_VERSION}-macos")
+    set(CPACK_PRODUCTBUILD_IDENTIFIER "dev.cmdx.pkg")
+    set(CPACK_GENERATOR "productbuild;TGZ")
 else()
     set(CPACK_GENERATOR "DEB;RPM;TGZ")
 endif()

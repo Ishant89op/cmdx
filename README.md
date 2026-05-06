@@ -32,7 +32,7 @@ docker run --rm ghcr.io/ishant89op/cmdx --list
 | Debian / Ubuntu | `sudo dpkg -i cmdx_1.0.0_amd64.deb` |
 | Fedora / RHEL | `sudo rpm -i cmdx-1.0.0.x86_64.rpm` |
 | Arch | `cmake -B build && cmake --build build && sudo cmake --install build` |
-| macOS | Open `Cmdx-1.0.0.dmg` |
+| macOS | Run the `.pkg` installer from Releases |
 | Windows | Run the Windows installer `.exe` from Releases |
 
 ### From Source
@@ -71,7 +71,7 @@ cd build
 cpack -G DEB          # .deb
 cpack -G RPM          # .rpm
 cpack -G TGZ          # .tar.gz
-cpack -G DragNDrop    # .dmg (macOS)
+cpack -G productbuild # .pkg (macOS)
 cpack -G NSIS         # .exe (Windows)
 ```
 
