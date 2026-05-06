@@ -62,6 +62,17 @@ jobs:
   # ── macOS (.pkg) ─────────────────────────────────────────────────────
   macos:
     runs-on: macos-latest
+    env:
+      APPLE_DEV_ID_APP_CERT_BASE64: ${{ secrets.APPLE_DEV_ID_APP_CERT_BASE64 }}
+      APPLE_DEV_ID_INSTALLER_CERT_BASE64: ${{ secrets.APPLE_DEV_ID_INSTALLER_CERT_BASE64 }}
+      APPLE_DEV_ID_APP_CERT_PASSWORD: ${{ secrets.APPLE_DEV_ID_APP_CERT_PASSWORD }}
+      APPLE_DEV_ID_INSTALLER_CERT_PASSWORD: ${{ secrets.APPLE_DEV_ID_INSTALLER_CERT_PASSWORD }}
+      APPLE_KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+      CMDX_MAC_CODESIGN_IDENTITY: ${{ secrets.APPLE_DEV_ID_APP_IDENTITY }}
+      CMDX_MAC_INSTALLER_IDENTITY: ${{ secrets.APPLE_DEV_ID_INSTALLER_IDENTITY }}
+      APPLE_NOTARY_APPLE_ID: ${{ secrets.APPLE_NOTARY_APPLE_ID }}
+      APPLE_NOTARY_TEAM_ID: ${{ secrets.APPLE_NOTARY_TEAM_ID }}
+      APPLE_NOTARY_PASSWORD: ${{ secrets.APPLE_NOTARY_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
 
@@ -69,13 +80,7 @@ jobs:
         run: brew install qt@6 nlohmann-json cmake
 
       - name: Install Apple signing certificates
-        if: ${{ secrets.APPLE_DEV_ID_APP_CERT_BASE64 != '' && secrets.APPLE_DEV_ID_INSTALLER_CERT_BASE64 != '' && secrets.APPLE_DEV_ID_APP_CERT_PASSWORD != '' && secrets.APPLE_DEV_ID_INSTALLER_CERT_PASSWORD != '' && secrets.APPLE_KEYCHAIN_PASSWORD != '' }}
-        env:
-          APPLE_DEV_ID_APP_CERT_BASE64: ${{ secrets.APPLE_DEV_ID_APP_CERT_BASE64 }}
-          APPLE_DEV_ID_INSTALLER_CERT_BASE64: ${{ secrets.APPLE_DEV_ID_INSTALLER_CERT_BASE64 }}
-          APPLE_DEV_ID_APP_CERT_PASSWORD: ${{ secrets.APPLE_DEV_ID_APP_CERT_PASSWORD }}
-          APPLE_DEV_ID_INSTALLER_CERT_PASSWORD: ${{ secrets.APPLE_DEV_ID_INSTALLER_CERT_PASSWORD }}
-          APPLE_KEYCHAIN_PASSWORD: ${{ secrets.APPLE_KEYCHAIN_PASSWORD }}
+        if: env.APPLE_DEV_ID_APP_CERT_BASE64 != '' && env.APPLE_DEV_ID_INSTALLER_CERT_BASE64 != '' && env.APPLE_DEV_ID_APP_CERT_PASSWORD != '' && env.APPLE_DEV_ID_INSTALLER_CERT_PASSWORD != '' && env.APPLE_KEYCHAIN_PASSWORD != ''
         run: |
           APP_CERT_PATH="$RUNNER_TEMP/developer-id-application.p12"
           INSTALLER_CERT_PATH="$RUNNER_TEMP/developer-id-installer.p12"
@@ -94,9 +99,6 @@ jobs:
           echo "CMDX_MAC_KEYCHAIN_PATH=$KEYCHAIN_PATH" >> "$GITHUB_ENV"
 
       - name: Build
-        env:
-          CMDX_MAC_CODESIGN_IDENTITY: ${{ secrets.APPLE_DEV_ID_APP_IDENTITY }}
-          CMDX_MAC_INSTALLER_IDENTITY: ${{ secrets.APPLE_DEV_ID_INSTALLER_IDENTITY }}
         run: |
           export CMAKE_PREFIX_PATH="$(brew --prefix qt@6)"
           cmake_args=(
@@ -141,11 +143,7 @@ jobs:
         run: cd build && cpack -G productbuild
 
       - name: Notarize and staple .pkg
-        if: ${{ secrets.APPLE_NOTARY_APPLE_ID != '' && secrets.APPLE_NOTARY_TEAM_ID != '' && secrets.APPLE_NOTARY_PASSWORD != '' && secrets.APPLE_DEV_ID_APP_IDENTITY != '' && secrets.APPLE_DEV_ID_INSTALLER_IDENTITY != '' }}
-        env:
-          APPLE_NOTARY_APPLE_ID: ${{ secrets.APPLE_NOTARY_APPLE_ID }}
-          APPLE_NOTARY_TEAM_ID: ${{ secrets.APPLE_NOTARY_TEAM_ID }}
-          APPLE_NOTARY_PASSWORD: ${{ secrets.APPLE_NOTARY_PASSWORD }}
+        if: env.APPLE_NOTARY_APPLE_ID != '' && env.APPLE_NOTARY_TEAM_ID != '' && env.APPLE_NOTARY_PASSWORD != '' && env.CMDX_MAC_CODESIGN_IDENTITY != '' && env.CMDX_MAC_INSTALLER_IDENTITY != ''
         run: |
           PKG_PATH="$(find build -maxdepth 1 -name 'Cmdx-Installer-*.pkg' | head -n 1)"
           if [ -z "$PKG_PATH" ]; then
