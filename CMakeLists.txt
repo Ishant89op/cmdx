@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(cmdx VERSION 0.0.0 LANGUAGES CXX)
+project(cmdx VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -82,17 +82,18 @@ file(COPY ${CMAKE_SOURCE_DIR}/commands DESTINATION ${CMAKE_BINARY_DIR})
 # ─── Install ────────────────────────────────────────────────────────────────────
 
 if(APPLE)
+    # Install the .app bundle at the prefix root so macdeployqt finds it
+    install(TARGETS cmdx BUNDLE DESTINATION .)
+
+    # Generate a CLI wrapper script: bin/cmdx -> ../cmdx.app/Contents/MacOS/cmdx
     configure_file(
         ${CMAKE_SOURCE_DIR}/packaging/macos/cmdx.in
-        ${CMAKE_CURRENT_BINARY_DIR}/cmdx
+        ${CMAKE_CURRENT_BINARY_DIR}/cmdx-wrapper
         @ONLY
     )
-
-    install(TARGETS cmdx
-        BUNDLE DESTINATION ${CMAKE_INSTALL_LIBEXECDIR}/cmdx
-    )
-    install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmdx
+    install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmdx-wrapper
         DESTINATION ${CMAKE_INSTALL_BINDIR}
+        RENAME cmdx
     )
 else()
     install(TARGETS cmdx RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -109,8 +110,6 @@ if(WIN32 OR APPLE)
         NO_UNSUPPORTED_PLATFORM_ERROR
     )
 
-    # Bundle the MSVC/UCRT runtime explicitly. Qt can do this too, but making
-    # CMake responsible for compiler runtime deployment is more predictable in CI.
     if(WIN32)
         set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ${CMAKE_INSTALL_BINDIR})
         set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)

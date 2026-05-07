@@ -128,7 +128,7 @@ jobs:
           test -x "$CMDX_BUILD_BIN"
           "$CMDX_BUILD_BIN" --version
           "$CMDX_BUILD_BIN" -h
-          "$CMDX_BUILD_BIN" list | wc -l
+          "$CMDX_BUILD_BIN" --list | wc -l
 
       - name: Stage install tree
         run: |
@@ -137,15 +137,18 @@ jobs:
           cmake --install build --prefix "$STAGE_DIR"
           find "$STAGE_DIR" -maxdepth 4 -print
 
+          # Bundle is installed at prefix root: $STAGE_DIR/cmdx.app
           CMDX_BUNDLE_BIN="$(find "$STAGE_DIR" -path '*/cmdx.app/Contents/MacOS/cmdx' | head -n 1)"
           if [ -z "$CMDX_BUNDLE_BIN" ]; then
             echo "No deployed cmdx app bundle was found in the staged install tree."
             exit 1
           fi
 
-          test -x "$STAGE_DIR/bin/cmdx"
           test -x "$CMDX_BUNDLE_BIN"
-          "$STAGE_DIR/bin/cmdx" --version
+          "$CMDX_BUNDLE_BIN" --version
+
+          # Verify wrapper script exists
+          test -f "$STAGE_DIR/bin/cmdx"
 
           QT_PREFIX="$(brew --prefix qt@6)"
           if otool -L "$CMDX_BUNDLE_BIN" | grep -F "$QT_PREFIX" >/dev/null; then
