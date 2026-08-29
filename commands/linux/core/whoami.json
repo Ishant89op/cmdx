@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "cmd": "whoami",
+    "binary": "whoami",
+    "description": "Print the effective user name",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": [
+      "linux"
+    ]
+  },
+  "positional": [],
+  "groups": [
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    {
+      "id": "help",
+      "flag": "--help",
+      "label": "Help",
+      "description": "Display help information",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "version",
+      "flag": "--version",
+      "label": "Version",
+      "description": "Display version information",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    }
+  ]
+}

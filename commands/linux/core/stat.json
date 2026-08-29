@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "cmd": "stat",
+    "binary": "stat",
+    "description": "Display file or file-system status",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": [
+      "linux"
+    ]
+  },
+  "positional": [
+    {
+      "id": "path",
+      "label": "Path",
+      "description": "File or directory to inspect",
+      "placeholder": "/path/to/file",
+      "type": "FILE_PATH",
+      "required": false,
+      "default": null,
+      "repeatable": true
+    }
+  ],
+  "groups": [
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    {
+      "id": "format",
+      "flag": "-c",
+      "label": "Format",
+      "description": "Use the specified format string",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "filesystem",
+      "flag": "-f",
+      "label": "File system",
+      "description": "Display file-system status",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "dereference",
+      "flag": "-L",
+      "label": "Follow links",
+      "description": "Follow symbolic links",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "terse",
+      "flag": "-t",
+      "label": "Terse",
+      "description": "Print information in terse form",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "printf",
+      "flag": "--printf",
+      "label": "Printf format",
+      "description": "Use a format string without a trailing newline",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "context",
+      "flag": "-Z",
+      "label": "Security context",
+      "description": "Print security context",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    }
+  ]
+}

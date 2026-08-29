@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.1 (2026-08-29)
+
+### Fixed
+
+- Source installation on Kali and other supported package-manager platforms now installs the required Qt6 and nlohmann-json development dependencies before configuring CMake.
+- The installer now recognizes Kali and Parrot as Debian-family distributions for source builds.
+
+### Added
+
+- Expanded the offline command database to 147 complete command definitions.
+- Added `commands/COMMANDS.txt` as the names-only command inventory.
+- Added `AI_HANDOFF.md` to document command-definition research and continuation progress.
+
 ## 0.0.0 (2026-05-06)
 
 Initial alpha release for installer and packaging validation.

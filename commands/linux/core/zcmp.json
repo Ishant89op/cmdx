@@ -1,0 +1,6 @@
+{
+  "meta": { "cmd": "zcmp", "binary": "zcmp", "description": "Compare compressed files", "version_flag": null, "has_subcommands": false, "platforms": ["linux"] },
+  "positional": [ { "id": "files", "label": "Files", "description": "Two gzip-compressed files to compare", "placeholder": "first.gz second.gz", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true } ],
+  "groups": [ { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false } ],
+  "mutex_groups": [], "subcommands": [], "options": []
+}

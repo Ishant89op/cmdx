@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "cmd": "id",
+    "binary": "id",
+    "description": "Print user and group identity information",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": [
+      "linux"
+    ]
+  },
+  "positional": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "Optional user name or ID",
+      "placeholder": "root",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    {
+      "id": "all",
+      "flag": "-a",
+      "label": "All",
+      "description": "Ignore other options and print all identity information",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "group",
+      "flag": "-g",
+      "label": "Group ID",
+      "description": "Print only the effective group ID",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "groups",
+      "flag": "-G",
+      "label": "Groups",
+      "description": "Print all group IDs",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "name",
+      "flag": "-n",
+      "label": "Name",
+      "description": "Print a name instead of a number",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "real",
+      "flag": "-r",
+      "label": "Real ID",
+      "description": "Print the real ID instead of the effective ID",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "user",
+      "flag": "-u",
+      "label": "User ID",
+      "description": "Print only the effective user ID",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "context",
+      "flag": "-Z",
+      "label": "Security context",
+      "description": "Print only the security context",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    }
+  ]
+}

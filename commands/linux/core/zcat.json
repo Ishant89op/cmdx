@@ -1,0 +1,6 @@
+{
+  "meta": { "cmd": "zcat", "binary": "zcat", "description": "Decompress and display gzip-compressed files", "version_flag": null, "has_subcommands": false, "platforms": ["linux"] },
+  "positional": [ { "id": "file", "label": "File", "description": "Gzip-compressed file to display", "placeholder": "archive.gz", "type": "FILE_PATH", "required": true, "default": null, "repeatable": true } ],
+  "groups": [ { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false } ],
+  "mutex_groups": [], "subcommands": [], "options": []
+}

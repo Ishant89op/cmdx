@@ -304,7 +304,7 @@ static void run_gui_mode(const std::string& cmd_name, int argc, char* argv[]) {
 #ifdef CMDX_VERSION
     app.setApplicationVersion(CMDX_VERSION);
 #else
-    app.setApplicationVersion("0.0.0");
+    app.setApplicationVersion("1.0.1");
 #endif
 
     MainWindow window(tool_opt.value());
@@ -324,7 +324,7 @@ static void print_version() {
 #ifdef CMDX_VERSION
     std::cout << "cmdx " << CMDX_VERSION << std::endl;
 #else
-    std::cout << "cmdx 0.0.0" << std::endl;
+    std::cout << "cmdx 1.0.1" << std::endl;
 #endif
 }
 
@@ -335,7 +335,7 @@ static void print_about() {
     print_version();
     std::cout << "\n";
     std::cout << "  Build commands visually. Run them instantly.\n";
-    std::cout << "  127+ tools across Linux, macOS, and Windows.\n";
+    std::cout << "  147 tools across Linux, macOS, and Windows.\n";
     std::cout << "\n";
     std::cout << "  Run 'cmdx --help' to get started.\n\n";
 }
@@ -359,7 +359,7 @@ static void print_help() {
     std::cout << "  cmdx nmap              Build an nmap command in the GUI" << std::endl;
     std::cout << "  cmdx -t docker         Build a docker command in the terminal" << std::endl;
     std::cout << "  cmdx --gui git         Build a git command in the GUI" << std::endl;
-    std::cout << "  cmdx --list            Show all 127+ supported commands" << std::endl;
+    std::cout << "  cmdx --list            Show all 147 supported commands" << std::endl;
 }
 
 static void list_commands() {

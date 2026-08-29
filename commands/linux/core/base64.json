@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "cmd": "base64",
+    "binary": "base64",
+    "description": "Encode or decode data using Base64",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": [
+      "linux"
+    ]
+  },
+  "positional": [
+    {
+      "id": "file",
+      "label": "File",
+      "description": "Input file; omit to read standard input",
+      "placeholder": "input.txt",
+      "type": "FILE_PATH",
+      "required": false,
+      "default": null,
+      "repeatable": true
+    }
+  ],
+  "groups": [
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    {
+      "id": "decode",
+      "flag": "-d",
+      "label": "Decode",
+      "description": "Decode data instead of encoding",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "ignore_garbage",
+      "flag": "-i",
+      "label": "Ignore garbage",
+      "description": "Ignore non-alphabet characters while decoding",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "wrap",
+      "flag": "-w",
+      "label": "Wrap columns",
+      "description": "Wrap encoded lines after this many characters",
+      "type": "INT",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": 0,
+      "max": 100000,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "help",
+      "flag": "--help",
+      "label": "Help",
+      "description": "Display help information",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    }
+  ]
+}

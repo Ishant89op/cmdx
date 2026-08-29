@@ -1,0 +1,7 @@
+{
+  "meta": { "cmd": "openssl", "binary": "openssl", "description": "OpenSSL toolkit for cryptography and TLS", "version_flag": "version", "has_subcommands": false, "platforms": ["linux"] },
+  "positional": [ { "id": "arguments", "label": "Arguments", "description": "OpenSSL subcommand and its arguments", "placeholder": "version", "type": "STRING", "required": false, "default": null, "repeatable": true } ],
+  "groups": [ { "id": "options", "label": "Options", "collapsible": true, "collapsed_by_default": false } ],
+  "mutex_groups": [], "subcommands": [],
+  "options": [ { "id": "opt_help", "flag": "help", "label": "Help", "description": "Show help information", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "options" } ]
+}

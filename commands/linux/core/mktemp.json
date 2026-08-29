@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "cmd": "mktemp",
+    "binary": "mktemp",
+    "description": "Create a temporary file or directory",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": [
+      "linux"
+    ]
+  },
+  "positional": [
+    {
+      "id": "template",
+      "label": "Template",
+      "description": "Optional filename template",
+      "placeholder": "tmp.XXXXXX",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    {
+      "id": "directory",
+      "flag": "-d",
+      "label": "Directory",
+      "description": "Create a directory instead of a file",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "dry_run",
+      "flag": "--dry-run",
+      "label": "Dry run",
+      "description": "Print a name without creating it",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "quiet",
+      "flag": "-q",
+      "label": "Quiet",
+      "description": "Suppress diagnostics about file or directory creation",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "tmpdir",
+      "flag": "--tmpdir",
+      "label": "Temporary directory",
+      "description": "Use a directory for the temporary file",
+      "type": "DIR_PATH",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "suffix",
+      "flag": "--suffix",
+      "label": "Suffix",
+      "description": "Append a suffix to the template",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "help",
+      "flag": "--help",
+      "label": "Help",
+      "description": "Display help information",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    }
+  ]
+}

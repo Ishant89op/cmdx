@@ -4,7 +4,7 @@
 
 set -e
 
-VERSION="0.0.0"
+VERSION="1.0.1"
 REPO="Ishant89op/cmdx"
 BASE_URL="https://github.com/$REPO/releases/download/v$VERSION"
 
@@ -75,12 +75,57 @@ install_macos() {
     rm -f "/tmp/$pkg"
 }
 
+install_build_dependencies() {
+    echo "  Installing build dependencies..."
+
+    case "$DISTRO" in
+        ubuntu|debian|linuxmint|pop|kali|parrot)
+            if ! command -v apt-get >/dev/null 2>&1; then
+                echo "  [x] apt-get not found; cannot install Qt6 and nlohmann-json."
+                exit 1
+            fi
+            sudo apt-get update
+            sudo apt-get install -y \
+                build-essential cmake \
+                qt6-base-dev \
+                nlohmann-json3-dev
+            ;;
+        fedora|rhel|centos|rocky|alma)
+            if command -v dnf >/dev/null 2>&1; then
+                sudo dnf install -y gcc-c++ cmake make qt6-qtbase-devel json-devel
+            elif command -v yum >/dev/null 2>&1; then
+                sudo yum install -y gcc-c++ cmake make qt6-qtbase-devel json-devel
+            else
+                echo "  [x] dnf/yum not found; cannot install build dependencies."
+                exit 1
+            fi
+            ;;
+        arch|manjaro|endeavouros)
+            if ! command -v pacman >/dev/null 2>&1; then
+                echo "  [x] pacman not found; cannot install build dependencies."
+                exit 1
+            fi
+            sudo pacman -Sy --needed --noconfirm base-devel cmake qt6-base nlohmann-json
+            ;;
+        macos)
+            if ! command -v brew >/dev/null 2>&1; then
+                echo "  [x] Homebrew not found; install Homebrew, Qt6, and nlohmann-json first."
+                exit 1
+            fi
+            brew install cmake qt@6 nlohmann-json
+            ;;
+        *)
+            echo "  [x] Unsupported package manager for '$DISTRO'."
+            echo "      Install CMake, Qt6 Widgets development files, and nlohmann-json manually."
+            exit 1
+            ;;
+    esac
+}
+
 install_from_source() {
     echo "  Building from source..."
-    if ! command -v cmake &>/dev/null; then
-        echo "  [x] cmake not found. Install cmake first."
-        exit 1
-    fi
+    install_build_dependencies
+
     local tmpdir
     tmpdir="$(mktemp -d)"
     git clone --depth 1 "https://github.com/$REPO.git" "$tmpdir/cmdx"

@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "cmd": "basename",
+    "binary": "basename",
+    "description": "Strip directory and suffix from file names",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": [
+      "linux"
+    ]
+  },
+  "positional": [
+    {
+      "id": "name",
+      "label": "Name",
+      "description": "Name or names to process",
+      "placeholder": "/usr/local/bin/cmdx",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": true
+    },
+    {
+      "id": "suffix",
+      "label": "Suffix",
+      "description": "Optional suffix to remove",
+      "placeholder": ".txt",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    {
+      "id": "options",
+      "label": "Options",
+      "collapsible": true,
+      "collapsed_by_default": false
+    }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    {
+      "id": "all",
+      "flag": "-a",
+      "label": "Multiple",
+      "description": "Support multiple arguments",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "suffix",
+      "flag": "-s",
+      "label": "Suffix",
+      "description": "Remove a specified suffix",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "separator": " ",
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    },
+    {
+      "id": "zero",
+      "flag": "-z",
+      "label": "NUL terminated",
+      "description": "End each output line with NUL",
+      "type": "BOOL",
+      "required": false,
+      "default": null,
+      "separator": null,
+      "depends_on": null,
+      "mutex_group": null,
+      "choices": null,
+      "min": null,
+      "max": null,
+      "repeatable": false,
+      "placeholder": null,
+      "group": "options"
+    }
+  ]
+}
