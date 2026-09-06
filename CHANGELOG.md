@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2 (2026-09-06)
+
+### Changed
+
+- Simplified `--help` (`cmdx -h`) and `about` output with a concise definition of the tool's purpose ("Cmdx - Visual command builder and runner").
+- Removed multiplatform claims and total command count references from the help message.
+
 ## 1.0.1 (2026-08-29)
 
 ### Fixed
