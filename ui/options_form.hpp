@@ -16,6 +16,8 @@
 #include <map>
 #include <string>
 
+#include "../core/command_cache.hpp"
+
 class OptionsForm : public QWidget {
     Q_OBJECT
 
@@ -24,6 +26,10 @@ public:
 
     void load_tool(const core::tool_def& tool);
     void clear();
+
+    core::cached_command_config get_current_config() const;
+    void apply_config(const core::cached_command_config& config);
+    void reset_defaults();
 
 signals:
     void command_changed(const QString& command);

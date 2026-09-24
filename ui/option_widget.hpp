@@ -19,6 +19,8 @@ public:
     explicit OptionWidget(const core::option_def& opt, QWidget* parent = nullptr);
 
     std::string get_value() const;
+    void set_value(const std::string& value);
+    void reset_to_default();
     void set_enabled(bool enabled);
     const core::option_def& option() const;
 

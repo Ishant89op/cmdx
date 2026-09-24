@@ -316,7 +316,7 @@ static int run_gui_mode(const std::string& cmd_name, int argc, char* argv[], boo
 #ifdef CMDX_VERSION
     app.setApplicationVersion(CMDX_VERSION);
 #else
-    app.setApplicationVersion("1.0.2");
+    app.setApplicationVersion("1.1.0");
 #endif
 
     MainWindow window(tool_opt.value(), use_cache);
@@ -342,7 +342,7 @@ static void print_version() {
 #ifdef CMDX_VERSION
     std::cout << "v" << CMDX_VERSION << std::endl;
 #else
-    std::cout << "v1.0.2" << std::endl;
+    std::cout << "v1.1.0" << std::endl;
 #endif
 }
 

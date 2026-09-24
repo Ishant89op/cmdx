@@ -8,6 +8,7 @@ namespace platform {
 void run_in_terminal(const std::string& command);
 void run_in_terminal_interactive(const std::string& command);
 void run_replace_process(const std::string& command);
+int run_command_interactive(const std::string& command);
 
 } // namespace platform
 

@@ -6,6 +6,7 @@
 #include <windows.h>
 #elif defined(__APPLE__)
 #include <unistd.h>
+#include <sys/wait.h>
 #else
 // Linux
 #include <unistd.h>
@@ -35,6 +36,11 @@ void run_replace_process(const std::string& command) {
     exit(rc);
 }
 
+int run_command_interactive(const std::string& command) {
+    std::string full = "cmd.exe /C " + command;
+    return system(full.c_str());
+}
+
 #elif defined(__APPLE__)
 
 void run_in_terminal(const std::string& command) {
@@ -49,6 +55,25 @@ void run_replace_process(const std::string& command) {
     execl("/bin/bash", "bash", "-c", command.c_str(), nullptr);
     std::cerr << "Failed to execute: " << command << std::endl;
     _exit(1);
+}
+
+int run_command_interactive(const std::string& command) {
+    pid_t pid = fork();
+    if (pid == 0) {
+        execl("/bin/bash", "bash", "-c", command.c_str(), nullptr);
+        _exit(127);
+    } else if (pid > 0) {
+        int status = 0;
+        waitpid(pid, &status, 0);
+        if (WIFEXITED(status)) {
+            return WEXITSTATUS(status);
+        }
+        if (WIFSIGNALED(status)) {
+            return 128 + WTERMSIG(status);
+        }
+        return -1;
+    }
+    return -1;
 }
 
 #else
@@ -145,6 +170,25 @@ void run_replace_process(const std::string& command) {
     execl("/bin/bash", "bash", "-c", command.c_str(), nullptr);
     std::cerr << "Failed to execute: " << command << std::endl;
     _exit(1);
+}
+
+int run_command_interactive(const std::string& command) {
+    pid_t pid = fork();
+    if (pid == 0) {
+        execl("/bin/bash", "bash", "-c", command.c_str(), nullptr);
+        _exit(127);
+    } else if (pid > 0) {
+        int status = 0;
+        waitpid(pid, &status, 0);
+        if (WIFEXITED(status)) {
+            return WEXITSTATUS(status);
+        }
+        if (WIFSIGNALED(status)) {
+            return 128 + WTERMSIG(status);
+        }
+        return -1;
+    }
+    return -1;
 }
 
 #endif

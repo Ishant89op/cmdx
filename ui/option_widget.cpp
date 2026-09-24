@@ -205,6 +205,57 @@ std::string OptionWidget::get_value() const {
     return "";
 }
 
+void OptionWidget::set_value(const std::string& value) {
+    if (checkbox_) {
+        checkbox_->setChecked(value == "true" || value == "1");
+    } else if (line_edit_) {
+        line_edit_->setText(QString::fromStdString(value));
+    } else if (spin_box_) {
+        try {
+            if (!value.empty()) {
+                spin_box_->setValue(std::stoi(value));
+            }
+        } catch (...) {}
+    } else if (double_spin_box_) {
+        try {
+            if (!value.empty()) {
+                double_spin_box_->setValue(std::stod(value));
+            }
+        } catch (...) {}
+    } else if (combo_box_) {
+        int idx = combo_box_->findText(QString::fromStdString(value));
+        if (idx >= 0) {
+            combo_box_->setCurrentIndex(idx);
+        }
+    }
+}
+
+void OptionWidget::reset_to_default() {
+    if (opt_.default_value.has_value()) {
+        set_value(opt_.default_value.value());
+    } else {
+        if (checkbox_) {
+            checkbox_->setChecked(false);
+        } else if (line_edit_) {
+            line_edit_->clear();
+        } else if (spin_box_) {
+            if (opt_.min.has_value()) {
+                spin_box_->setValue(static_cast<int>(opt_.min.value()));
+            } else {
+                spin_box_->setValue(0);
+            }
+        } else if (double_spin_box_) {
+            if (opt_.min.has_value()) {
+                double_spin_box_->setValue(opt_.min.value());
+            } else {
+                double_spin_box_->setValue(0.0);
+            }
+        } else if (combo_box_) {
+            combo_box_->setCurrentIndex(0);
+        }
+    }
+}
+
 void OptionWidget::set_enabled(bool enabled) {
     setEnabled(enabled);
 }

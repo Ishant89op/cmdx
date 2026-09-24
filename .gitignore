@@ -64,3 +64,4 @@ moc_*.cpp
 # Project specific
 cmdx
 PROJECT_REPORT.md
+commands/COMMANDS_CHECKLIST.md

@@ -387,3 +387,84 @@ void OptionsForm::on_run_clicked() {
     }
     emit run_requested(QString::fromStdString(cmd));
 }
+
+core::cached_command_config OptionsForm::get_current_config() const {
+    core::cached_command_config config;
+    config.tool = tool_.meta.cmd;
+    if (subcommand_combo_) {
+        config.subcommand = subcommand_combo_->currentText().toStdString();
+    }
+    config.sudo = sudo_checkbox_ && sudo_checkbox_->isChecked();
+    for (const auto& [id, widget] : widgets_) {
+        config.options[id] = widget->get_value();
+    }
+    for (const auto& [id, edit] : positional_widgets_) {
+        config.positionals[id] = edit->text().toStdString();
+    }
+    config.command_string = command_preview_->text().toStdString();
+    return config;
+}
+
+void OptionsForm::apply_config(const core::cached_command_config& config) {
+    if (subcommand_combo_ && config.subcommand.has_value()) {
+        int idx = subcommand_combo_->findText(QString::fromStdString(*config.subcommand));
+        if (idx >= 0 && idx != subcommand_combo_->currentIndex()) {
+            subcommand_combo_->setCurrentIndex(idx);
+        }
+    }
+
+    if (sudo_checkbox_) {
+        sudo_checkbox_->setChecked(config.sudo);
+    }
+
+    for (const auto& [id, val] : config.options) {
+        auto it = widgets_.find(id);
+        if (it != widgets_.end()) {
+            it->second->set_value(val);
+        }
+    }
+
+    for (const auto& [id, val] : config.positionals) {
+        auto it = positional_widgets_.find(id);
+        if (it != positional_widgets_.end()) {
+            it->second->setText(QString::fromStdString(val));
+        }
+    }
+
+    update_command();
+}
+
+void OptionsForm::reset_defaults() {
+    if (subcommand_combo_) {
+        subcommand_combo_->setCurrentIndex(0);
+    }
+
+    if (sudo_checkbox_) {
+        sudo_checkbox_->setChecked(false);
+    }
+
+    for (auto& [id, widget] : widgets_) {
+        widget->reset_to_default();
+    }
+
+    const auto* positionals = &tool_.positional;
+    if (subcommand_combo_ && !tool_.subcommands.empty()) {
+        int idx = subcommand_combo_->currentIndex();
+        if (idx >= 0 && idx < static_cast<int>(tool_.subcommands.size())) {
+            positionals = &tool_.subcommands[idx].positional;
+        }
+    }
+
+    for (auto& [id, edit] : positional_widgets_) {
+        std::string def_val = "";
+        for (const auto& pos : *positionals) {
+            if (pos.id == id && pos.default_value.has_value()) {
+                def_val = pos.default_value.value();
+                break;
+            }
+        }
+        edit->setText(QString::fromStdString(def_val));
+    }
+
+    update_command();
+}
