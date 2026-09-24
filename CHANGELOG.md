@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 (2026-09-24)
+
+### Added
+- Implemented command cache feature: commands that execute successfully now save their configuration to cache, which is automatically restored on next launch.
+- Added `--clean` (`-c`) or `--no-cache` flag to start without loading cached config.
+- Added Edit menu with options to reset to defaults and clear cache in GUI mode.
+- Tracking checklist `commands/COMMANDS_CHECKLIST.md` added for AI agents.
+
+
 ## 1.0.2 (2026-09-06)
 
 ### Changed

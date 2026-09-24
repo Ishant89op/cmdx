@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(cmdx VERSION 1.0.2 LANGUAGES CXX)
+project(cmdx VERSION 1.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,6 +21,7 @@ set(CORE_SOURCES
     core/json_parser.cpp
     core/tool_registry.cpp
     core/command_builder.cpp
+    core/command_cache.cpp
 )
 
 set(CORE_HEADERS
@@ -28,6 +29,7 @@ set(CORE_HEADERS
     core/json_parser.hpp
     core/tool_registry.hpp
     core/command_builder.hpp
+    core/command_cache.hpp
 )
 
 set(PLATFORM_SOURCES

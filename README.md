@@ -2,7 +2,7 @@
 
 Cmdx is an offline, native GUI for system commands. Browse commands, configure flags visually, and execute.
 
-Current release line: `1.0.2`.
+Current release line: `1.1.0`.
 
 Uniqueness: Offline database of commands.
 
@@ -31,8 +31,8 @@ docker run --rm ghcr.io/ishant89op/cmdx --list
 
 | Platform | Install |
 |---|---|
-| Debian / Ubuntu | `sudo apt install ./cmdx_1.0.2_amd64.deb` |
-| Fedora / RHEL | `sudo dnf install ./cmdx-1.0.2.x86_64.rpm` |
+| Debian / Ubuntu | `sudo apt install ./cmdx_1.1.0_amd64.deb` |
+| Fedora / RHEL | `sudo dnf install ./cmdx-1.1.0.x86_64.rpm` |
 | Arch | `cmake -B build && cmake --build build && sudo cmake --install build` |
 | macOS | Run the `.pkg` installer from Releases |
 | Windows | Run the Windows installer `.exe` from Releases |
