@@ -340,9 +340,9 @@ static int run_gui_mode(const std::string& cmd_name, int argc, char* argv[], boo
 
 static void print_version() {
 #ifdef CMDX_VERSION
-    std::cout << CMDX_VERSION << std::endl;
+    std::cout << "v" << CMDX_VERSION << std::endl;
 #else
-    std::cout << "1.0.2" << std::endl;
+    std::cout << "v1.0.2" << std::endl;
 #endif
 }
 
