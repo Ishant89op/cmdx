@@ -1,6 +1,7 @@
 #include "../core/tool_registry.hpp"
 #include "../core/command_builder.hpp"
 #include "../core/tool_def.hpp"
+#include "../core/command_cache.hpp"
 #include "../platform/cli.hpp"
 #include "../ui/main_window.hpp"
 #include <QApplication>
@@ -136,13 +137,13 @@ static std::string prompt_option_value(const core::option_def& opt) {
     return "";
 }
 
-static void run_terminal_mode(const std::string& cmd_name) {
+static int run_terminal_mode(const std::string& cmd_name) {
     core::tool_registry registry;
     auto tool_opt = registry.load_tool(cmd_name);
     if (!tool_opt.has_value()) {
         std::cerr << "Unknown command: " << cmd_name << std::endl;
         std::cerr << "Run 'cmdx --list' to see available commands." << std::endl;
-        return;
+        return 1;
     }
 
     auto& tool = tool_opt.value();
@@ -164,7 +165,7 @@ static void run_terminal_mode(const std::string& cmd_name) {
         int idx = std::stoi(pick) - 1;
         if (idx < 0 || idx >= static_cast<int>(tool.subcommands.size())) {
             std::cerr << "Invalid selection." << std::endl;
-            return;
+            return 1;
         }
         const auto& sc = tool.subcommands[idx];
         subcommand_name = sc.name;
@@ -286,17 +287,28 @@ static void run_terminal_mode(const std::string& cmd_name) {
 
     std::string confirm = prompt("\n  Run? [Y/n]: ");
     if (confirm.empty() || confirm[0] == 'Y' || confirm[0] == 'y') {
-        platform::run_replace_process(command);
+        int rc = platform::run_command_interactive(command);
+        if (rc == 0) {
+            core::cached_command_config config;
+            config.tool = tool.meta.cmd;
+            config.subcommand = subcommand_name;
+            config.options = values;
+            config.positionals = positional_values;
+            config.command_string = command;
+            core::command_cache::save(config);
+        }
+        return rc;
     }
+    return 0;
 }
 
-static void run_gui_mode(const std::string& cmd_name, int argc, char* argv[]) {
+static int run_gui_mode(const std::string& cmd_name, int argc, char* argv[], bool use_cache = true) {
     core::tool_registry registry;
     auto tool_opt = registry.load_tool(cmd_name);
     if (!tool_opt.has_value()) {
         std::cerr << "Unknown command: " << cmd_name << std::endl;
         std::cerr << "Run 'cmdx --list' to see available commands." << std::endl;
-        return;
+        return 1;
     }
 
     QApplication app(argc, argv);
@@ -307,17 +319,23 @@ static void run_gui_mode(const std::string& cmd_name, int argc, char* argv[]) {
     app.setApplicationVersion("1.0.2");
 #endif
 
-    MainWindow window(tool_opt.value());
+    MainWindow window(tool_opt.value(), use_cache);
     window.show();
     app.exec();
 
     if (window.was_run_requested()) {
         std::string cmd = window.get_command();
+        auto config = window.get_current_config();
         if (!cmd.empty()) {
             std::cout << "\n" << cmd << "\n" << std::endl;
-            platform::run_replace_process(cmd);
+            int exit_code = platform::run_command_interactive(cmd);
+            if (exit_code == 0) {
+                core::command_cache::save(config);
+            }
+            return exit_code;
         }
     }
+    return 0;
 }
 
 static void print_version() {
@@ -338,25 +356,9 @@ static void print_about() {
 }
 
 static void print_help() {
-    std::cout << "Cmdx - Visual command builder and runner\n" << std::endl;
-    std::cout << "Usage:" << std::endl;
-    std::cout << "  cmdx <command>                Open GUI builder (default)" << std::endl;
-    std::cout << "  cmdx --gui <command>          Open GUI builder (explicit)" << std::endl;
-    std::cout << "  cmdx --terminal <command>     Interactive terminal mode" << std::endl;
-    std::cout << "  cmdx --list                   List all available commands" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Options:" << std::endl;
-    std::cout << "  -g, --gui          Launch the GUI command builder" << std::endl;
-    std::cout << "  -t, --terminal     Launch the interactive terminal builder" << std::endl;
-    std::cout << "  -l, --list         List all available commands" << std::endl;
-    std::cout << "  -h, --help         Show this help message" << std::endl;
-    std::cout << "  -v, --version      Show version" << std::endl;
-    std::cout << std::endl;
-    std::cout << "Examples:" << std::endl;
-    std::cout << "  cmdx nmap              Build an nmap command in the GUI" << std::endl;
-    std::cout << "  cmdx -t docker         Build a docker command in the terminal" << std::endl;
-    std::cout << "  cmdx --gui git         Build a git command in the GUI" << std::endl;
-    std::cout << "  cmdx --list            Show all available commands" << std::endl;
+    std::cout << "cmdx - Visual command builder\n";
+    print_version();
+    std::cout << "\nRun 'cmdx --help' to get started.\n";
 }
 
 static void list_commands() {
@@ -381,79 +383,60 @@ int main(int argc, char* argv[]) {
     // Detect how we were invoked (symlink aliases)
     std::string invoked_as = std::filesystem::path(argv[0]).filename().string();
 
-    // ── Symlink alias mode ─────────────────────────────────────────────────
-    // When invoked as optionsgui / optgui / cmdxgui, go straight to GUI
-    if (invoked_as == "optionsgui" || invoked_as == "optgui" || invoked_as == "cmdxgui") {
-        if (argc < 2) {
-            std::cerr << "Usage: " << invoked_as << " <command>" << std::endl;
-            std::cerr << "       " << invoked_as << " --list" << std::endl;
-            return 1;
-        }
-        std::string arg = argv[1];
-        if (arg == "--list" || arg == "-l") {
-            list_commands();
+    bool use_cache = true;
+    bool terminal_mode = false;
+    bool gui_mode = false;
+    std::string command_name;
+
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg == "--help" || arg == "-h") {
+            print_help();
             return 0;
         }
         if (arg == "--version" || arg == "-v") {
             print_version();
             return 0;
         }
-        run_gui_mode(arg, argc, argv);
-        return 0;
+        if (arg == "--list" || arg == "-l") {
+            list_commands();
+            return 0;
+        }
+        if (arg == "--clean" || arg == "-c" || arg == "--no-cache") {
+            use_cache = false;
+        } else if (arg == "--terminal" || arg == "-t") {
+            terminal_mode = true;
+        } else if (arg == "--gui" || arg == "-g") {
+            gui_mode = true;
+        } else if (!arg.empty() && arg[0] == '-') {
+            std::cerr << "Unknown option: " << arg << std::endl;
+            std::cerr << "Run 'cmdx --help' for usage." << std::endl;
+            return 1;
+        } else {
+            command_name = arg;
+        }
+    }
+
+    // ── Symlink alias mode ─────────────────────────────────────────────────
+    // When invoked as optionsgui / optgui / cmdxgui, go straight to GUI
+    if (invoked_as == "optionsgui" || invoked_as == "optgui" || invoked_as == "cmdxgui") {
+        if (command_name.empty()) {
+            std::cerr << "Usage: " << invoked_as << " <command>" << std::endl;
+            std::cerr << "       " << invoked_as << " --list" << std::endl;
+            return 1;
+        }
+        return run_gui_mode(command_name, argc, argv, use_cache);
     }
 
     // ── No arguments: show about ───────────────────────────────────────────
-    if (argc < 2) {
+    if (command_name.empty()) {
         print_about();
         return 0;
     }
 
-    std::string arg1 = argv[1];
-
-    // ── Flags ──────────────────────────────────────────────────────────────
-    if (arg1 == "--version" || arg1 == "-v") {
-        print_version();
-        return 0;
+    if (terminal_mode) {
+        return run_terminal_mode(command_name);
     }
 
-    if (arg1 == "--help" || arg1 == "-h") {
-        print_help();
-        return 0;
-    }
-
-    if (arg1 == "--list" || arg1 == "-l") {
-        list_commands();
-        return 0;
-    }
-
-    // ── Terminal mode: cmdx --terminal <command> / cmdx -t <command> ──────
-    if (arg1 == "--terminal" || arg1 == "-t") {
-        if (argc < 3) {
-            std::cerr << "Usage: cmdx --terminal <command>" << std::endl;
-            return 1;
-        }
-        run_terminal_mode(argv[2]);
-        return 0;
-    }
-
-    // ── GUI mode (explicit): cmdx --gui <command> / cmdx -g <command> ────
-    if (arg1 == "--gui" || arg1 == "-g") {
-        if (argc < 3) {
-            std::cerr << "Usage: cmdx --gui <command>" << std::endl;
-            return 1;
-        }
-        run_gui_mode(argv[2], argc, argv);
-        return 0;
-    }
-
-    // ── Default: cmdx <command> → GUI mode ───────────────────────────────
-    // Anything that doesn't start with '-' is treated as a command name
-    if (arg1[0] == '-') {
-        std::cerr << "Unknown option: " << arg1 << std::endl;
-        std::cerr << "Run 'cmdx --help' for usage." << std::endl;
-        return 1;
-    }
-
-    run_gui_mode(arg1, argc, argv);
-    return 0;
+    return run_gui_mode(command_name, argc, argv, use_cache);
 }
