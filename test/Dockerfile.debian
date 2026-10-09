@@ -13,7 +13,7 @@ RUN cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
     && cmake --build build -j$(nproc) \
     && cd build && cpack -G DEB
 
-RUN dpkg -i build/cmdx_*.deb \
+RUN dpkg -i build/cmdx*.deb \
     && cmdx --version \
     && cmdx list | head -5 \
     && echo "✓ Debian 12 — PASS"

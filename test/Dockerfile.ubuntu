@@ -14,7 +14,7 @@ RUN cmake -B build -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
     && cd build && cpack -G DEB
 
 # Verify install
-RUN dpkg -i build/cmdx_*.deb \
+RUN dpkg -i build/cmdx*.deb \
     && cmdx --version \
     && cmdx list | head -5 \
     && echo "✓ Ubuntu 24.04 — PASS"

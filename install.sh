@@ -67,7 +67,7 @@ install_rpm() {
 }
 
 install_macos() {
-    local pkg="cmdx-${VERSION}-macos-universal.pkg"
+    local pkg="cmdx-${VERSION}-macos.pkg"
     echo "  Downloading $pkg..."
     curl -fsSL -o "/tmp/$pkg" "$BASE_URL/$pkg"
     echo "  Installing package..."
