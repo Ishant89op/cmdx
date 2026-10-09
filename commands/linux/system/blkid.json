@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "cmd": "blkid",
+    "binary": "blkid",
+    "description": "Locate or print block device attributes",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "device",
+      "label": "Device",
+      "description": "Block device or devices to probe; all devices are used if omitted",
+      "placeholder": "/dev/sda1",
+      "type": "FILE_PATH",
+      "required": false,
+      "default": null,
+      "repeatable": true
+    }
+  ],
+  "groups": [
+    { "id": "lookup", "label": "Lookup", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": false },
+    { "id": "cache", "label": "Cache", "collapsible": true, "collapsed_by_default": true },
+    { "id": "probe", "label": "Low-Level Probe", "collapsible": true, "collapsed_by_default": true },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "lookup_mode", "label": "Lookup mode", "description": "Label and UUID conversion modes are mutually exclusive", "required": false },
+    { "id": "probe_mode", "label": "Probe mode", "description": "Choose regular, low-level probe, or I/O limits mode", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_label", "flag": "-L", "label": "Label lookup", "description": "Convert a filesystem label to a device name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "lookup_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "ROOT", "group": "lookup" },
+    { "id": "opt_uuid", "flag": "-U", "label": "UUID lookup", "description": "Convert a filesystem UUID to a device name", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "lookup_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", "group": "lookup" },
+    { "id": "opt_match_token", "flag": "-t", "label": "Match token", "description": "Find devices with a specific NAME=value token such as LABEL=ROOT or TYPE=ext4", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "TYPE=ext4", "group": "lookup" },
+    { "id": "opt_list_one", "flag": "-l", "label": "List one", "description": "Return only the first matching device for a match token", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_match_token", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "lookup" },
+    { "id": "opt_match_tag", "flag": "-s", "label": "Match tag", "description": "Show only specified tags; may be specified multiple times", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "UUID", "group": "lookup" },
+    { "id": "opt_output", "flag": "-o", "label": "Output format", "description": "Choose the output format", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["full", "value", "list", "device", "udev", "export", "json"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_no_encoding", "flag": "-d", "label": "No encoding", "description": "Do not encode non-printing characters", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_list_filesystems", "flag": "-k", "label": "List filesystems", "description": "List all known filesystems and RAIDs, then exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_cache_file", "flag": "-c", "label": "Cache file", "description": "Read from this cache file instead of the default; /dev/null disables cache", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/dev/null", "group": "cache" },
+    { "id": "opt_garbage_collect", "flag": "-g", "label": "Garbage collect cache", "description": "Garbage collect the blkid cache", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "cache" },
+    { "id": "opt_probe", "flag": "-p", "label": "Low-level probe", "description": "Use low-level superblock probing and bypass the cache", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "probe_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "probe" },
+    { "id": "opt_info", "flag": "-i", "label": "I/O limits", "description": "Gather information about I/O limits and topology", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "probe_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "probe" },
+    { "id": "opt_hint", "flag": "-H", "label": "Probe hint", "description": "Set a probing hint such as session_offset=number", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": "opt_probe", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "session_offset=0", "group": "probe" },
+    { "id": "opt_size", "flag": "-S", "label": "Size", "description": "Override device or file size for low-level probing", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": "opt_probe", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1GiB", "group": "probe" },
+    { "id": "opt_offset", "flag": "-O", "label": "Offset", "description": "Probe at the given offset", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": "opt_probe", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1MiB", "group": "probe" },
+    { "id": "opt_usages", "flag": "-u", "label": "Usages", "description": "Filter low-level probing by usage type; comma-separated", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": "opt_probe", "mutex_group": null, "choices": ["filesystem", "raid", "crypto", "other"], "min": null, "max": null, "repeatable": false, "placeholder": "filesystem,raid", "group": "probe" },
+    { "id": "opt_match_types", "flag": "-n", "label": "Filesystem types", "description": "Filter low-level probing by filesystem or superblock types; comma-separated", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": "opt_probe", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "vfat,ext4", "group": "probe" },
+    { "id": "opt_no_part_details", "flag": "-D", "label": "No partition details", "description": "Do not print PART_ENTRY tags from the partition table in low-level probing mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_probe", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "probe" },
+    { "id": "opt_help", "flag": "-h", "label": "Help", "description": "Display help and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_version", "flag": "-V", "label": "Version", "description": "Display version information and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

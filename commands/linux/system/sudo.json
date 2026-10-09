@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "cmd": "sudo",
+    "binary": "sudo",
+    "description": "Execute a command as another user",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "environment",
+      "label": "Environment assignments",
+      "description": "Environment variables to set for the command, written as VAR=value",
+      "placeholder": "EDITOR=vim,LANG=C",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": true
+    },
+    {
+      "id": "command",
+      "label": "Command or file",
+      "description": "Command and arguments to run, or file paths when edit mode is enabled",
+      "placeholder": "apt update  or  /etc/hosts",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    { "id": "mode", "label": "Mode", "collapsible": true, "collapsed_by_default": false },
+    { "id": "identity", "label": "User and Group", "collapsible": true, "collapsed_by_default": false },
+    { "id": "auth", "label": "Authentication", "collapsible": true, "collapsed_by_default": true },
+    { "id": "environment", "label": "Environment", "collapsible": true, "collapsed_by_default": true },
+    { "id": "execution", "label": "Execution", "collapsible": true, "collapsed_by_default": true },
+    { "id": "selinux", "label": "SELinux", "collapsible": true, "collapsed_by_default": true },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "operation_mode", "label": "Operation mode", "description": "Primary sudo mode options that should not be combined", "required": false },
+    { "id": "shell_mode", "label": "Shell mode", "description": "Login shell and shell mode are mutually exclusive", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_edit", "flag": "-e", "label": "Edit files", "description": "Edit files instead of running a command", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "operation_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_list", "flag": "-l", "label": "List privileges", "description": "List the invoking user's privileges or check a command", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "operation_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_list_verbose", "flag": "-ll", "label": "List privileges verbosely", "description": "List privileges in the longer format, equivalent to specifying -l twice", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "operation_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_validate", "flag": "-v", "label": "Validate", "description": "Update the user's cached credentials without running a command", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "operation_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_login", "flag": "-i", "label": "Login shell", "description": "Run the target user's shell as a login shell; a command may also be specified", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "shell_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_shell", "flag": "-s", "label": "Shell", "description": "Run the shell from SHELL or the invoking user's password database entry", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "shell_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_user", "flag": "-u", "label": "User", "description": "Run the command or edit files as the specified user name or UID", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "root", "group": "identity" },
+    { "id": "opt_group", "flag": "-g", "label": "Group", "description": "Run the command with the specified primary group name or GID", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "adm", "group": "identity" },
+    { "id": "opt_other_user", "flag": "-U", "label": "Other user for list", "description": "In list mode, display privileges for this user instead of the invoking user", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "alice", "group": "identity" },
+    { "id": "opt_preserve_groups", "flag": "-P", "label": "Preserve groups", "description": "Preserve the invoking user's group vector instead of setting it to the target user's groups", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "identity" },
+    { "id": "opt_askpass", "flag": "-A", "label": "Askpass", "description": "Use an askpass helper program for password prompting", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "auth" },
+    { "id": "opt_bell", "flag": "-B", "label": "Bell", "description": "Ring the bell as part of the password prompt when a terminal is present", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "auth" },
+    { "id": "opt_reset_timestamp", "flag": "-k", "label": "Reset timestamp", "description": "Invalidate cached credentials, or ignore them for this command", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "auth" },
+    { "id": "opt_remove_timestamp", "flag": "-K", "label": "Remove timestamp", "description": "Remove the user's cached credentials completely", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "operation_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "auth" },
+    { "id": "opt_no_update", "flag": "-N", "label": "No timestamp update", "description": "Do not update cached credentials even after successful authentication", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "auth" },
+    { "id": "opt_non_interactive", "flag": "-n", "label": "Non-interactive", "description": "Do not prompt for input; fail if authentication is required", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "auth" },
+    { "id": "opt_prompt", "flag": "-p", "label": "Prompt", "description": "Use a custom password prompt", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "[sudo] password for %p: ", "group": "auth" },
+    { "id": "opt_stdin", "flag": "-S", "label": "Read password from stdin", "description": "Read the password from standard input and write the prompt to standard error", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "auth" },
+    { "id": "opt_preserve_env", "flag": "-E", "label": "Preserve environment", "description": "Preserve the invoking user's existing environment variables when permitted", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "environment" },
+    { "id": "opt_preserve_env_list", "flag": "--preserve-env", "label": "Preserve variables", "description": "Preserve a comma-separated list of environment variables; may be specified multiple times", "type": "STRING_LIST", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "PATH,HOME", "group": "environment" },
+    { "id": "opt_set_home", "flag": "-H", "label": "Set HOME", "description": "Set HOME to the target user's home directory when permitted", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "environment" },
+    { "id": "opt_background", "flag": "-b", "label": "Background", "description": "Run the command in the background", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "execution" },
+    { "id": "opt_close_from", "flag": "-C", "label": "Close from descriptor", "description": "Close all file descriptors greater than or equal to this number before executing the command", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 3, "max": null, "repeatable": false, "placeholder": null, "group": "execution" },
+    { "id": "opt_chdir", "flag": "-D", "label": "Working directory", "description": "Change to this directory before running the command", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/srv/app", "group": "execution" },
+    { "id": "opt_chroot", "flag": "-R", "label": "Root directory", "description": "Change to this root directory before running the command; deprecated by sudo", "type": "DIR_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/mnt/rescue", "group": "execution" },
+    { "id": "opt_host", "flag": "--host", "label": "Host", "description": "Run or list privileges for the specified host if the policy plugin supports it", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "server01", "group": "execution" },
+    { "id": "opt_timeout", "flag": "-T", "label": "Command timeout", "description": "Terminate the command after the specified time limit when permitted", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "30", "group": "execution" },
+    { "id": "opt_delimiter", "flag": "--", "label": "End sudo options", "description": "Stop processing sudo options; subsequent text is treated as command input", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "execution" },
+    { "id": "opt_role", "flag": "-r", "label": "SELinux role", "description": "Run with an SELinux security context containing this role", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "sysadm_r", "group": "selinux" },
+    { "id": "opt_type", "flag": "-t", "label": "SELinux type", "description": "Run with an SELinux security context containing this type", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "sysadm_t", "group": "selinux" },
+    { "id": "opt_help", "flag": "--help", "label": "Help", "description": "Display a short help message and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "operation_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_version", "flag": "-V", "label": "Version", "description": "Display sudo and plugin version information and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "operation_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

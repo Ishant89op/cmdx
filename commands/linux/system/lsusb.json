@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "cmd": "lsusb",
+    "binary": "lsusb",
+    "description": "List USB devices",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "filter", "label": "Filter", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": false },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Increase verbosity and show USB descriptors", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_bus_device", "flag": "-s", "label": "Bus/device", "description": "Show only devices with the specified bus and/or device number", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "001:002", "group": "filter" },
+    { "id": "opt_vendor_product", "flag": "-d", "label": "Vendor/product", "description": "Show only devices with the specified hexadecimal vendor and product IDs", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "046d:c534", "group": "filter" },
+    { "id": "opt_device", "flag": "-D", "label": "Device file", "description": "Display information for a specific USB device file instead of scanning all USB devices", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/dev/bus/usb/001/001", "group": "filter" },
+    { "id": "opt_tree", "flag": "-t", "label": "Tree", "description": "Dump the physical USB device hierarchy as a tree", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_version", "flag": "-V", "label": "Version", "description": "Show version information and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_help", "flag": "-h", "label": "Help", "description": "Show usage and help", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "cmd": "reboot",
+    "binary": "reboot",
+    "description": "Reboot, halt, or power off the machine",
+    "version_flag": null,
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "argument",
+      "label": "Argument",
+      "description": "Optional compatibility argument passed to reboot",
+      "placeholder": "now",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    { "id": "action", "label": "Action", "collapsible": true, "collapsed_by_default": false },
+    { "id": "behavior", "label": "Behavior", "collapsible": true, "collapsed_by_default": false },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "machine_action", "label": "Machine action", "description": "Choose one final machine action", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_halt", "flag": "--halt", "label": "Halt", "description": "Halt the machine regardless of the invoked command name", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "machine_action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_poweroff", "flag": "-p", "label": "Power off", "description": "Power off the machine when applicable", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "machine_action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_reboot", "flag": "--reboot", "label": "Reboot", "description": "Reboot the machine regardless of the invoked command name", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "machine_action", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_force", "flag": "-f", "label": "Force", "description": "Force immediate reboot without contacting the init system", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "behavior" },
+    { "id": "opt_wtmp_only", "flag": "-w", "label": "Write wtmp only", "description": "Only write the wtmp shutdown record; do not reboot", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "behavior" },
+    { "id": "opt_no_wtmp", "flag": "-d", "label": "No wtmp", "description": "Do not write the wtmp shutdown record", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "behavior" },
+    { "id": "opt_no_sync", "flag": "-n", "label": "No sync", "description": "Do not sync disks or storage media before rebooting", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "behavior" },
+    { "id": "opt_no_wall", "flag": "--no-wall", "label": "No wall message", "description": "Do not send a wall message before rebooting", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "behavior" },
+    { "id": "opt_help", "flag": "--help", "label": "Help", "description": "Display help text and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

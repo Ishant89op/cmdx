@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "cmd": "nslookup",
+    "binary": "nslookup",
+    "description": "Query Internet name servers interactively or non-interactively",
+    "version_flag": "-version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "name",
+      "label": "Name",
+      "description": "Host or domain to look up, or - to enter interactive mode with an explicit server",
+      "placeholder": "example.com",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    },
+    {
+      "id": "server",
+      "label": "Server",
+      "description": "Optional name server host or address",
+      "placeholder": "1.1.1.1",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    { "id": "query", "label": "Query", "collapsible": true, "collapsed_by_default": false },
+    { "id": "resolver", "label": "Resolver", "collapsible": true, "collapsed_by_default": false },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "query_type", "label": "Query type spelling", "description": "Choose one spelling for setting query type", "required": false },
+    { "id": "debug_mode", "label": "Debug mode", "description": "Choose one debug packet display mode", "required": false },
+    { "id": "d2_mode", "label": "Deep debug mode", "description": "Choose whether deep debugging is enabled", "required": false },
+    { "id": "search_mode", "label": "Search mode", "description": "Choose whether search list lookup is enabled", "required": false },
+    { "id": "recursion_mode", "label": "Recursion mode", "description": "Choose whether recursion is requested", "required": false },
+    { "id": "vc_mode", "label": "Virtual circuit mode", "description": "Choose whether TCP virtual circuit mode is used", "required": false },
+    { "id": "fail_mode", "label": "SERVFAIL behavior", "description": "Choose whether SERVFAIL stops lookup or tries the next server", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_class", "flag": "-class", "label": "Query class", "description": "Set query class", "type": "ENUM", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": ["IN", "CH", "HS", "ANY"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_query", "flag": "-query", "label": "Query type", "description": "Set the query type using the query keyword", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": "query_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "MX", "group": "query" },
+    { "id": "opt_querytype", "flag": "-querytype", "label": "Query type long", "description": "Set the query type using the querytype keyword", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": "query_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "AAAA", "group": "query" },
+    { "id": "opt_type", "flag": "-type", "label": "Type", "description": "Set the query type using the type keyword", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": "query_type", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "TXT", "group": "query" },
+    { "id": "opt_domain", "flag": "-domain", "label": "Search domain", "description": "Set the resolver search list domain", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "example.com", "group": "resolver" },
+    { "id": "opt_port", "flag": "-port", "label": "Port", "description": "Set the default TCP/UDP name server port", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 65535, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_ndots", "flag": "-ndots", "label": "ndots", "description": "Set the number of dots that disables searching", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_retry", "flag": "-retry", "label": "Retries", "description": "Set the number of retries", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_timeout", "flag": "-timeout", "label": "Timeout", "description": "Set the initial timeout interval in seconds", "type": "INT", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_search", "flag": "-search", "label": "Use search list", "description": "Append search-list domains for names with dots when appropriate", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "search_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_no_search", "flag": "-nosearch", "label": "No search list", "description": "Do not append search-list domains", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "search_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_recurse", "flag": "-recurse", "label": "Recurse", "description": "Ask the name server to perform recursion", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "recursion_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_no_recurse", "flag": "-norecurse", "label": "No recurse", "description": "Do not ask the name server to perform recursion", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "recursion_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_vc", "flag": "-vc", "label": "Virtual circuit", "description": "Always use a TCP virtual circuit for requests", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "vc_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_no_vc", "flag": "-novc", "label": "No virtual circuit", "description": "Do not force virtual circuit mode", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "vc_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_fail", "flag": "-fail", "label": "Stop on failure", "description": "Terminate on SERVFAIL or referral response", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "fail_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_no_fail", "flag": "-nofail", "label": "Try next server", "description": "Try the next name server after SERVFAIL or referral", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "fail_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_all", "flag": "-all", "label": "Print settings", "description": "Print current values of common resolver settings", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_debug", "flag": "-debug", "label": "Debug packets", "description": "Display full response packets and intermediate responses", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "debug_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_no_debug", "flag": "-nodebug", "label": "No debug packets", "description": "Turn off packet debug display", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "debug_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_d2", "flag": "-d2", "label": "Deep debug", "description": "Display additional information about what nslookup is doing", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "d2_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_no_d2", "flag": "-nod2", "label": "No deep debug", "description": "Turn off deep debug output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "d2_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_version", "flag": "-version", "label": "Version", "description": "Print version number and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

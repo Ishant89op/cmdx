@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "cmd": "host",
+    "binary": "host",
+    "description": "DNS lookup utility",
+    "version_flag": "-V",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "name",
+      "label": "Name",
+      "description": "Domain name or IP address to look up",
+      "placeholder": "example.com",
+      "type": "STRING",
+      "required": true,
+      "default": null,
+      "repeatable": false
+    },
+    {
+      "id": "server",
+      "label": "Server",
+      "description": "Optional DNS server to query instead of resolv.conf",
+      "placeholder": "1.1.1.1",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    { "id": "query", "label": "Query", "collapsible": true, "collapsed_by_default": false },
+    { "id": "transport", "label": "Transport", "collapsible": true, "collapsed_by_default": false },
+    { "id": "resolver", "label": "Resolver", "collapsible": true, "collapsed_by_default": true },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "ip_family", "label": "IP family", "description": "Choose IPv4-only or IPv6-only transport", "required": false },
+    { "id": "record_scope", "label": "Record scope", "description": "Choose all or almost-all records", "required": false },
+    { "id": "transport_proto", "label": "Transport protocol", "description": "Choose TCP or UDP query transport", "required": false },
+    { "id": "verbosity", "label": "Verbosity", "description": "Choose debug or verbose output spelling", "required": false },
+    { "id": "wait_mode", "label": "Wait mode", "description": "Choose forever wait or an explicit timeout", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_all", "flag": "-a", "label": "All records", "description": "Equivalent to verbose ANY lookup and affects zone listing behavior", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "record_scope", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_almost_all", "flag": "-A", "label": "Almost all records", "description": "Like -a, but omit RRSIG, NSEC, and NSEC3 records", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "record_scope", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_class", "flag": "-c", "label": "Query class", "description": "DNS query class; default is IN", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["IN", "CH", "HS", "ANY"], "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_check_soa", "flag": "-C", "label": "Check SOA consistency", "description": "Query SOA records from authoritative name servers for the zone", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_list_zone", "flag": "-l", "label": "List zone", "description": "Perform a zone transfer and print zone records", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "query" },
+    { "id": "opt_type", "flag": "-t", "label": "Query type", "description": "DNS query type such as A, AAAA, MX, TXT, SOA, PTR, AXFR, or IXFR=serial", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "MX", "group": "query" },
+    { "id": "opt_ipv4", "flag": "-4", "label": "IPv4 only", "description": "Use only IPv4 for query transport", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "ip_family", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "transport" },
+    { "id": "opt_ipv6", "flag": "-6", "label": "IPv6 only", "description": "Use only IPv6 for query transport", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "ip_family", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "transport" },
+    { "id": "opt_tcp", "flag": "-T", "label": "TCP", "description": "Use TCP for queries", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "transport_proto", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "transport" },
+    { "id": "opt_udp", "flag": "-U", "label": "UDP", "description": "Use UDP initially for queries", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "transport_proto", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "transport" },
+    { "id": "opt_port", "flag": "-p", "label": "Port", "description": "DNS server port to query; default is 53", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": 65535, "repeatable": false, "placeholder": null, "group": "transport" },
+    { "id": "opt_ndots", "flag": "-N", "label": "ndots", "description": "Dots required before treating the name as absolute", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_non_recursive", "flag": "-r", "label": "Non-recursive", "description": "Clear recursion desired and make a non-recursive query", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_retries", "flag": "-R", "label": "UDP retries", "description": "Number of retries for UDP queries", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_stop_servfail", "flag": "-s", "label": "Stop on SERVFAIL", "description": "Do not try the next server after a SERVFAIL response", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_memory_debug", "flag": "-m", "label": "Memory debug", "description": "Set memory debugging flag; may be repeated", "type": "ENUM", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": ["record", "usage", "trace"], "min": null, "max": null, "repeatable": true, "placeholder": null, "group": "resolver" },
+    { "id": "opt_wait_forever", "flag": "-w", "label": "Wait forever", "description": "Set query timeout to the maximum possible value", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "wait_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_wait", "flag": "-W", "label": "Wait seconds", "description": "Wait up to this many seconds for a reply", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "wait_mode", "choices": null, "min": 1, "max": null, "repeatable": false, "placeholder": null, "group": "resolver" },
+    { "id": "opt_debug", "flag": "-d", "label": "Debug", "description": "Print debugging traces; equivalent to verbose", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "verbosity", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_verbose", "flag": "-v", "label": "Verbose", "description": "Use verbose output; equivalent to debug", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "verbosity", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_version", "flag": "-V", "label": "Version", "description": "Print version number and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

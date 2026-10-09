@@ -13,6 +13,7 @@ awk
 base64
 basename
 bash
+blkid
 brew
 cargo
 cat
@@ -38,6 +39,7 @@ dmesg
 dnf
 docker
 du
+echo
 env
 fdisk
 ffuf
@@ -54,6 +56,7 @@ grep
 gzip
 hashcat
 head
+host
 hostname
 htop
 hydra
@@ -72,7 +75,10 @@ ldd
 ln
 ls
 lsblk
+lscpu
 lsof
+lspci
+lsusb
 make
 mkdir
 mktemp
@@ -86,6 +92,7 @@ networksetup
 nikto
 nmap
 npm
+nslookup
 open
 openssl
 pacman
@@ -93,11 +100,14 @@ passwd
 pgrep
 ping
 pip
+pkill
 pmset
 ps
+pwd
 python3
 readlink
 realpath
+reboot
 rm
 robocopy
 rsync
@@ -110,12 +120,15 @@ shutdown
 snap
 softwareupdate
 sort
+sqlite3
 sqlmap
 ss
 ssh
 ssh-keygen
 stat
 strace
+su
+sudo
 systemctl
 tail
 tar
@@ -127,6 +140,7 @@ top
 touch
 tr
 traceroute
+tree
 tshark
 ufw
 umount
@@ -139,6 +153,7 @@ valgrind
 watch
 wc
 wget
+which
 whoami
 winget
 xargs

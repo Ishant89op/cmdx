@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "cmd": "pkill",
+    "binary": "pkill",
+    "description": "Signal processes by name and other attributes",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "pattern",
+      "label": "Pattern",
+      "description": "Extended regular expression matched against process names or full command lines",
+      "placeholder": "nginx",
+      "type": "STRING",
+      "required": true,
+      "default": null,
+      "repeatable": false
+    }
+  ],
+  "groups": [
+    { "id": "action", "label": "Signal", "collapsible": true, "collapsed_by_default": false },
+    { "id": "match", "label": "Match Criteria", "collapsible": true, "collapsed_by_default": false },
+    { "id": "filter", "label": "Filters", "collapsible": true, "collapsed_by_default": true },
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": true },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "age_select", "label": "Age selector", "description": "Newest and oldest selection cannot be combined", "required": false },
+    { "id": "pid_source", "label": "PID source", "description": "Direct PID matching conflicts with reading PIDs from a pidfile", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_signal", "flag": "--signal", "label": "Signal", "description": "Signal to send, either by name or number; defaults to SIGTERM", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "HUP", "group": "action" },
+    { "id": "opt_require_handler", "flag": "-H", "label": "Require handler", "description": "Match only processes with a userspace handler for the signal", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_queue", "flag": "-q", "label": "Queue value", "description": "Send an integer value with the signal using pidfd_send_signal or sigqueue", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_mrelease", "flag": "-m", "label": "Release memory", "description": "Release the target process memory immediately after signalling", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "action" },
+    { "id": "opt_full", "flag": "-f", "label": "Full command line", "description": "Match against the full command line instead of only the process name", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "match" },
+    { "id": "opt_ignore_case", "flag": "-i", "label": "Ignore case", "description": "Match process names case-insensitively", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "match" },
+    { "id": "opt_exact", "flag": "-x", "label": "Exact", "description": "Match process names or full command lines exactly", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "match" },
+    { "id": "opt_newest", "flag": "-n", "label": "Newest", "description": "Select only the most recently started matching process", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "age_select", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "match" },
+    { "id": "opt_oldest", "flag": "-o", "label": "Oldest", "description": "Select only the least recently started matching process", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "age_select", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "match" },
+    { "id": "opt_older", "flag": "-O", "label": "Older than seconds", "description": "Select processes older than this many seconds", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 0, "max": null, "repeatable": false, "placeholder": null, "group": "match" },
+    { "id": "opt_pgroup", "flag": "-g", "label": "Process groups", "description": "Match listed process group IDs; comma-separated", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1234,5678", "group": "filter" },
+    { "id": "opt_group", "flag": "-G", "label": "Real groups", "description": "Match real group IDs or names; comma-separated", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "root,adm", "group": "filter" },
+    { "id": "opt_pid", "flag": "-p", "label": "PIDs", "description": "Match listed process IDs; conflicts with pidfile", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "pid_source", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1234,5678", "group": "filter" },
+    { "id": "opt_parent", "flag": "-P", "label": "Parent PIDs", "description": "Match only child processes of the listed parent process IDs", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1,1234", "group": "filter" },
+    { "id": "opt_session", "flag": "-s", "label": "Sessions", "description": "Match listed session IDs", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "1234,5678", "group": "filter" },
+    { "id": "opt_terminal", "flag": "-t", "label": "Terminals", "description": "Match controlling terminals without the /dev/ prefix", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "pts/0,tty1", "group": "filter" },
+    { "id": "opt_euid", "flag": "-u", "label": "Effective users", "description": "Match effective user IDs or names; comma-separated", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "root,www-data", "group": "filter" },
+    { "id": "opt_uid", "flag": "-U", "label": "Real users", "description": "Match real user IDs or names; comma-separated", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "root,www-data", "group": "filter" },
+    { "id": "opt_pidfile", "flag": "-F", "label": "PID file", "description": "Read process IDs from this file; use - for standard input", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "pid_source", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/run/service.pid", "group": "filter" },
+    { "id": "opt_logpidfile", "flag": "-L", "label": "Require locked pidfile", "description": "Fail if the pidfile is not locked", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": "opt_pidfile", "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_runstates", "flag": "-r", "label": "Run states", "description": "Match only processes in these states", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "D,S,Z", "group": "filter" },
+    { "id": "opt_ignore_ancestors", "flag": "-A", "label": "Ignore ancestors", "description": "Exclude ancestors of pkill from matching", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_cgroup", "flag": "--cgroup", "label": "Cgroup names", "description": "Match cgroup v2 names; comma-separated", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "user.slice", "group": "filter" },
+    { "id": "opt_namespace_pid", "flag": "--ns", "label": "Namespace PID", "description": "Match processes belonging to the same namespaces as this PID", "type": "INT", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": 1, "max": null, "repeatable": false, "placeholder": null, "group": "filter" },
+    { "id": "opt_namespace_list", "flag": "--nslist", "label": "Namespaces", "description": "Namespaces considered with --ns", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": "opt_namespace_pid", "mutex_group": null, "choices": ["ipc", "mnt", "net", "pid", "user", "uts"], "min": null, "max": null, "repeatable": false, "placeholder": "ipc,mnt,net", "group": "filter" },
+    { "id": "opt_env", "flag": "--env", "label": "Environment match", "description": "Match processes with these environment variables or name=value pairs", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "USER=root,PATH", "group": "filter" },
+    { "id": "opt_echo", "flag": "-e", "label": "Echo killed processes", "description": "Display the name and PID of each process being killed", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_count", "flag": "-c", "label": "Count", "description": "Print the count of matching processes instead of normal output", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_shell_quote", "flag": "-Q", "label": "Shell-quote output", "description": "Output the command line in shell-quoted form when supported", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_help", "flag": "-h", "label": "Help", "description": "Display help and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_version", "flag": "-V", "label": "Version", "description": "Output version information and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

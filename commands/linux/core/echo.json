@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "cmd": "echo",
+    "binary": "echo",
+    "description": "Display a line of text",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "string",
+      "label": "String",
+      "description": "Text to write to standard output",
+      "placeholder": "hello world",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": true
+    }
+  ],
+  "groups": [
+    { "id": "output", "label": "Output", "collapsible": true, "collapsed_by_default": false },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "escape_mode", "label": "Escape mode", "description": "Backslash escape interpretation can only be enabled or disabled", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_no_newline", "flag": "-n", "label": "No trailing newline", "description": "Do not output the trailing newline", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_enable_escapes", "flag": "-e", "label": "Enable escapes", "description": "Enable interpretation of backslash escape sequences", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "escape_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_disable_escapes", "flag": "-E", "label": "Disable escapes", "description": "Disable interpretation of backslash escape sequences; this is the default for GNU echo", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "escape_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "output" },
+    { "id": "opt_help", "flag": "--help", "label": "Help", "description": "Display help and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_version", "flag": "--version", "label": "Version", "description": "Output version information and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

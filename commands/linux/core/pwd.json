@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "cmd": "pwd",
+    "binary": "pwd",
+    "description": "Print the current working directory",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [],
+  "groups": [
+    { "id": "mode", "label": "Mode", "collapsible": true, "collapsed_by_default": false },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "path_mode", "label": "Path mode", "description": "Choose either logical PWD or physical symlink resolution", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_logical", "flag": "-L", "label": "Logical", "description": "Use PWD from the environment, even if it contains symlinks", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "path_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_physical", "flag": "-P", "label": "Physical", "description": "Resolve all symlinks; this is assumed when no option is specified", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "path_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "mode" },
+    { "id": "opt_help", "flag": "--help", "label": "Help", "description": "Display help and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_version", "flag": "--version", "label": "Version", "description": "Output version information and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}

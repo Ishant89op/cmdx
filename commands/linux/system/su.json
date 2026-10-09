@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "cmd": "su",
+    "binary": "su",
+    "description": "Run a command with substitute user and group ID",
+    "version_flag": "--version",
+    "has_subcommands": false,
+    "platforms": ["linux"]
+  },
+  "positional": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "Target user or UID; root is assumed if omitted",
+      "placeholder": "root",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": false
+    },
+    {
+      "id": "arguments",
+      "label": "Shell arguments",
+      "description": "Additional arguments passed to the target shell",
+      "placeholder": "arg1,arg2",
+      "type": "STRING",
+      "required": false,
+      "default": null,
+      "repeatable": true
+    }
+  ],
+  "groups": [
+    { "id": "session", "label": "Session", "collapsible": true, "collapsed_by_default": false },
+    { "id": "identity", "label": "User and Group", "collapsible": true, "collapsed_by_default": false },
+    { "id": "environment", "label": "Environment", "collapsible": true, "collapsed_by_default": true },
+    { "id": "info", "label": "Information", "collapsible": true, "collapsed_by_default": true }
+  ],
+  "mutex_groups": [
+    { "id": "login_alias", "label": "Login form", "description": "Choose one spelling for login shell mode", "required": false },
+    { "id": "command_mode", "label": "Command mode", "description": "Choose one way to pass a command to the shell", "required": false },
+    { "id": "pty_mode", "label": "PTY mode", "description": "Pseudo-terminal and no-pty modes are mutually exclusive", "required": false },
+    { "id": "preserve_env_alias", "label": "Preserve environment form", "description": "Choose one spelling for preserving the environment", "required": false }
+  ],
+  "subcommands": [],
+  "options": [
+    { "id": "opt_login_dash", "flag": "-", "label": "Login shell (-)", "description": "Start the shell as a login shell; shorthand for --login", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "login_alias", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "session" },
+    { "id": "opt_login", "flag": "-l", "label": "Login shell", "description": "Start the shell as a login shell with a login-like environment", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "login_alias", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "session" },
+    { "id": "opt_command", "flag": "-c", "label": "Command", "description": "Pass a single command to the shell with -c and create a new session", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": "command_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "id", "group": "session" },
+    { "id": "opt_session_command", "flag": "--session-command", "label": "Session command", "description": "Pass a single command to the shell with -c without creating a new session", "type": "STRING", "required": false, "default": null, "separator": "=", "depends_on": null, "mutex_group": "command_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "id", "group": "session" },
+    { "id": "opt_fast", "flag": "-f", "label": "Fast shell startup", "description": "Pass -f to the shell, useful for csh or tcsh", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "session" },
+    { "id": "opt_shell", "flag": "-s", "label": "Shell", "description": "Run the specified shell if allowed by /etc/shells", "type": "FILE_PATH", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "/bin/bash", "group": "session" },
+    { "id": "opt_pty", "flag": "-P", "label": "Pseudo-terminal", "description": "Create a new pseudo-terminal for the session", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "pty_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "session" },
+    { "id": "opt_no_pty", "flag": "-T", "label": "No pseudo-terminal", "description": "Do not create a pseudo-terminal", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "pty_mode", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "session" },
+    { "id": "opt_group", "flag": "-g", "label": "Primary group", "description": "Specify the primary group; available to root only", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "wheel", "group": "identity" },
+    { "id": "opt_supp_group", "flag": "-G", "label": "Supplementary group", "description": "Specify a supplementary group; may be supplied more than once", "type": "STRING", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": true, "placeholder": "docker", "group": "identity" },
+    { "id": "opt_preserve_env_m", "flag": "-m", "label": "Preserve environment (-m)", "description": "Do not reset HOME, SHELL, USER, or LOGNAME", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "preserve_env_alias", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "environment" },
+    { "id": "opt_preserve_env_p", "flag": "-p", "label": "Preserve environment (-p)", "description": "Alias for -m / --preserve-environment", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": "preserve_env_alias", "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "environment" },
+    { "id": "opt_whitelist_environment", "flag": "-w", "label": "Whitelist environment", "description": "Comma-separated variables not to reset when clearing the environment for login mode", "type": "STRING_LIST", "required": false, "default": null, "separator": " ", "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": "TERM,DISPLAY", "group": "environment" },
+    { "id": "opt_help", "flag": "-h", "label": "Help", "description": "Display help text and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" },
+    { "id": "opt_version", "flag": "-V", "label": "Version", "description": "Display version information and exit", "type": "BOOL", "required": false, "default": false, "separator": null, "depends_on": null, "mutex_group": null, "choices": null, "min": null, "max": null, "repeatable": false, "placeholder": null, "group": "info" }
+  ]
+}
