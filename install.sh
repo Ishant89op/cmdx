@@ -4,7 +4,7 @@
 
 set -e
 
-VERSION="1.1.0"
+VERSION="1.1.1"
 REPO="Ishant89op/cmdx"
 BASE_URL="https://github.com/$REPO/releases/download/v$VERSION"
 

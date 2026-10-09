@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.1 (2026-10-09)
+
+### Fixed
+- Standardized release asset naming across all platforms to lowercase `cmdx-<version>-<platform>.<ext>`.
+- macOS package now builds as a universal binary (arm64 + x86_64) for both Intel and Apple Silicon.
+- Added .pkg size verification step to catch broken macOS packages in CI.
+- Removed `apt update` from install.sh source build path.
+
+
 ## 1.1.0 (2026-09-24)
 
 ### Added
