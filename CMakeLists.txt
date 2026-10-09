@@ -143,13 +143,13 @@ set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/Ishant89op/cmdx")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "snatcha <snatcha@cmdx.dev>")
 set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqt6widgets6 (>= 6.2)")
-set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+set(CPACK_DEBIAN_FILE_NAME "cmdx-${PROJECT_VERSION}-amd64.deb")
 
 # ── RPM (.rpm) ──────────────────────────────────────────────────────────────────
 set(CPACK_RPM_PACKAGE_LICENSE "MIT")
 set(CPACK_RPM_PACKAGE_GROUP "Applications/System")
 set(CPACK_RPM_PACKAGE_REQUIRES "qt6-qtbase >= 6.2")
-set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+set(CPACK_RPM_FILE_NAME "cmdx-${PROJECT_VERSION}-x86_64.rpm")
 
 # ── NSIS (.exe installer for Windows) ────────────────────────────────────────────
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "Cmdx")
@@ -164,10 +164,10 @@ set(CPACK_NSIS_CONTACT "snatcha@cmdx.dev")
 
 # ── Generator selection per platform ─────────────────────────────────────────────
 if(WIN32)
-    set(CPACK_PACKAGE_FILE_NAME "Cmdx-Setup-${PROJECT_VERSION}-win64")
+    set(CPACK_PACKAGE_FILE_NAME "cmdx-${PROJECT_VERSION}-win64")
     set(CPACK_GENERATOR "NSIS")
 elseif(APPLE)
-    set(CPACK_PACKAGE_FILE_NAME "Cmdx-Installer-${PROJECT_VERSION}-macos")
+    set(CPACK_PACKAGE_FILE_NAME "cmdx-${PROJECT_VERSION}-macos-universal")
     set(CPACK_PRODUCTBUILD_IDENTIFIER "dev.cmdx.pkg")
     set(CPACK_PRODUCTBUILD_DOMAINS TRUE)
     set(CPACK_PRODUCTBUILD_DOMAINS_ANYWHERE FALSE)

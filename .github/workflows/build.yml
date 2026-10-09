@@ -105,6 +105,7 @@ jobs:
             -B build
             -DCMAKE_INSTALL_PREFIX=/usr/local
             -DCMAKE_BUILD_TYPE=Release
+            -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
           )
 
           if [ -n "$CMDX_MAC_CODESIGN_IDENTITY" ] && [ -n "$CMDX_MAC_INSTALLER_IDENTITY" ] && [ -n "$CMDX_MAC_KEYCHAIN_PATH" ]; then
@@ -159,10 +160,24 @@ jobs:
       - name: Package .pkg
         run: cd build && cpack -G productbuild
 
+      - name: Verify .pkg size
+        run: |
+          PKG="$(find build -maxdepth 1 -name 'cmdx-*.pkg' | head -n 1)"
+          if [ -z "$PKG" ]; then
+            echo "No .pkg found"
+            exit 1
+          fi
+          SIZE=$(stat -f%z "$PKG")
+          echo "Package size: $SIZE bytes"
+          if [ "$SIZE" -lt 100000 ]; then
+            echo "Package is suspiciously small ($SIZE bytes). Build likely failed."
+            exit 1
+          fi
+
       - name: Notarize and staple .pkg
         if: env.APPLE_NOTARY_APPLE_ID != '' && env.APPLE_NOTARY_TEAM_ID != '' && env.APPLE_NOTARY_PASSWORD != '' && env.CMDX_MAC_CODESIGN_IDENTITY != '' && env.CMDX_MAC_INSTALLER_IDENTITY != ''
         run: |
-          PKG_PATH="$(find build -maxdepth 1 -name 'Cmdx-Installer-*.pkg' | head -n 1)"
+          PKG_PATH="$(find build -maxdepth 1 -name 'cmdx-*.pkg' | head -n 1)"
           if [ -z "$PKG_PATH" ]; then
             echo "No macOS package found to notarize."
             exit 1
@@ -252,7 +267,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cmdx-windows-installer
-          path: build/Cmdx-Setup-*.exe
+          path: build/cmdx-*.exe
 
   # ── Release (auto-publish on tag push) ───────────────────────────────
   release:

@@ -43,7 +43,7 @@ detect_platform() {
 }
 
 install_deb() {
-    local pkg="cmdx_${VERSION}_amd64.deb"
+    local pkg="cmdx-${VERSION}-amd64.deb"
     echo "  Downloading $pkg..."
     curl -fsSL -o "/tmp/$pkg" "$BASE_URL/$pkg"
     echo "  Installing (requires sudo)..."
@@ -52,7 +52,7 @@ install_deb() {
 }
 
 install_rpm() {
-    local pkg="cmdx-${VERSION}.x86_64.rpm"
+    local pkg="cmdx-${VERSION}-x86_64.rpm"
     echo "  Downloading $pkg..."
     curl -fsSL -o "/tmp/$pkg" "$BASE_URL/$pkg"
     echo "  Installing (requires sudo)..."
@@ -67,7 +67,7 @@ install_rpm() {
 }
 
 install_macos() {
-    local pkg="Cmdx-Installer-${VERSION}-macos.pkg"
+    local pkg="cmdx-${VERSION}-macos-universal.pkg"
     echo "  Downloading $pkg..."
     curl -fsSL -o "/tmp/$pkg" "$BASE_URL/$pkg"
     echo "  Installing package..."
@@ -84,7 +84,6 @@ install_build_dependencies() {
                 echo "  [x] apt-get not found; cannot install Qt6 and nlohmann-json."
                 exit 1
             fi
-            sudo apt-get update
             sudo apt-get install -y \
                 build-essential cmake \
                 qt6-base-dev \

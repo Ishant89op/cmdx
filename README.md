@@ -31,8 +31,8 @@ docker run --rm ghcr.io/ishant89op/cmdx --list
 
 | Platform | Install |
 |---|---|
-| Debian / Ubuntu | `sudo apt install ./cmdx_1.1.0_amd64.deb` |
-| Fedora / RHEL | `sudo dnf install ./cmdx-1.1.0.x86_64.rpm` |
+| Debian / Ubuntu | `sudo apt install ./cmdx-1.1.0-amd64.deb` |
+| Fedora / RHEL | `sudo dnf install ./cmdx-1.1.0-x86_64.rpm` |
 | Arch | `cmake -B build && cmake --build build && sudo cmake --install build` |
 | macOS | Run the `.pkg` installer from Releases |
 | Windows | Run the Windows installer `.exe` from Releases |
